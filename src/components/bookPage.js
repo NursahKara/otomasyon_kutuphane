@@ -3,28 +3,21 @@ import {StyleSheet,Text,TouchableOpacity,View} from 'react-native';
 import {Card} from './common';
 import * as actions from '../actions';
 import {connect} from 'react-redux';
+import BookItem from './bookItem';
 
-class BookItem extends Component{
-    onPressed(){
-        const { book,selected} =this.props;
-        selected ? this.props.deselectBook()
-        :this.props.selectBook(book);
-    }
+class BookPage extends Component{
     render(){
-        const { book,selected } =this.props;
-        const descriptionField = selected ? (
-        <Text style={styles.descriptionStyles}>{book.description}</Text>
-        ) : null;
+        const {books}=this.props
         return(
-            <TouchableOpacity onPress={this.onPressed.bind(this)}>
-            <Card>
-                <Text style = {styles.titleStyle}>{book.title}</Text>
-                <Text style = {styles.authorStyle}>{book.author}</Text>
-            </Card>
-            {descriptionField}
-            </TouchableOpacity>
+            <View>
+                <FlatList
+                data={books}
+                renderItem={this.renderItem}
+                keyExtractor={(item)=>item.isbn}
+                />
+            </View>
         )
-    }
+   }
 }
 const styles=StyleSheet.create({
     titleStyle:{
@@ -49,8 +42,9 @@ const styles=StyleSheet.create({
 
     }
 })
-
 const mapStateToProps = (state,props) => {
+    console.log(state);
+    console.log(props);
     const selected  = state.seletedBook 
                     && state.seletedBook.isbn === props.book.isbn;
     return{
@@ -58,4 +52,4 @@ const mapStateToProps = (state,props) => {
     }
 }
 
-export default connect(mapStateToProps,actions)(BookItem);
+export default connect(mapStateToProps,actions)(BookPage);

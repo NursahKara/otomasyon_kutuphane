@@ -17,11 +17,13 @@ const styles=StyleSheet.create({
         paddingTop:5,
         justifyContent:'center',
         alignItems:'center',
-        backgroundColor:'#788B91'
+        backgroundColor:'#313132',
+        borderBottomWidth:1,
+      
     },
     headerText:{
         fontSize:26,
-        color:'white',
+        color:'#d8d8d8',
         textAlign:'center'
     }
 });

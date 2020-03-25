@@ -12,12 +12,15 @@ const Card = (props) => {
 const styles=StyleSheet.create({
     cardWrapper:{
         height:50,
-        margin:10,
+        marginTop:5,
+        marginBottom:5,
+        marginLeft:13,
+        marginRight:13,
         borderWidth:1,
-        borderRadius:2,
-        borderColor:'#dddddd',
+        borderRadius:30,
+        borderColor:'gray',
         alignItems:'center',
-        justifyContent:'center'     
+        justifyContent:'center',
     }
 });
 
