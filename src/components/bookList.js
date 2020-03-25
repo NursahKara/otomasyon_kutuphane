@@ -8,13 +8,11 @@ class BookList extends Component{
     renderItem({item}){
         return(
           <BookItem book={item}/>
-       
         )
     }
     render(){
         const {books}=this.props
         return(
-         
             <View>
                 <FlatList
                 data={books}
@@ -22,7 +20,6 @@ class BookList extends Component{
                 keyExtractor={(item)=>item.isbn}
                 />
             </View>
-           
         )
     }
 }
