@@ -18,11 +18,11 @@ export default class loginApp extends Component{
                 messagingSenderId: '337208108607',
             })
         }
-         catch (err) {
+        catch (err) {
             if (!/already exists/.test(err.message)) {
                 console.error('Firebase initialization error raised', err.stack)
                 }}
-                const firebaseApp= firebase;
+        const firebaseApp= firebase;
     }
 
     render(){

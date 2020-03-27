@@ -4,6 +4,9 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import {createStackNavigator} from '@react-navigation/stack';
 import { createDrawerNavigator } from '@react-navigation/drawer';
+import {Provider} from 'react-redux';
+import {createStore} from 'redux';
+import reducers from './reducers';
 // import {CustomHeader,CustomDrawerContent} from './screens';
 // import {HomeScreen} from './screens/home';
 // import {SuggestionsScreen} from './screens/suggestions';
@@ -193,6 +196,7 @@ const StackApp =createStackNavigator();
 export default function App() {
   return (
     <NavigationContainer>
+       
       <StackApp.Navigator initialRouteName="HomeApp">
         <StackApp.Screen name="HomeApp" component={DrawerNavigator} options={navOptionHandler}/>
       </StackApp.Navigator>

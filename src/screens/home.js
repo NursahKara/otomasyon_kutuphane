@@ -14,19 +14,16 @@ export class HomeScreen extends Component{
     render(){
         return(
             <SafeAreaView style={{ flex: 1}}>
-             
-                {/* <SearchBox/>
+                <SearchBox/>
                 <View style={{flex:1,alignItems:'center'}}>
                     <TouchableOpacity style={{marginTop:20}} onPress={()=> navigation.navigate('Opinions')}>
                         <Text>Go To Opinions</Text>
-                    </TouchableOpacity> */}
+                    </TouchableOpacity>
                     <Provider store={createStore(reducers)}>
                         <BookList/>
                     </Provider>
-                {/* </View> */}
-            
+                </View>
             </SafeAreaView>
-         
         );
     }
 }

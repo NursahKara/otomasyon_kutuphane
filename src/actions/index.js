@@ -31,7 +31,6 @@ export const loginUser=(email,password)=>{
             firebase.auth().createUserWithEmailAndPassword(email,password)
             .then(user=>loginSuccess(dispatch,user))
             .catch(()=>loginUserFailed(dispatch))
-
         })
     } 
 }
