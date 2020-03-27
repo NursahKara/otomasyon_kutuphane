@@ -1,17 +1,21 @@
 
 import * as React from 'react';
-import { View, Text, Button } from 'react-native';
-import { NavigationContainer, CommonActions } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
+import { View, Text, Button ,SafeAreaView,TouchableOpacity} from 'react-native';
+import CustomHeader from './CustomHeader';
 
-class settings extends React.Component{
+export class SettingsScreen extends React.Component{
     render(){
         return(
-            <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-            <Text>settings Screen</Text>
-            <Button title='Go to Details' onPress={()=>this.props.navigation.navigate('Details')}></Button>
-          </View>
+            <SafeAreaView style={{ flex: 1}}>
+            <CustomHeader title="Settings" isHome={true} navigation={navigation}/>
+            <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
+            <Text>Settings!</Text>  
+            <TouchableOpacity style={{marginTop:20}} onPress={()=> navigation.navigate('ScanBarcode')}>
+              <Text>Go To Scan Barcode</Text>
+            </TouchableOpacity>
+            </View>
+            
+          </SafeAreaView>
         );
     }
 }
-export default settings;

@@ -1,17 +1,18 @@
 
-import * as React from 'react';
-import { View, Text, Button } from 'react-native';
-import { NavigationContainer, CommonActions } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
+import  React, {Component} from 'react';
+import { View, Text, Button ,SafeAreaView,TouchableOpacity} from 'react-native';
+import CustomHeader from './CustomHeader';
 
-class opinions extends React.Component{
+export class OpinionsScreen extends Component{
     render(){
         return(
-            <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-            <Text>opinions Screen</Text>
-            <Button title='Go to Details' onPress={()=>this.props.navigation.navigate('profile')}></Button>
-          </View>
+            <SafeAreaView style={{ flex: 1}}>
+            <CustomHeader title="Opinions" navigation={navigation}/>
+            <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
+            <Text>Opinions!</Text>  
+            </View>
+          </SafeAreaView>
         );
     }
 }
-export default opinions;
+  
