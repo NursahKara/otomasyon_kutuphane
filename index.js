@@ -1,5 +1,5 @@
 import {AppRegistry} from 'react-native';
-import createAppContainer  from './src/components/common/bottomTabs';
+import RouterComp  from './src/router';
 import {name as appName} from './app.json';
 
-AppRegistry.registerComponent(appName, () => createAppContainer );
+AppRegistry.registerComponent(appName, () => RouterComp );

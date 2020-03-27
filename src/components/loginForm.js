@@ -2,76 +2,47 @@ import React, {Component} from 'react';
 import {View, Text, StyleSheet, ColorPropType} from 'react-native';
 import {Input, MyButton} from './common';
 import firebase from 'firebase';
+import {emailChanged,passwordChanged,loginUser} from '../actions/index';
+import {connect} from 'react-redux';
+import {Provider} from 'react-redux';
+import {createStore} from 'redux';
 
 class LoginForm extends Component{
  
-    state={
-        email:'',
-        password:'',
-        error: '',
-        loading:false
-    }
     onButtonClicked(){
-        const {email,password}=this.state;
-        this.setState({   //logine tıklandığında hata mesajını sıfırlar
-            error:'',
-            loading:true
-        })
-        firebase.auth().signInWithEmailAndPassword(email,password)
-        .then(this.onLoginSuccess.bind(this))
-        .catch(()=>{   //hata aldığı durum 
-            firebase.auth().createUserWithEmailAndPassword(email,password)
-            .then(this.onLoginSuccess.bind(this))
-            .catch(this.onLoginFailed.bind(this));
+        const {email,password}=this.props;
+        this.props.loginUser(email,password);
+    } 
 
-        });
+    onEmailChange(text){
+        this.props.emailChanged(text);
     }
-    onLoginSuccess(){
-        this.setState({
-            email:'',
-            password:'',
-            error: '',
-            loading:false
-        })
-    }
-
-    onLoginFailed(){
-        this.setState({
-            error:'Authentication failed.',
-            loading:false 
-        });
+    onPasswordChange(text){
+        this.props.passwordChanged(text);
     }
     render(){
-        const {error,loading}=this.state;
+        const {error,loading}=this.props;
         const errorMsg = error ? (
-<Text style={styles.errorStyle}>
-    {error}
-</Text>
-        ) : null;
+    <Text style={styles.errorStyle}>
+        {error}
+    </Text>
+) : null;
       
         return(
-            <View style={{padding:30}}>
+            <View style={styles.loginContainer}>
                 <View>
                     <Input text='Email:' inputPlaceHolder='Enter Email'
-                                        onChangeText={(text)=>{
-                                                this.setState({
-                                                email:text
-                                            })
-                                        }}
-                                        value={this.state.email}/>
+                                        onChangeText={this.onEmailChange.bind(this)}
+                                        value={this.props.email}/>
                 </View>
                 <View>
                 <Input text='Password:' inputPlaceHolder='Enter Password'
-                                        onChangeText={(text)=>{
-                                                this.setState({
-                                                password:text
-                                            })
-                                        }}
+                                        onChangeText={this.onPasswordChange.bind(this)}
                                         secureTextEntry
-                                        value={this.state.password}/>
+                                        value={this.props.password}/>
                    
                 </View>
-{errorMsg}
+                {errorMsg}
                 <MyButton spinner={loading}
                           title='Login'
                           onPress={this.onButtonClicked.bind(this)}
@@ -81,21 +52,22 @@ class LoginForm extends Component{
     }
 }
 const styles=StyleSheet.create({
-    buttonWrapper:{
-        marginTop:20,
-        height:49,
-        borderRadius:10,
-        justifyContent:'center',
-        fontSize: 18,
-        backgroundColor:'#fff'
-        
-    },
     errorStyle:{
         fontSize:20,
         color:'red',
         paddingTop:15,
         alignSelf:'center'
-
+    },
+    loginContainer:{
+        flex:1,
+        justifyContent:'center',
+        padding:30
     }
-})
-export default LoginForm;
+});
+const mapStateToProps = state =>{
+    const{email,password,loading,error}=state.auth;
+    return {
+       email,password,loading,error
+    }
+}
+export default connect(mapStateToProps,{emailChanged,passwordChanged,loginUser})(LoginForm);

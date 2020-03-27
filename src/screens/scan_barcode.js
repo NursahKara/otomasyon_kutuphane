@@ -1,17 +1,17 @@
 
 import * as React from 'react';
-import { View, Text, Button } from 'react-native';
-import { NavigationContainer, CommonActions } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
+import { View, Text, Button ,SafeAreaView} from 'react-native';
+import CustomHeader from './CustomHeader';
 
-class barkode extends React.Component{
+export class ScanBarcodeScreen extends React.Component{
     render(){
         return(
-            <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-            <Text>barkode Screen</Text>
-            <Button title='Go to Details' onPress={()=>this.props.navigation.navigate('Details')}></Button>
-          </View>
+            <SafeAreaView style={{ flex: 1}}>
+            <CustomHeader title="Scan Barcode" navigation={navigation}/>
+            <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
+            <Text>Scan Barcode!</Text>  
+            </View>
+          </SafeAreaView>
         );
     }
 }
-export default barkode;

@@ -3,13 +3,14 @@ import {StyleSheet,View,Text,SafeAreaView,ScrollView,Dimensions} from 'react-nat
 import { NavigationContainer, StackActions ,DefaultTheme , DarkTheme,useTheme } from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import HomeScreen from '../../screens/home';
-import ProfileScreen from '../../screens/profile';
-import SettingsScreen from '../../screens/settings';
-import ScanBarcodeScreen from '../../screens/settings';
-import OpinionsScreen from '../../screens/opinions';
+import HomeScreen from '../../../screens/home';
+import ProfileScreen from '../../../screens/profile';
+import SettingsScreen from '../../../screens/settings';
+import ScanBarcodeScreen from '../../../screens/settings';
+import OpinionsScreen from '../../../screens/opinions';
 import {createDrawerNavigator,DrawerItem} from '@react-navigation/drawer';
-import SuggestionsScreen from '../../screens/suggestions';
+import SuggestionsScreen from '../../../screens/suggestions';
+
 
 const MyTheme = {
     dark: true,
@@ -157,16 +158,16 @@ const ScanBarcodeStackScreen =({navigation})=>(
 );
 
 const Drawer=createDrawerNavigator();
-const DrawerMenu =()=>{
+const scanBarcodeDrawerMenu =()=>{
     return(
         <NavigationContainer theme={MyTheme}>
-            <Drawer.Navigator initialRouteName="Home" >
+            <Drawer.Navigator initialRouteName="Scan_Barcode" >
                 <Drawer.Screen name="Home" component={HomeStackScreen}/>
                 <Drawer.Screen name="Profile" component={ProfileStackScreen}/>
                 <Drawer.Screen name="Opinions" component={OpinionStackScreen}/>
                 <Drawer.Screen name="Settings" component={SettingsStackScreen}/>
                 <Drawer.Screen name="Suggestions" component={SuggestionsStackScreen}/>
-                <Drawer.Screen name="Scan Barcode" component={ScanBarcodeStackScreen}/>
+                <Drawer.Screen name="Scan_Barcode" component={ScanBarcodeStackScreen}/>
             </Drawer.Navigator>
         </NavigationContainer>
     )
@@ -178,5 +179,5 @@ const styles=StyleSheet.create({
         backgroundColor:'black'
     }
 });
-export default DrawerMenu;
+export default scanBarcodeDrawerMenu;
 

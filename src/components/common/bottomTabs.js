@@ -1,43 +1,22 @@
 import React, { Component } from 'react';
-import {StyleSheet,View,Text} from 'react-native';
+import {StyleSheet,View,Text, Alert} from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
 import {createAppContainer} from 'react-navigation';
 import Icon from 'react-native-vector-icons/FontAwesome'
 import {createMaterialBottomTabNavigator} from 'react-navigation-material-bottom-tabs';
-import HomeScreen from '../../screens/home';
 import App from '../../App';
 import {createDrawerNavigator} from 'react-navigation-drawer';
+import HomeScreen from '../../screens/home';
+import ProfileScreen from '../../screens/profile';
+import SettingsScreen from '../../screens/settings';
+import ScanBarcodeScreen from '../../screens/settings';
+import OpinionsScreen from '../../screens/opinions';
 import DrawerMenu from './drawer';
-
-
-class ProfileScreen extends Component{
-    render(){
-        return(
-            <View style={styles.container}>
-                <Text>Profile Screen</Text>
-            </View>
-        )
-    }
-}
-class SettingsScreen extends Component{
-    render(){
-        return(
-            <View style={styles.container}>
-                <Text>Settings Screen</Text>
-            </View>
-        )
-    }
-}
-class DenemeScreen extends Component{
-    render(){
-        return(
-            <View style={styles.container}>
-                <Text>Deneme Screen</Text>
-            </View>
-        )
-    }
-}
+import profileDrawerMenu from './drawers/profileDrawer';
+import opinionDrawerMenu from './drawers/opinionDrawer';
+import suggestionDrawerMenu from './drawers/suggestionDrawer';
+import settingDrawerMenu from './drawers/settingDrawer';
 
 const TabNavigator=createMaterialBottomTabNavigator(
 {
@@ -52,46 +31,60 @@ const TabNavigator=createMaterialBottomTabNavigator(
         }
     },
     Profile:{
-        screen:ProfileScreen,
+        screen:profileDrawerMenu,
         navigationOptions:{
             tabBarIcon:({tintColor})=>(
                 <View>
                     <Icon style={[{color:tintColor}]} size={25} name='music'/>
                 </View>
             ),
+        }
+    },
+   
+    Map:{
+        screen:suggestionDrawerMenu,
+        navigationOptions:{
+            // tabBarIcon:({tintColor})=>(
+            //     <View>
+            //         <Icon style={[{color:tintColor}]} size={25} name='music'/> 
+            //     </View>
+            // ),
+            tabBarIcon: ({ tintColor }) => (
+                <Icon name = {"bars"} color={tintColor} size={25}/>
+                ),
+            activeColor:'#ffffff',
+            inactiveColor:'#fff',
+            barStyle:{
+            backgroundColor:'#581845',
+            }
         }
     },
     Settings:{
-        screen:SettingsScreen,
+        screen:settingDrawerMenu,
         navigationOptions:{
             tabBarIcon:({tintColor})=>(
                 <View>
                     <Icon style={[{color:tintColor}]} size={25} name='music'/>
                 </View>
             ),
-        }
-    },
-    Deneme:{
-        screen:DenemeScreen,
-        navigationOptions:{
-            tabBarIcon:({tintColor})=>(
-                <View>
-                    <Icon style={[{color:tintColor}]} size={25} name='music'/> 
-                </View>
+            headerLeft:()=>(
+                <Icon.Button name={'bars'} size={25} backgroundColor='#009387' onPress={()=>{
+                    navigation.openDrawer()
+                }}></Icon.Button>
             ),
-            activeColor:'#ffffff',
-            inactiveColor:'#ebaabd',
-            barStyle:{backgroundColor:'#d13560'}
+            
         }
     },
 },
 {
     initialRouteName:'Home',
-    activeColor:'#ffffff',
-    inactiveColor:'#bda1f7',
-    barStyle:{backgroundColor:'#6948f4'}
-}
-);
+    activeColor:'#581845',
+    inactiveColor:'#581845',
+    barStyle:{
+        backgroundColor:'#6948f4',
+    },
+    
+});
 
   const styles=StyleSheet.create({
     container:{

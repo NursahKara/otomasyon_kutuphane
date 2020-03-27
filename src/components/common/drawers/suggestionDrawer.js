@@ -3,13 +3,13 @@ import {StyleSheet,View,Text,SafeAreaView,ScrollView,Dimensions} from 'react-nat
 import { NavigationContainer, StackActions ,DefaultTheme , DarkTheme,useTheme } from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import HomeScreen from '../../screens/home';
-import ProfileScreen from '../../screens/profile';
-import SettingsScreen from '../../screens/settings';
-import ScanBarcodeScreen from '../../screens/settings';
-import OpinionsScreen from '../../screens/opinions';
+import HomeScreen from '../../../screens/home';
+import ProfileScreen from '../../../screens/profile';
+import SettingsScreen from '../../../screens/settings';
+import ScanBarcodeScreen from '../../../screens/settings';
+import OpinionsScreen from '../../../screens/opinions';
 import {createDrawerNavigator,DrawerItem} from '@react-navigation/drawer';
-import SuggestionsScreen from '../../screens/suggestions';
+import SuggestionsScreen from '../../../screens/suggestions';
 
 const MyTheme = {
     dark: true,
@@ -157,10 +157,10 @@ const ScanBarcodeStackScreen =({navigation})=>(
 );
 
 const Drawer=createDrawerNavigator();
-const DrawerMenu =()=>{
+const suggestionDrawerMenu =()=>{
     return(
         <NavigationContainer theme={MyTheme}>
-            <Drawer.Navigator initialRouteName="Home" >
+            <Drawer.Navigator initialRouteName="Suggestions" >
                 <Drawer.Screen name="Home" component={HomeStackScreen}/>
                 <Drawer.Screen name="Profile" component={ProfileStackScreen}/>
                 <Drawer.Screen name="Opinions" component={OpinionStackScreen}/>
@@ -178,5 +178,5 @@ const styles=StyleSheet.create({
         backgroundColor:'black'
     }
 });
-export default DrawerMenu;
+export default suggestionDrawerMenu;
 

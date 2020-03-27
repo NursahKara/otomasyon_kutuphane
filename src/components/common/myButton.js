@@ -8,13 +8,12 @@ const MyButton =({spinner, title, color, onPress}) => {
                    <Button onPress={onPress} 
                             color={color} 
                             title={title}/>
-
     )
-return(
-    <View style={styles.buttonWrapper}>
-        {content}
-    </View>
-)
+    return(
+        <View style={styles.buttonWrapper}>
+            {content}
+        </View>
+    )
 }
 const styles=StyleSheet.create({
     buttonWrapper:{
@@ -24,7 +23,6 @@ const styles=StyleSheet.create({
         justifyContent:'center',
         fontSize: 18,
         backgroundColor:'#fff'
-        
     }
 })
 export {MyButton}

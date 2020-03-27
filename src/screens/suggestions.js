@@ -1,17 +1,16 @@
+import  React,{Component} from 'react';
+import { View, Text, Button ,SafeAreaView,TouchableOpacity} from 'react-native';
+import CustomHeader from './CustomHeader';
 
-import * as React from 'react';
-import { View, Text, Button } from 'react-native';
-import { NavigationContainer, CommonActions } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-
-class suggestions extends React.Component{
+export class SuggestionsScreen extends Component{
     render(){
         return(
-            <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-            <Text>suggestions Screen</Text>
-            <Button title='Go to Details' onPress={()=>this.props.navigation.navigate('Details')}></Button>
-          </View>
+            <SafeAreaView style={{ flex: 1}}>
+            <CustomHeader title="Suggestions" isHome={true} navigation={navigation}/>
+            <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
+            <Text>Suggestions!</Text> 
+            </View>
+          </SafeAreaView>
         );
     }
 }
-export default suggestions;
