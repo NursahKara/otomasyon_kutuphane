@@ -9,10 +9,27 @@ import {createStore} from 'redux';
 
 class LoginForm extends Component{
  
+    componentDidMount(){
+        try {
+        firebase.initializeApp({
+                apiKey: 'AIzaSyDS8NjYoi3sETSbXONu2rJPskkvhRnX-mw',
+                authDomain: 'girisyapmauygulamasi.firebaseapp.com',
+                databaseURL: 'https://girisyapmauygulamasi.firebaseio.com',
+                projectId: 'girisyapmauygulamasi',
+                storageBucket: 'girisyapmauygulamasi.appspot.com',
+                messagingSenderId: '337208108607',
+            })
+        }
+        catch (err) {
+            if (!/already exists/.test(err.message)) {
+                console.error('Firebase initialization error raised', err.stack)
+                }}
+        const firebaseApp= firebase;
+    }
     onButtonClicked(){
         const {email,password}=this.props;
         this.props.loginUser(email,password);
-    } 
+    }
 
     onEmailChange(text){
         this.props.emailChanged(text);
@@ -70,4 +87,5 @@ const mapStateToProps = state =>{
        email,password,loading,error
     }
 }
+
 export default connect(mapStateToProps,{emailChanged,passwordChanged,loginUser})(LoginForm);

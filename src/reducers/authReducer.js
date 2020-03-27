@@ -9,7 +9,7 @@ const INITIAL_STATE={
         email:'',
         password:'',
         user:{},
-      //loading:true,
+        loading:false,
         error:''
 }
 
