@@ -2,9 +2,11 @@ import {combineReducers} from 'redux';
 import BooksReducer from './booksReducer'
 import  SelectedBookReducer from './seletedBookReducer';
 import AuthReducer from './authReducer';
+import ProfileInformationReducer from './profileInformationReducer';
 
 export default combineReducers({
     books: BooksReducer,
     seletedBook : SelectedBookReducer,
-    auth:AuthReducer
+    auth:AuthReducer,
+    profileInformation: ProfileInformationReducer
 });

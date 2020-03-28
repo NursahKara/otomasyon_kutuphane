@@ -1,5 +1,5 @@
 import  React,{Component} from 'react';
-import { Text, View ,SafeAreaView,Image,TouchableOpacity,ScrollView,Button} from 'react-native';
+import { Text, View ,SafeAreaView,Image,TouchableOpacity,ScrollView,Button,FlatList,TextInput,StyleSheet} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import {createStackNavigator} from '@react-navigation/stack';
@@ -7,13 +7,16 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import {Provider} from 'react-redux';
 import {createStore} from 'redux';
 import reducers from './reducers';
+import {SearchBox} from './components/common/searchBox';
+import BookList from './components/bookList';
+import {Input, MyButton} from './components/common';
 // import {CustomHeader,CustomDrawerContent} from './screens';
 // import {HomeScreen} from './screens/home';
 // import {SuggestionsScreen} from './screens/suggestions';
 // import {OpinionsScreen} from './screens/opinions';
 // import {SettingsScreen} from './screens/settings';
 // import {ScanBarcodeScreen} from './screens/scan_barcode';
-// import {ProfileScreen} from './screens/profile';
+ import ProfileScreen from './screens/profile';
 
 function CustomHeader({title ,isHome,navigation}){
   return(
@@ -27,7 +30,6 @@ function CustomHeader({title ,isHome,navigation}){
                 resizeMode="contain"
               />
         </TouchableOpacity>
-         
         :
         <TouchableOpacity style={{flexDirection:'row',alignItems:'center'}}
                           onPress={()=>navigation.goBack()}
@@ -53,13 +55,13 @@ function HomeScreen({navigation}) {
   return (
     <SafeAreaView style={{ flex: 1}}>
       <CustomHeader title="Home" isHome={true} navigation={navigation}/>
-      <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
-      <Text>Home!</Text>  
-      <TouchableOpacity style={{marginTop:20}} onPress={()=> navigation.navigate('Opinions')}>
+      <SearchBox/>
+      <TouchableOpacity style={{marginTop:20 ,justifyContent:'center',alignItems:'center'}} onPress={()=> navigation.navigate('Opinions')}>
         <Text>Go To Opinions</Text>
       </TouchableOpacity>
-      </View>
-      
+      <Provider store={createStore(reducers)}>
+        <BookList/>
+      </Provider>
     </SafeAreaView>
   );
 }
@@ -73,7 +75,6 @@ function OpinionsScreen({navigation}) {
     </SafeAreaView>
   );
 }
-
 function SettingsScreen({navigation}) {
   return (
     <SafeAreaView style={{ flex: 1}}>
@@ -98,18 +99,21 @@ function ScanBarcodeScreen({navigation}) {
     </SafeAreaView>
   );
 }
-function SuggestionsScreen({ navigation }) {
-  return (
-    <SafeAreaView style={{ flex: 1}}>
-    <CustomHeader title="Suggestions" navigation={navigation}/>
-    <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
-    <Text>Suggestions!</Text>  
-    </View>
-  </SafeAreaView>
-  );
-}
-
-
+// function ProfileScreen({ navigation }) {
+//   return (
+//     <SafeAreaView style={{ flex: 1}}>
+//     <CustomHeader title="Profile" navigation={navigation}/>
+//     <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
+//     <TextInput style={styles.textInputStyle} placeholder='Name' placeholderTextColor='black' underlineColorAndroid='transparent'></TextInput>
+//     <TextInput style={styles.textInputStyle} placeholder='Sur Name' placeholderTextColor='black' underlineColorAndroid='transparent'></TextInput>
+//     <MyButton spinner={false}
+//               title='Send'
+//               onPress={()=>{}}
+//               color='#E87B79'/>
+//     </View>
+//   </SafeAreaView>
+//   );
+// }
 function CustomDrawerContent(props){
   return(
     <SafeAreaView style={{flex:1}}>
@@ -122,8 +126,8 @@ function CustomDrawerContent(props){
       <TouchableOpacity style={{marginTop:20}} onPress={()=>props.navigation.navigate('MenuTab')}>
         <Text>Menu Tab</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={{marginTop:20}} onPress={()=>props.navigation.navigate('Suggestions')}>
-        <Text>Suggestions</Text>
+      <TouchableOpacity style={{marginTop:20}} onPress={()=>props.navigation.navigate('Profile')}>
+        <Text>Profile</Text>
       </TouchableOpacity>
       </ScrollView>
     </SafeAreaView>
@@ -188,7 +192,7 @@ function DrawerNavigator(){
   return(
       <Drawer.Navigator initialRouteName="MenuTab" drawerContent={props=>CustomDrawerContent(props)}>
         <Drawer.Screen name="MenuTab" component={TabNavigator} />
-        <Drawer.Screen name="Suggestions" component={SuggestionsScreen} />
+        <Drawer.Screen name="Profile" component={ProfileScreen} />
       </Drawer.Navigator>
   )
 }
@@ -196,10 +200,11 @@ const StackApp =createStackNavigator();
 export default function App() {
   return (
     <NavigationContainer>
-       
       <StackApp.Navigator initialRouteName="HomeApp">
         <StackApp.Screen name="HomeApp" component={DrawerNavigator} options={navOptionHandler}/>
       </StackApp.Navigator>
     </NavigationContainer>
   );
 }
+
+

@@ -6,26 +6,31 @@ import {emailChanged,passwordChanged,loginUser} from '../actions/index';
 import {connect} from 'react-redux';
 import {Provider} from 'react-redux';
 import {createStore} from 'redux';
-
+import { getDatabase } from './common/database';
+getDatabase().ref('login')
 class LoginForm extends Component{
  
-    componentDidMount(){
-        try {
-        firebase.initializeApp({
-                apiKey: 'AIzaSyDS8NjYoi3sETSbXONu2rJPskkvhRnX-mw',
-                authDomain: 'girisyapmauygulamasi.firebaseapp.com',
-                databaseURL: 'https://girisyapmauygulamasi.firebaseio.com',
-                projectId: 'girisyapmauygulamasi',
-                storageBucket: 'girisyapmauygulamasi.appspot.com',
-                messagingSenderId: '337208108607',
-            })
-        }
-        catch (err) {
-            if (!/already exists/.test(err.message)) {
-                console.error('Firebase initialization error raised', err.stack)
-                }}
-        const firebaseApp= firebase;
-    }
+    // componentDidMount(){
+    //     try {
+    //     firebase.initializeApp({
+    //             apiKey: 'AIzaSyDS8NjYoi3sETSbXONu2rJPskkvhRnX-mw',
+    //             authDomain: 'girisyapmauygulamasi.firebaseapp.com',
+    //             databaseURL: 'https://girisyapmauygulamasi.firebaseio.com',
+    //             projectId: 'girisyapmauygulamasi',
+    //             storageBucket: 'girisyapmauygulamasi.appspot.com',
+    //             messagingSenderId: '337208108607',
+    //             appId: "1:337208108607:web:00a050029af9c57f8e3a8a",
+    //             measurementId: "G-5TZW6EM1LP",
+               
+    //         })
+    //         firebase.analytics();
+    //     }
+    //     catch (err) {
+    //         if (!/already exists/.test(err.message)) {
+    //             console.error('Firebase initialization error raised', err.stack)
+    //             }}
+    //     const firebaseApp= firebase;
+    // }
     onButtonClicked(){
         const {email,password}=this.props;
         this.props.loginUser(email,password);
