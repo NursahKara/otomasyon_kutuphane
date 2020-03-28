@@ -14,16 +14,17 @@ export class HomeScreen extends Component{
     render(){
         return(
             <SafeAreaView style={{ flex: 1}}>
-                <SearchBox/>
-                <View style={{flex:1,alignItems:'center'}}>
-                    <TouchableOpacity style={{marginTop:20}} onPress={()=> navigation.navigate('Opinions')}>
-                        <Text>Go To Opinions</Text>
-                    </TouchableOpacity>
-                    <Provider store={createStore(reducers)}>
-                        <BookList/>
-                    </Provider>
-                </View>
-            </SafeAreaView>
+            <CustomHeader title="Home" isHome={true} navigation={navigation}/>
+            <SearchBox/>
+            <TouchableOpacity style={{marginTop:20 ,justifyContent:'center',alignItems:'center'}} onPress={()=> navigation.navigate('Opinions')}>
+              <Text>Go To Opinions</Text>
+            </TouchableOpacity>
+            <Provider store={createStore(reducers)}>
+              <BookList/>
+            </Provider>
+          
+            
+          </SafeAreaView>
         );
     }
 }
