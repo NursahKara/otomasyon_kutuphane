@@ -1,7 +1,7 @@
 import  React,{Component} from 'react';
 import { Text, View ,SafeAreaView,Image,TouchableOpacity,ScrollView,Button} from 'react-native';
 
-export class CustomDrawerContent extends Component{
+export default class CustomDrawerContent extends Component{
     render(){
         return(
           <SafeAreaView style={{flex:1}}>
@@ -14,8 +14,8 @@ export class CustomDrawerContent extends Component{
           <TouchableOpacity style={{marginTop:20}} onPress={()=>props.navigation.navigate('MenuTab')}>
             <Text>Menu Tab</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={{marginTop:20}} onPress={()=>props.navigation.navigate('Suggestions')}>
-            <Text>Suggestions</Text>
+          <TouchableOpacity style={{marginTop:20}} onPress={()=>props.navigation.navigate('Profile')}>
+            <Text>Profile</Text>
           </TouchableOpacity>
           </ScrollView>
         </SafeAreaView>
