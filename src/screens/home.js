@@ -10,21 +10,19 @@ import {createStore} from 'redux';
 import reducers from '../reducers';
 import CustomHeader from './CustomHeader';
 
-export class HomeScreen extends Component{
+export default class HomeScreen extends Component{
     render(){
         return(
-            <SafeAreaView style={{ flex: 1}}>
-            <CustomHeader title="Home" isHome={true} navigation={navigation}/>
-            <SearchBox/>
-            <TouchableOpacity style={{marginTop:20 ,justifyContent:'center',alignItems:'center'}} onPress={()=> navigation.navigate('Opinions')}>
-              <Text>Go To Opinions</Text>
-            </TouchableOpacity>
-            <Provider store={createStore(reducers)}>
-              <BookList/>
-            </Provider>
-          
-            
-          </SafeAreaView>
+          <SafeAreaView style={{ flex: 1}}>
+          <CustomHeader title="Home" isHome={true} navigation={this.props.navigation}/>
+          <SearchBox/>
+          <TouchableOpacity style={{marginTop:20 ,justifyContent:'center',alignItems:'center'}} onPress={()=>this.props.navigation.navigate('Opinions')}>
+            <Text>Go To Opinions</Text>
+          </TouchableOpacity>
+          <Provider store={createStore(reducers)}>
+            <BookList/>
+          </Provider>
+        </SafeAreaView>
         );
     }
 }

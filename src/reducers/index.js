@@ -1,6 +1,6 @@
 import {combineReducers} from 'redux';
 import BooksReducer from './booksReducer'
-import  SelectedBookReducer from './seletedBookReducer';
+import SelectedBookReducer from './seletedBookReducer';
 import AuthReducer from './authReducer';
 import ProfileInformationReducer from './profileInformationReducer';
 

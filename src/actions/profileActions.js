@@ -15,7 +15,7 @@ export const sendInformationProfile =(information)=>{
     const currentUser=firebase.auth().currentUser;
     const email=currentUser.email;
     return (dispatch)=>{                            //async işlem diye dispatch döndük
-        getDatabase().ref('informations')    //ve firebase e istek attık.referans olarak da link vermek gerekiyor.burası ulaşma yöntemi
+        getDatabase().ref('name')                   //ve firebase e istek attık.referans olarak da link vermek gerekiyor.burası ulaşma yöntemi
         .push({email, information})                 //pushun içindeki objeyi informations un içine atıyor
         .then(()=>{                                 //bu işlemlerden sonra dönüş yapan fonk.
             dispatch({

@@ -5,21 +5,21 @@ import { createStackNavigator } from '@react-navigation/stack';
 import {Input, MyButton} from '../components/common';
 import {connect} from 'react-redux';
 import {changeProfile, sendInformationProfile} from '../actions';
+import CustomHeader from './CustomHeader';
 
  class ProfileScreen extends React.Component{
    
     onChangeInformation(information){
-        this.props.changeProfile(information)
+        this.props.changeProfile(information);
     }
     sendInformationProfile(){
-        const {information}=this.props;
-        this.props.sendInformationProfile(this.props.information);
+        this.props.sendInformationProfile(this.props.information) 
     }
-
+    
     render(){
         return(
             <SafeAreaView style={{ flex: 1}}>
-            {/* <CustomHeader title="Profile" navigation={this.props.navigation}/> */}
+            <CustomHeader title="Profile" navigation={this.props.navigation}/>
             <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
             <TextInput 
                     style={styles.textInputStyle} 
@@ -27,17 +27,26 @@ import {changeProfile, sendInformationProfile} from '../actions';
                     placeholderTextColor='black' 
                     underlineColorAndroid='transparent'
                     onChangeText={this.onChangeInformation.bind(this)}
+                 
+                   
                     />
-            {/* <TextInput 
+            <TextInput 
                     style={styles.textInputStyle} 
-                    placeholder='Sur Name' 
+                    placeholder='Surname' 
                     placeholderTextColor='black' 
                     underlineColorAndroid='transparent'
-                    /> */}
+                    />
+            <TextInput 
+                    style={styles.textInputStyle} 
+                    placeholder='Nick' 
+                    placeholderTextColor='black' 
+                    underlineColorAndroid='transparent'
+                    />
             <MyButton spinner={false}
                       title='Send'
                       onPress={this.sendInformationProfile.bind(this)}
-                      color='#E87B79'/>
+                      color='#E87B79'
+                      />
             </View>
           </SafeAreaView>
         );

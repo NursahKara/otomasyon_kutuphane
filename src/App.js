@@ -4,116 +4,13 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import {createStackNavigator} from '@react-navigation/stack';
 import { createDrawerNavigator } from '@react-navigation/drawer';
-import {Provider} from 'react-redux';
-import {createStore} from 'redux';
-import reducers from './reducers';
-import {SearchBox} from './components/common/searchBox';
-import BookList from './components/bookList';
-import {Input, MyButton} from './components/common';
-// import {CustomHeader,CustomDrawerContent} from './screens';
-// import {HomeScreen} from './screens/home';
-// import {SuggestionsScreen} from './screens/suggestions';
-// import {OpinionsScreen} from './screens/opinions';
-// import {SettingsScreen} from './screens/settings';
-// import {ScanBarcodeScreen} from './screens/scan_barcode';
- import ProfileScreen from './screens/profile';
+import HomeScreen from './screens/home';
+import SuggestionsScreen from './screens/suggestions';
+import OpinionsScreen from './screens/opinions';
+import SettingsScreen from './screens/settings';
+import ScanBarcodeScreen from './screens/scan_barcode';
+import ProfileScreen from './screens/profile';
 
-function CustomHeader({title ,isHome,navigation}){
-  return(
-    <View style={{flexDirection:'row',height:50}}>
-      <View style={{flex:1,justifyContent:'center'}}>
-      {
-        isHome? 
-        <TouchableOpacity onPress={()=>navigation.openDrawer()}>
-              <Image style={{width:30,height:30,marginLeft:10}}
-                source={require('../assest/images/menu.png')}
-                resizeMode="contain"
-              />
-        </TouchableOpacity>
-        :
-        <TouchableOpacity style={{flexDirection:'row',alignItems:'center'}}
-                          onPress={()=>navigation.goBack()}
-        >
-          <Image style={{width:20,height:20,marginLeft:10}}
-                 source={require('../assest/images/backFat.png')}
-                 resizeMode="contain"
-          />
-          <Text>Back</Text>
-        </TouchableOpacity>
-      }
-      </View>
-     
-      <View style={{flex:1,justifyContent:'center'}}>
-        <Text style={{textAlign:'center'}}>{title}</Text>
-      </View>
-      <View style={{flex:1}}></View>
-    </View>
-  )
-}
-
-function HomeScreen({navigation}) {
-  return (
-    <SafeAreaView style={{ flex: 1}}>
-      <CustomHeader title="Home" isHome={true} navigation={navigation}/>
-      <SearchBox/>
-      <TouchableOpacity style={{marginTop:20 ,justifyContent:'center',alignItems:'center'}} onPress={()=> navigation.navigate('Opinions')}>
-        <Text>Go To Opinions</Text>
-      </TouchableOpacity>
-      <Provider store={createStore(reducers)}>
-        <BookList/>
-      </Provider>
-    </SafeAreaView>
-  );
-}
-function OpinionsScreen({navigation}) {
-  return (
-    <SafeAreaView style={{ flex: 1}}>
-      <CustomHeader title="Opinions" navigation={navigation}/>
-      <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
-      <Text>Opinions!</Text>  
-      </View>
-    </SafeAreaView>
-  );
-}
-function SettingsScreen({navigation}) {
-  return (
-    <SafeAreaView style={{ flex: 1}}>
-      <CustomHeader title="Settings" isHome={true} navigation={navigation}/>
-      <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
-      <Text>Settings!</Text>  
-      <TouchableOpacity style={{marginTop:20}} onPress={()=> navigation.navigate('ScanBarcode')}>
-        <Text>Go Settings Detail</Text>
-      </TouchableOpacity>
-      </View>
-      
-    </SafeAreaView>
-  );
-}
-function ScanBarcodeScreen({navigation}) {
-  return (
-    <SafeAreaView style={{ flex: 1}}>
-      <CustomHeader title="Scan Barcode" navigation={navigation}/>
-      <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
-      <Text>Scan Barcode!</Text>  
-      </View>
-    </SafeAreaView>
-  );
-}
-// function ProfileScreen({ navigation }) {
-//   return (
-//     <SafeAreaView style={{ flex: 1}}>
-//     <CustomHeader title="Profile" navigation={navigation}/>
-//     <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
-//     <TextInput style={styles.textInputStyle} placeholder='Name' placeholderTextColor='black' underlineColorAndroid='transparent'></TextInput>
-//     <TextInput style={styles.textInputStyle} placeholder='Sur Name' placeholderTextColor='black' underlineColorAndroid='transparent'></TextInput>
-//     <MyButton spinner={false}
-//               title='Send'
-//               onPress={()=>{}}
-//               color='#E87B79'/>
-//     </View>
-//   </SafeAreaView>
-//   );
-// }
 function CustomDrawerContent(props){
   return(
     <SafeAreaView style={{flex:1}}>
