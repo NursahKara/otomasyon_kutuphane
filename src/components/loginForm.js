@@ -1,5 +1,13 @@
 import React, {Component} from 'react';
-import {View, Text, StyleSheet, ColorPropType} from 'react-native';
+import {View, Text, StyleSheet, 
+        ColorPropType,
+        TouchableOpacity,
+        Dimensions,
+        ScrollView,
+        Image,
+        ImageBackground,
+        Platform
+} from 'react-native';
 import {Input, MyButton} from './common';
 import firebase from 'firebase';
 import {emailChanged,passwordChanged,loginUser} from '../actions/index';
@@ -7,30 +15,13 @@ import {connect} from 'react-redux';
 import {Provider} from 'react-redux';
 import {createStore} from 'redux';
 import { getDatabase } from './common/database';
+import ProfileScreen from '../screens/profile';
+import { Block, theme } from "galio-framework";
 getDatabase().ref('login')
+const { width, height } = Dimensions.get("screen");
 class LoginForm extends Component{
- 
-    // componentDidMount(){
-    //     try {
-    //     firebase.initializeApp({
-    //             apiKey: 'AIzaSyDS8NjYoi3sETSbXONu2rJPskkvhRnX-mw',
-    //             authDomain: 'girisyapmauygulamasi.firebaseapp.com',
-    //             databaseURL: 'https://girisyapmauygulamasi.firebaseio.com',
-    //             projectId: 'girisyapmauygulamasi',
-    //             storageBucket: 'girisyapmauygulamasi.appspot.com',
-    //             messagingSenderId: '337208108607',
-    //             appId: "1:337208108607:web:00a050029af9c57f8e3a8a",
-    //             measurementId: "G-5TZW6EM1LP",
-               
-    //         })
-    //         firebase.analytics();
-    //     }
-    //     catch (err) {
-    //         if (!/already exists/.test(err.message)) {
-    //             console.error('Firebase initialization error raised', err.stack)
-    //             }}
-    //     const firebaseApp= firebase;
-    // }
+//componentDidMount firebase connection
+
     onButtonClicked(){
         const {email,password}=this.props;
         this.props.loginUser(email,password);
@@ -51,25 +42,47 @@ class LoginForm extends Component{
 ) : null;
       
         return(
-            <View style={styles.loginContainer}>
-                <View>
-                    <Input text='Email:' inputPlaceHolder='Enter Email'
+            <Block flex>
+                <ImageBackground
+                    source={require('../../assest/themes/bg.png')}
+                    style={styles.ImageContainer}
+                    >
+                      
+                    <ScrollView 
+                        showsVerticalScrollIndicator={false}
+                        style={{ width, marginTop: '30%' }}
+                        >
+                            <Block  style={styles.loginContainer}>
+                            {/* <Image source={require('../../assest/images/user.png')} style={{width:120,height:120,marginTop:-60,marginLeft:width/3,zIndex:2,borderWidth:3,borderColor:'black',borderRadius:100}}/> */}
+                          <View style={{marginTop:'25%',marginLeft:17,marginRight:17,marginBottom:25}}>
+                                <Input  text='Email:' 
+                                        inputPlaceHolder='Enter Email'
                                         onChangeText={this.onEmailChange.bind(this)}
-                                        value={this.props.email}/>
-                </View>
-                <View>
-                <Input text='Password:' inputPlaceHolder='Enter Password'
+                                        value={this.props.email}
+                                    
+                                        />
+                        
+                                <Input  text='Password:' 
+                                        inputPlaceHolder='Enter Password'
                                         onChangeText={this.onPasswordChange.bind(this)}
                                         secureTextEntry
                                         value={this.props.password}/>
-                   
-                </View>
-                {errorMsg}
-                <MyButton spinner={loading}
-                          title='Login'
-                          onPress={this.onButtonClicked.bind(this)}
-                          color='#E87B79'/>
-            </View>
+                                {errorMsg}
+                                </View>
+                                <MyButton spinner={loading}
+                                        title='Login'
+                                        onPress={this.onButtonClicked.bind(this)}
+                                        color='#731873'/>
+                                <Text style={styles.orText}>OR</Text>
+                                <MyButton 
+                                        title='Register'
+                                        onPress={()=> this.props.navigation.navigate('Register')}
+                                        color='#731873'/>
+                               
+                            </Block>
+                    </ScrollView>
+                </ImageBackground>
+            </Block>
         )
     }
 }
@@ -80,11 +93,52 @@ const styles=StyleSheet.create({
         paddingTop:15,
         alignSelf:'center'
     },
+    
     loginContainer:{
-        flex:1,
         justifyContent:'center',
-        padding:30
-    }
+        height:height/1.5,
+        backgroundColor:theme.COLORS.WHITE,
+        shadowColor: "black",
+        shadowOffset: { width: 0, height: 0 },
+        shadowRadius: 8,
+        shadowOpacity: 0.2,
+        zIndex: 2,
+        // borderTopLeftRadius: 10,
+        // borderTopRightRadius: 10,
+        borderRadius:10,
+        opacity:0.5 ,
+        margin:12 
+    },
+    signUpTextStyle:{
+        color:'white',
+        fontSize:20
+    },
+    signUpContainer:{
+        opacity:1,
+        flexDirection:'row',
+        marginTop:20,
+        justifyContent:'center',
+        alignItems:'center',
+        fontSize: 18,
+        marginRight:'auto',
+        marginLeft:'auto',
+        width:'40%',
+        backgroundColor:'#E8C1C1',
+        borderRadius:2,
+        
+    },
+    ImageContainer: {
+       flex:1,
+        padding: 0,
+        zIndex: 1
+      },
+      orText:{
+        marginRight:'auto',
+        marginLeft:'auto',
+        width:'40%',
+        fontSize:16
+      }
+     
 });
 const mapStateToProps = state =>{
     const{email,password,loading,error}=state.auth;
@@ -93,4 +147,5 @@ const mapStateToProps = state =>{
     }
 }
 
+  
 export default connect(mapStateToProps,{emailChanged,passwordChanged,loginUser})(LoginForm);

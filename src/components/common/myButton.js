@@ -17,12 +17,15 @@ const MyButton =({spinner, title, color, onPress}) => {
 }
 const styles=StyleSheet.create({
     buttonWrapper:{
-        marginTop:20,
+        marginTop:5,
+        marginBottom:5,
         height:49,
-        borderRadius:10,
         justifyContent:'center',
         fontSize: 18,
-        backgroundColor:'#fff'
+        marginRight:'auto',
+        marginLeft:'auto',
+        width:'40%'
+
     }
 })
 export {MyButton}

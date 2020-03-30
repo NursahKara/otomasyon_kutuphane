@@ -6,8 +6,8 @@ import {Input, MyButton} from '../components/common';
 import {connect} from 'react-redux';
 import {changeName, changeSurname,changeNick,sendInformationProfile} from '../actions';
 import CustomHeader from './CustomHeader';
-
- class ProfileScreen extends React.Component{
+import { Actions } from 'react-native-router-flux';
+ class SignUpScreen extends React.Component{
     onChangeName(name){
         this.props.changeName(name);
     }
@@ -19,13 +19,14 @@ import CustomHeader from './CustomHeader';
     }
     sendInformationProfile(){
         const {name,surname,nick}=this.props;
-        this.props.sendInformationProfile(name,surname,nick) 
+        this.props.sendInformationProfile(name,surname,nick);
+        Actions.main();
     }
     
     render(){
         return(
             <SafeAreaView style={{ flex: 1}}>
-            <CustomHeader title="Profile" isHome={true} navigation={this.props.navigation}/>
+            {/* <CustomHeader title="Sign Up!"  navigation={this.props.navigation}/> */}
             <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
             <TextInput 
                     style={styles.textInputStyle} 
@@ -92,4 +93,8 @@ const styles=StyleSheet.create({
   }
   export default connect(mapStateToProps,{
     changeName,changeSurname,changeNick,sendInformationProfile
-  })(ProfileScreen);
+  })(SignUpScreen);
+
+  //birthday, gender eklenecek.
+  //profilde kitap önerisi çıkarabilmek için kitap türleri arasında seçim yapma sayfasına yönlendirilebilir.
+  

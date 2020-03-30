@@ -10,6 +10,7 @@ import OpinionsScreen from './screens/opinions';
 import SettingsScreen from './screens/settings';
 import ScanBarcodeScreen from './screens/scan_barcode';
 import ProfileScreen from './screens/profile';
+import LoginForm from './components/loginForm';
 
 function CustomDrawerContent(props){
   return(
@@ -19,7 +20,7 @@ function CustomDrawerContent(props){
                style={{height:120,width:120,borderRadius:60}}
         />
       </View>
-      <ScrollView style={{marginLeft:5}}>
+      <ScrollView style={{marginLeft:10,marginTop:'10%'}}>
       <TouchableOpacity style={{marginTop:20}} onPress={()=>props.navigation.navigate('MenuTab')}>
         <Text>Menu Tab</Text>
       </TouchableOpacity>
@@ -52,6 +53,15 @@ function SettingsStack(){
     </StackSettings.Navigator>
   )
 }
+const StackProfile = createStackNavigator();
+function ProfileStack(){
+  return(
+    <StackSettings.Navigator initialRouteName="Profile">
+    <StackSettings.Screen name="Profile" component={ProfileScreen} options={navOptionHandler}/>
+   
+    </StackSettings.Navigator>
+  )
+}
 function TabNavigator(){
   return(
     <Tab.Navigator
@@ -67,6 +77,10 @@ function TabNavigator(){
          iconName = focused 
          ? require('../assest/images/settings.png')
          : require('../assest/images/settings-white.png')
+       }else if (route.name==='Profile'){
+         iconName=focused
+         ?require('../assest/images/user.png')
+         :require('../assest/images/user-white.png')
        }
 
        // You can return any component that you like here!
@@ -80,6 +94,8 @@ function TabNavigator(){
  >
    <Tab.Screen name="Home" component={HomeStack} />
    <Tab.Screen name="Settings" component={SettingsStack} />
+   <Tab.Screen name="Profile" component={ProfileStack} />
+
  </Tab.Navigator>
   )
 }
