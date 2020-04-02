@@ -18,16 +18,27 @@ export default class CustomHeader extends Component{
         <TouchableOpacity style={{flexDirection:'row',alignItems:'center'}}
                           onPress={()=>this.props.navigation.goBack()}
         >
-          <Image style={{width:20,height:20,marginLeft:10}}
-                 source={require('../../assest/images/backFat.png')}
-                 resizeMode="contain"
-          />
+        <Image style={{width:20,height:20,marginLeft:10}}
+                source={require('../../assest/images/backFat.png')}
+                resizeMode="contain"
+        />
           <Text>Back</Text>
         </TouchableOpacity>
       }
+     
       </View>
       <View style={{flex:1,justifyContent:'center'}}>
-        <Text style={{textAlign:'center'}}>{this.props.title}</Text>
+      {
+            this.props.bg_white?
+            <Text style={{textAlign:'center'}}>
+            {this.props.title}
+            </Text>
+            :
+            <Text style={{textAlign:'center', color:'white'}}>
+            {this.props.title}
+            </Text>
+        }
+       
       </View>
       <View style={{flex:1}}></View>
     </View>

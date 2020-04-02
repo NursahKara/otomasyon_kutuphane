@@ -20,7 +20,7 @@ const RouterComp=()=>{
         <Provider store={createStore(reducers,{},applyMiddleware(ReduxThunk))}>
         <Router titleStyle={{color:'#E87B79'}}  >
             <Scene key='root'  hideNavBar={true}>
-                <Scene key='auth' initial>
+                <Scene key='auth' >
                     <Scene key='login'
                         component={LoginNavigation}
                         title='Login'
@@ -28,7 +28,7 @@ const RouterComp=()=>{
                         initial
                         />
                 </Scene>
-                <Scene key='main'>
+                <Scene key='main' >
                     <Scene key='home'
                         component={App}
                         title='App'
@@ -36,7 +36,7 @@ const RouterComp=()=>{
                         initial
                         />
                 </Scene>
-                <Scene key='signUp'>
+                <Scene key='signUp' initial>
                     <Scene key='sign'
                     component={SignUpScreen}
                     title='Sign Up'

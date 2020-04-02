@@ -3,6 +3,7 @@ import {View, Text, StyleSheet,
         Dimensions,
         ScrollView,
         ImageBackground,
+        TextInput
 } from 'react-native';
 import {Input, MyButton} from '../components/common';
 import {emailRegister,passwordRegister,sendInformationRegister} from '../actions/index';
@@ -36,28 +37,37 @@ class Register extends Component{
         return(
             <Block flex>
                 <ImageBackground
-                    source={require('../../assest/themes/bg.png')}
+                    source={require('../../assest/themes/register-bg.png')}
                     style={styles.ImageContainer}
                     >
-                       <CustomHeader title="Register"  navigation={this.props.navigation}/>
+                    <CustomHeader  title="Register" bg_white={false} navigation={this.props.navigation}/>
                     <ScrollView 
                         showsVerticalScrollIndicator={false}
                         style={{ width, marginTop: '20%' }}
                         >
                             <Block  style={styles.loginContainer}>
                                 <View style={{marginTop:'25%',marginLeft:17,marginRight:17,marginBottom:25}}>
-                                        <Input  text='Email:' 
-                                                inputPlaceHolder='Enter Email'
-                                                onChangeText={this.onEmailRegister.bind(this)}
-                                                value={this.props.email}
-                                                />
-                                
-                                        <Input  text='Password:' 
-                                                inputPlaceHolder='Enter Password'
-                                                onChangeText={this.onPasswordRegister.bind(this)}
-                                                secureTextEntry
-                                                value={this.props.password}/>
+                                    <TextInput 
+                                        style={styles.textInputStyle} 
+                                        placeholder='Enter Email' 
+                                        placeholderTextColor='black' 
+                                        underlineColorAndroid='transparent'
+                                        onChangeText={this.onEmailRegister.bind(this)}
+                                        value={this.props.email}
+                                        />
+                                    <TextInput 
+                                        style={styles.textInputStyle} 
+                                        placeholder='Enter Password' 
+                                        placeholderTextColor='black' 
+                                        underlineColorAndroid='transparent'
+                                        secureTextEntry
+                                        onChangeText={this.onPasswordRegister.bind(this)}
+                                        value={this.props.password}
+                                        />
                                         {errorMsg}
+
+                                      
+
                                         </View>
                                         <MyButton spinner={loading}
                                                 title='Register'
@@ -115,7 +125,24 @@ const styles=StyleSheet.create({
         padding: 0,
         zIndex: 1
       },
+      textInputStyle:{
+        alignSelf:'stretch',
+        color:'black',
+        padding:13,
+        borderRadius:5,
+        fontSize:16,
+        flexDirection:'row',
+        height:50,
+        width:'auto',
+        borderColor:'#E5E5E8',
+        borderBottomWidth:1,
+        alignItems:'center',
+        flexGrow:2,
+        fontSize:17,
+        paddingLeft:20
+    },
      
+      
 });
 const mapStateToProps = state =>{
     const{email,password,loading,error}=state.registerInformationRed;

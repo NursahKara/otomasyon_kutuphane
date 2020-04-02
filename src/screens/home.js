@@ -14,7 +14,7 @@ export default class HomeScreen extends Component{
     render(){
         return(
           <SafeAreaView style={{ flex: 1}}>
-          <CustomHeader title="Home" isHome={true} navigation={this.props.navigation}/>
+          <CustomHeader title="Home" isHome={true} bg_white={true} navigation={this.props.navigation}/>
           <SearchBox/>
           <TouchableOpacity style={{marginTop:20 ,justifyContent:'center',alignItems:'center'}} onPress={()=>this.props.navigation.navigate('Opinions')}>
             <Text>Go To Opinions</Text>

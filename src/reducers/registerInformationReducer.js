@@ -26,5 +26,6 @@ export default (state = INITIAL_STATE, action) => {
             return {...state,loading:true,error:'User has an account!'}
         default:
             return state;
+            
     }
 }

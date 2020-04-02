@@ -1,13 +1,30 @@
-import * as React from 'react';
-import { View, Text, Button, StyleSheet,SafeAreaView,TextInput } from 'react-native';
+import React, {useState } from 'react';
+import { View, Text, Button, StyleSheet,SafeAreaView,TextInput,ScrollView } from 'react-native';
 import { NavigationContainer, CommonActions } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import {Input, MyButton} from '../components/common';
 import {connect} from 'react-redux';
-import {changeName, changeSurname,changeNick,sendInformationProfile} from '../actions';
+import {changeName, changeSurname,changeNick,changeGender,changeBirthday,sendInformationProfile} from '../actions';
 import CustomHeader from './CustomHeader';
 import { Actions } from 'react-native-router-flux';
+import DatePicker from 'react-native-date-picker';
+import CalendarPicker from 'react-native-calendar-picker';
+import { Dropdown } from 'react-native-material-dropdown';
+
  class SignUpScreen extends React.Component{
+    constructor(props) {
+        super(props);
+        this.state = {
+          selectedStartDate: null,
+        };
+        this.onDateChange = this.onDateChange.bind(this);
+      }
+    
+      onDateChange(date) {
+        this.setState({
+          selectedStartDate: date,
+        });
+      }
     onChangeName(name){
         this.props.changeName(name);
     }
@@ -17,15 +34,36 @@ import { Actions } from 'react-native-router-flux';
     changeNick(nick){
         this.props.changeNick(nick);
     }
+    changeBirthday(birthday){
+        this.props.changeBirthday(birthday);
+    }
+    changeGender(gender){
+        this.props.changeGender(gender);
+    }
     sendInformationProfile(){
-        const {name,surname,nick}=this.props;
-        this.props.sendInformationProfile(name,surname,nick);
+        const {name,surname,nick,gender,birthday}=this.props;
+        this.props.sendInformationProfile(name,surname,nick,gender,birthday);
         Actions.main();
     }
     
     render(){
+        let data = [{
+            value: 'Kadın',
+          }, {
+            value: 'Erkek',
+          }];
+          const { selectedStartDate } = this.state;
+          const startDate = selectedStartDate ? selectedStartDate.toString() : '';
+        const {error,loading}=this.props;
+        const errorMsg = error ? (
+    <Text style={styles.errorStyle}>
+        {error}
+    </Text>
+    ) : null;
+
+
         return(
-            <SafeAreaView style={{ flex: 1}}>
+            <ScrollView style={{ flex: 1}}>
             {/* <CustomHeader title="Sign Up!"  navigation={this.props.navigation}/> */}
             <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
             <TextInput 
@@ -49,13 +87,60 @@ import { Actions } from 'react-native-router-flux';
                     underlineColorAndroid='transparent'
                     onChangeText={this.changeNick.bind(this)}
                     />
-            <MyButton spinner={false}
+            {/* <TextInput 
+                    style={styles.textInputStyle} 
+                    placeholder='Gender' 
+                    placeholderTextColor='black' 
+                    underlineColorAndroid='transparent'
+                    onChangeText={this.changeGender.bind(this)}
+                    /> */}
+                    <Dropdown
+                        label='Gender'
+                        data={data}
+                        onChangeText={this.changeGender.bind(this)}
+                        dropdownOffset={{ 'top': 3 }}
+                        pickerStyle={{borderBottomColor:'transparent',borderWidth: 0}}
+                        containerStyle = {styles.textInputStyle}
+                        />
+            {/* <TextInput 
+                    style={styles.textInputStyle} 
+                    placeholder='Birthday' 
+                    placeholderTextColor='black' 
+                    underlineColorAndroid='transparent'
+                    onChangeText={this.changeBirthday.bind(this)}
+                    /> */}
+
+
+
+
+
+
+
+
+                      <CalendarPicker
+          onDateChange={this.onDateChange}
+        />
+
+        <View>
+          <Text>SELECTED DATE:{ startDate }</Text>
+        </View>
+                  
+
+
+
+
+
+
+
+
+
+            <MyButton spinner={loading}
                       title='Send'
                       onPress={this.sendInformationProfile.bind(this)}
                       color='#E87B79'
                       />
             </View>
-          </SafeAreaView>
+          </ScrollView>
         );
     }
 }
@@ -67,7 +152,7 @@ const styles=StyleSheet.create({
         padding:13,
         backgroundColor:'#d8d8d8',
         borderTopColor:'#ededed',
-        margin: 20,
+        margin: 10,
         borderRadius:5,
         fontSize:16,
         height:70
@@ -80,19 +165,23 @@ const styles=StyleSheet.create({
          marginTop:35,
          marginLeft:13
     },
+   
+      dropdown: {
+        width: '80%',
+      },
     container:{
         flexDirection:'row'
     }
   });
 
   const mapStateToProps=state=>{
-      const {name,surname,nick} =state.profileInformation;
+      const {name,surname,nick,gender,birthday,loading,error} =state.profileInformation;
       return{
-        name,surname,nick,sendInformationProfile
+        name,surname,nick,gender,birthday,loading,error,sendInformationProfile
       }
   }
   export default connect(mapStateToProps,{
-    changeName,changeSurname,changeNick,sendInformationProfile
+    changeName,changeSurname,changeNick,changeGender,changeBirthday,sendInformationProfile
   })(SignUpScreen);
 
   //birthday, gender eklenecek.

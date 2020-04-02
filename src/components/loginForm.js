@@ -6,7 +6,7 @@ import {View, Text, StyleSheet,
         ScrollView,
         Image,
         ImageBackground,
-        Platform
+        Platform,TextInput
 } from 'react-native';
 import {Input, MyButton} from './common';
 import firebase from 'firebase';
@@ -55,18 +55,25 @@ class LoginForm extends Component{
                             <Block  style={styles.loginContainer}>
                             {/* <Image source={require('../../assest/images/user.png')} style={{width:120,height:120,marginTop:-60,marginLeft:width/3,zIndex:2,borderWidth:3,borderColor:'black',borderRadius:100}}/> */}
                           <View style={{marginTop:'25%',marginLeft:17,marginRight:17,marginBottom:25}}>
-                                <Input  text='Email:' 
-                                        inputPlaceHolder='Enter Email'
-                                        onChangeText={this.onEmailChange.bind(this)}
-                                        value={this.props.email}
+                              
+                                <TextInput 
+                                    style={styles.textInputStyle} 
+                                    placeholder='Enter Email' 
+                                    placeholderTextColor='black' 
+                                    underlineColorAndroid='transparent'
+                                    onChangeText={this.onEmailChange.bind(this)}
+                                    value={this.props.email}
+                                    />
+                                <TextInput 
+                                    style={styles.textInputStyle} 
+                                    placeholder='Enter Password' 
+                                    placeholderTextColor='black' 
+                                    underlineColorAndroid='transparent'
+                                    secureTextEntry
+                                    onChangeText={this.onPasswordChange.bind(this)}
+                                    value={this.props.password}
+                                    />
                                     
-                                        />
-                        
-                                <Input  text='Password:' 
-                                        inputPlaceHolder='Enter Password'
-                                        onChangeText={this.onPasswordChange.bind(this)}
-                                        secureTextEntry
-                                        value={this.props.password}/>
                                 {errorMsg}
                                 </View>
                                 <MyButton spinner={loading}
@@ -137,7 +144,34 @@ const styles=StyleSheet.create({
         marginLeft:'auto',
         width:'40%',
         fontSize:16
-      }
+      },
+      textInputStyle:{
+        alignSelf:'stretch',
+        color:'black',
+        padding:13,
+        borderRadius:5,
+        fontSize:16,
+        flexDirection:'row',
+        height:50,
+        width:'auto',
+        borderColor:'#E5E5E8',
+        borderBottomWidth:1,
+        alignItems:'center',
+        flexGrow:2,
+        fontSize:17,
+        paddingLeft:20
+    },
+    textStyle:{
+        color:'#d8d8d8',
+        fontSize:18,
+        justifyContent:'center',
+        alignItems:'center',
+         marginTop:35,
+         marginLeft:13
+    },
+    container:{
+        flexDirection:'row'
+    }
      
 });
 const mapStateToProps = state =>{
