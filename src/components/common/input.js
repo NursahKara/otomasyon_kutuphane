@@ -25,11 +25,10 @@ borderBottomWidth:1,
 alignItems:'center'
 },
 textStyle:{
-    flexGrow:1,
+flexGrow:1,
 fontSize:17,
 paddingLeft:20
 },
-
 InputStyle:{
 flexGrow:2,
 fontSize:17

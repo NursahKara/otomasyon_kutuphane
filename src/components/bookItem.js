@@ -3,6 +3,7 @@ import {StyleSheet,Text,TouchableOpacity,View} from 'react-native';
 import {Card} from './common';
 import * as actions from '../actions';
 import {connect} from 'react-redux';
+import { ScrollView } from 'react-native-gesture-handler';
 
 class BookItem extends Component{
     onPressed(){
@@ -16,6 +17,7 @@ class BookItem extends Component{
         <Text style={styles.descriptionStyles}>{book.description}</Text>
         ) : null;
         return(
+            <ScrollView>
             <TouchableOpacity onPress={this.onPressed.bind(this)}>
             <Card>
                 <Text style = {styles.titleStyle}>{book.title}</Text>
@@ -23,6 +25,7 @@ class BookItem extends Component{
             </Card>
             {descriptionField}
             </TouchableOpacity>
+            </ScrollView>
         )
     }
 }

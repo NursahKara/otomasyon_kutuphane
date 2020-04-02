@@ -27,5 +27,6 @@ export default (state=INITIAL_STATE,action)=>{
             return {...state,loading:false,error:'Authentication failed'}
         default:
             return state;
+            
     }
 }

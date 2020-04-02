@@ -37,12 +37,13 @@ export const sendInformationRegister=(email,password)=>{
                 // setTimeout(function(){
                 //     Alert.alert("User has an account. You redirect to login page!")
                
-                //   }, 5000);
-                Alert.alert('User has an account.You redirect to Login page!');
+                //   }, 2000);
+               // alert('User has an account.You redirect to Login page!');
                 registerFailed(dispatch)}
                 )
         )
     } 
+    
 }
 const userHasAccount =(dispatch)=>{
     dispatch({
