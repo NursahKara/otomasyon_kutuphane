@@ -6,7 +6,6 @@ import { NavigationContainer, CommonActions } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import {Input, MyButton} from '../components/common';
 import {connect} from 'react-redux';
-import {changeName, changeSurname,changeNick,sendInformationProfile} from '../actions';
 import CustomHeader from './CustomHeader';
 import {fetchProfileInformations} from '../actions';
 import {Card} from '../components/common/card';
@@ -23,7 +22,7 @@ import {Card} from '../components/common/card';
                 <Text style={styles.textStyle}>{item.surname}</Text>
                 <Text style={styles.textStyle}>{item.nick}</Text>
                 <Text style={styles.textStyle}>{item.gender}</Text>
-                <Text style={styles.textStyle}>{item.birthday}</Text>          
+                <Text style={styles.textStyle}>{item.birthday}</Text>      
               </View>
         )
     }
@@ -85,6 +84,7 @@ const styles=StyleSheet.create({
         paddingLeft:20
     },
   });
+
 
   const mapStateToProps=state=>{
     const currentUser=firebase.auth().currentUser;

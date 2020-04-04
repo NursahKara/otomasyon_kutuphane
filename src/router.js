@@ -6,6 +6,7 @@ import OpinionsScreen from './screens/opinions';
 import ScanBarcodeScreen from './screens/scan_barcode';
 import SettingsScreen from './screens/settings';
 import SuggestionsScreen from './screens/suggestions';
+import AppCheck from './screens/checkBoxes';
 import SignUpScreen from './screens/signUp';
 import App from './App';
 import createAppContainer from './components/common/bottomTabs';
@@ -36,11 +37,17 @@ const RouterComp=()=>{
                         initial
                         />
                 </Scene>
-                <Scene key='signUp' initial>
+                <Scene key='signUp' >
                     <Scene key='sign'
                     component={SignUpScreen}
                     title='Sign Up'
-                  
+                    initial
+                    /> 
+                </Scene>
+                <Scene key='checkbox' initial>
+                    <Scene key='checkboxes'
+                    component={AppCheck}
+                    title='İlgilendiklerinizi Seçin'
                     initial
                     /> 
                 </Scene>

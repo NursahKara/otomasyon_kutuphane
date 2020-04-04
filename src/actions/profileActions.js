@@ -40,6 +40,8 @@ export const changeBirthday  =(birthday)=>{
         payload:birthday
     }
 }
+
+
 export const sendInformationProfile =(name,surname,nick,gender,birthday)=>{
     const currentUser=firebase.auth().currentUser;
     const email=currentUser.email;

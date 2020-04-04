@@ -1,7 +1,8 @@
 import {EMAIL_CHANGED,PASSWORD_CHANGED,
     NAME_CHANGED,SURNAME_CHANGED,
     NICK_CHANGED,SEND_INFORMATION_PROFILE,
-    GENDER_CHANGED,BIRTHDAY_CHANGED
+    GENDER_CHANGED,BIRTHDAY_CHANGED,
+ 
  } from '../actions';
 
 const INITIAL_STATE={
@@ -13,9 +14,10 @@ const INITIAL_STATE={
     error:'',
     loading:'',
     birthday:'',
-    gender:''
+    gender:'',
 
 };
+
 
 export default (state = INITIAL_STATE, action) => {
     switch (action.type) {

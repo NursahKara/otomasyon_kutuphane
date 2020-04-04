@@ -5,6 +5,7 @@ import AuthReducer from './authReducer';
 import ProfileInformationReducer from './profileInformationReducer';
 import ProfileInformationListReducer from './profileInformationListReducer';
 import RegisterInformationReducer from './registerInformationReducer';
+import CheckboxReducer from './checkboxReducer';
 
 export default combineReducers({
     books: BooksReducer,
@@ -12,5 +13,6 @@ export default combineReducers({
     auth:AuthReducer,
     profileInformation: ProfileInformationReducer,
     profileInformationList:ProfileInformationListReducer,
-    registerInformationRed:RegisterInformationReducer
+    registerInformationRed:RegisterInformationReducer,
+    checkboxReducer:CheckboxReducer
 });
