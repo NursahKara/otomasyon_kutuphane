@@ -52,8 +52,7 @@ import { Dropdown } from 'react-native-material-dropdown';
           }, {
             value: 'Erkek',
           }];
-          const { selectedStartDate } = this.state;
-          const startDate = selectedStartDate ? selectedStartDate.toString() : '';
+
         const {error,loading}=this.props;
         const errorMsg = error ? (
     <Text style={styles.errorStyle}>
@@ -62,6 +61,9 @@ import { Dropdown } from 'react-native-material-dropdown';
     ) : null;
 
 
+    
+    const { selectedStartDate } = this.state;
+          const startDate = selectedStartDate ? selectedStartDate.toString() : '';
         return(
             <ScrollView style={{ flex: 1}}>
             {/* <CustomHeader title="Sign Up!"  navigation={this.props.navigation}/> */}
@@ -122,7 +124,7 @@ import { Dropdown } from 'react-native-material-dropdown';
         />
 
         <View>
-          <Text>SELECTED DATE:{ startDate }</Text>
+          <Text onChangeText={this.changeBirthday.bind(this)}>SELECTED DATE:{ startDate }</Text>
         </View>
                   
 
