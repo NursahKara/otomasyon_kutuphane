@@ -1,32 +1,50 @@
 // In App.js in a new project
 
-import * as React from 'react';
-import { View, Text, Button } from 'react-native';
+import  React,{Component} from 'react';
+import { View, Text ,ScrollView,StyleSheet,Button,TouchableOpacity} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import Home from './deneme';
 
 
-function DetailsScreen() {
-    return (
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <Text>Details Screen</Text>
-      </View>
-    );
-  }
-  
+class App extends Component{
+ 
+render(){
+  return(
+    <View style={{height:100}}>
+<ScrollView horizontal={true} >
+  <TouchableOpacity style={styles.textStyle} >
+    <Text>Kategoriler</Text>
+    </TouchableOpacity>
+    <TouchableOpacity style={styles.textStyle}>   
+     <Text>Son Çıkanlar</Text>
+    </TouchableOpacity>
+    <TouchableOpacity style={styles.textStyle}>
+    <Text>En Çok Okunanlar</Text>
+    </TouchableOpacity>
+    <TouchableOpacity style={styles.textStyle}>
+    <Text>En Çok Beğenilenler</Text>
+    </TouchableOpacity>
 
-const Stack = createStackNavigator();
-
-function App() {
-  return (
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen name="Home" component={Home} />
-        <Stack.Screen name="Details" component={DetailsScreen} />
-      </Stack.Navigator>
-    </NavigationContainer>
-  );
+ 
+</ScrollView>
+</View>
+  )
 }
-
+}
+const styles=StyleSheet.create({
+  container:{
+      width:'auto',
+      height:100,
+      
+      
+  },
+  textStyle:{
+    margin:20,
+    padding:20,
+    alignItems:'center',
+    borderColor:'black',
+    borderWidth:2
+  }
+})
 export default App;

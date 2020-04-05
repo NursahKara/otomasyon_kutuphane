@@ -7,6 +7,10 @@ import SuggestionsScreen from './suggestions';
 import CustomHeader from './CustomHeader';
 import CustomDrawerContent from './CustomDrawerContent';
 import Register from './register';
+import Kategoriler from './kategoriler';
+import SonCikanlar from './sonCikanlar';
+import EnCokOkunanlar from './enCokOkunanlar';
+import EnCokBegenilenler from './enCokBegenilenler';
 
 export{
     HomeScreen,
@@ -17,6 +21,10 @@ export{
     SuggestionsScreen,
     CustomHeader,
     CustomDrawerContent,
-    Register
+    Register,
+    EnCokBegenilenler,
+    Kategoriler,
+    SonCikanlar,
+    EnCokOkunanlar
 }
 

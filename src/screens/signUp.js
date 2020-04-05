@@ -1,5 +1,5 @@
 import React, {useState } from 'react';
-import { View, Text, Button, StyleSheet,SafeAreaView,TextInput,ScrollView } from 'react-native';
+import { View, Text, StyleSheet,SafeAreaView,TextInput,ScrollView } from 'react-native';
 import { NavigationContainer, CommonActions } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import {Input, MyButton} from '../components/common';
@@ -12,19 +12,22 @@ import CalendarPicker from 'react-native-calendar-picker';
 import { Dropdown } from 'react-native-material-dropdown';
 
  class SignUpScreen extends React.Component{
-    constructor(props) {
-        super(props);
-        this.state = {
-          selectedStartDate: null,
-        };
-        this.onDateChange = this.onDateChange.bind(this);
+    // constructor(props) {
+    //     super(props);
+    //     this.state = {
+    //       selectedStartDate: null,
+    //     };
+    //     this.onDateChange = this.onDateChange.bind(this);
+    //   }
+      state = {
+        date: new Date(),
       }
-    
-      onDateChange(date) {
-        this.setState({
-          selectedStartDate: date,
-        });
-      }
+      onChange = date => this.setState({ date })
+      // onDateChange(date) {
+      //   this.setState({
+      //     selectedStartDate: date,
+      //   });
+      // }
     onChangeName(name){
         this.props.changeName(name);
     }
@@ -43,9 +46,9 @@ import { Dropdown } from 'react-native-material-dropdown';
     sendInformationProfile(){
         const {name,surname,nick,gender,birthday}=this.props;
         this.props.sendInformationProfile(name,surname,nick,gender,birthday);
-        Actions.main();
+        Actions.checkbox();
     }
-    
+   
     render(){
         let data = [{
             value: 'Kadın',
@@ -55,15 +58,15 @@ import { Dropdown } from 'react-native-material-dropdown';
 
         const {error,loading}=this.props;
         const errorMsg = error ? (
-    <Text style={styles.errorStyle}>
-        {error}
-    </Text>
-    ) : null;
+        <Text style={styles.errorStyle}>
+            {error}
+        </Text>
+        ) : null;
 
 
     
-    const { selectedStartDate } = this.state;
-          const startDate = selectedStartDate ? selectedStartDate.toString() : '';
+        // const { selectedStartDate } = this.state;
+        // const startDate = selectedStartDate ? selectedStartDate.toString() : '';
         return(
             <ScrollView style={{ flex: 1}}>
             {/* <CustomHeader title="Sign Up!"  navigation={this.props.navigation}/> */}
@@ -114,26 +117,19 @@ import { Dropdown } from 'react-native-material-dropdown';
 
 
 
+                  <DatePicker
+                    onChange={this.onChange}
+                    value={this.state.date}
+                    dateFormat="MMMM d, yyyy h:mm aa"
+                  />
 
 
 
 
-
-                      <CalendarPicker
-          onDateChange={this.onDateChange}
-        />
-
-        <View>
+        {/* <View>
           <Text onChangeText={this.changeBirthday.bind(this)}>SELECTED DATE:{ startDate }</Text>
-        </View>
+        </View> */}
                   
-
-
-
-
-
-
-
 
 
             <MyButton spinner={loading}

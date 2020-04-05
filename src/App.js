@@ -10,7 +10,12 @@ import OpinionsScreen from './screens/opinions';
 import SettingsScreen from './screens/settings';
 import ScanBarcodeScreen from './screens/scan_barcode';
 import ProfileScreen from './screens/profile';
+import Kategoriler from './screens/kategoriler';
+import SonCikanlar from './screens/sonCikanlar';
+import EnCokOkunanlar from './screens/enCokOkunanlar';
+import EnCokBegenilenler from './screens/enCokBegenilenler';
 import LoginForm from './components/loginForm';
+import { Icon } from 'galio-framework';
 
 function CustomDrawerContent(props){
   return(
@@ -20,12 +25,13 @@ function CustomDrawerContent(props){
                style={{height:120,width:120,borderRadius:60}}
         />
       </View>
-      <ScrollView style={{marginLeft:10,marginTop:'10%'}}>
+      <ScrollView style={{marginLeft:20,marginTop:'15%'}}>
       <TouchableOpacity style={{marginTop:20}} onPress={()=>props.navigation.navigate('MenuTab')}>
-        <Text>Menu Tab</Text>
+        <Text style={{fontSize:16}}>Menu Tab</Text>
+      
       </TouchableOpacity>
       <TouchableOpacity style={{marginTop:20}} onPress={()=>props.navigation.navigate('Profile')}>
-        <Text>Profile</Text>
+        <Text style={{fontSize:16}}>Profile</Text>
       </TouchableOpacity>
       </ScrollView>
     </SafeAreaView>
@@ -41,6 +47,10 @@ function HomeStack(){
     <StackHome.Navigator initialRouteName="Home">
     <StackHome.Screen name="Home" component={HomeScreen} options={navOptionHandler}/>
     <StackHome.Screen name="Opinions" component={OpinionsScreen} options={navOptionHandler}/>
+    <StackHome.Screen name="Kategoriler" component={Kategoriler} options={navOptionHandler}/>
+    <StackHome.Screen name="EnCokBegenilenler" component={EnCokBegenilenler} options={navOptionHandler}/>
+    <StackHome.Screen name="EnCokOkunanlar" component={EnCokOkunanlar} options={navOptionHandler}/>
+    <StackHome.Screen name="SonCikanlar" component={SonCikanlar} options={navOptionHandler}/>
     </StackHome.Navigator>
   )
 }
@@ -103,7 +113,13 @@ const Drawer = createDrawerNavigator();
 
 function DrawerNavigator(){
   return(
-      <Drawer.Navigator initialRouteName="MenuTab" drawerContent={props=>CustomDrawerContent(props)}>
+      <Drawer.Navigator drawerContentOptions={{
+        activeTintColor: '#e91e63',
+        itemStyle: { marginLeft: 30 },
+        marginTop:'60%',
+        initialRouteName:"MenuTab"
+      }}
+       drawerContent={props=>CustomDrawerContent(props)}>
         <Drawer.Screen name="MenuTab" component={TabNavigator} />
         <Drawer.Screen name="Profile" component={ProfileScreen} />
       </Drawer.Navigator>

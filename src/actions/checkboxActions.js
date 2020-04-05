@@ -18,7 +18,7 @@ export const sendInformationCheckbox =(checkbox)=>{
     const currentUser=firebase.auth().currentUser;
     const email=currentUser.email;
     return (dispatch)=>{                            //async işlem diye dispatch döndük
-        getDatabase().ref('User_Informations')                   //ve firebase e istek attık.referans olarak da link vermek gerekiyor.burası ulaşma yöntemi
+        getDatabase().ref('User_Checkbox_Informations')                   //ve firebase e istek attık.referans olarak da link vermek gerekiyor.burası ulaşma yöntemi
         .push({email,checkbox})                 //pushun içindeki objeyi informations un içine atıyor
         .then(()=>{                                 //bu işlemlerden sonra dönüş yapan fonk.
             dispatch({

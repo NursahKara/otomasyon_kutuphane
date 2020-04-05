@@ -110,43 +110,40 @@ class Checkbox extends Component {
     );
   }
 }
-
  class AppCheck extends Component {
   
     onChangeCheckbox(checkbox){
         this.props.changeCheckbox(checkbox);
     }  
     sendInformationCheckbox(){
+        var pickedElements =  CheckedArrObject.fetchArray().map(res => res.label).join()
         const {checkbox}=this.props;
-        this.props.sendInformationCheckbox(checkbox);
+        this.props.sendInformationCheckbox(pickedElements);
+          Actions.main();
         
     }
-  constructor() {
-    super();
-    CheckedArrObject = new SelectedCheckboxes();
-    this.state = { pickedElements: '' }
+    constructor() {
+        super();
+        CheckedArrObject = new SelectedCheckboxes();
+        this.state = { pickedElements: '' }
+    }
     
-  }
- 
   renderSelectedElements = () => {
     if (CheckedArrObject.fetchArray().length == 0) {
       Alert.alert('No Item Selected');
     } else {
       this.setState(() => {
- 
+        this.sendInformationCheckbox.bind(this);
         return { 
           pickedElements: CheckedArrObject.fetchArray().map(res => res.value).join()
         }
-        
       });
     }
   }
 
-
-
   render() {
     return (
-    <ScrollView>
+    <ScrollView > 
       <View style={styles.CheckboxContainer}>
         {/* <View style={{margin:5,flexDirection:'row'}}> */}
             <Checkbox size={30}
@@ -435,7 +432,7 @@ class Checkbox extends Component {
             checkedObjArr={CheckedArrObject}
              />        
         {/* </View> */}
-        <TouchableHighlight style={styles.showSelectedButton} onPress={this.renderSelectedElements,this.sendInformationCheckbox.bind(this)}>
+        <TouchableHighlight style={styles.showSelectedButton} onPress={this.renderSelectedElements, this.sendInformationCheckbox.bind(this)}>
           <Text style={styles.buttonText}>Checked Items</Text>
         </TouchableHighlight>
         <Text style={{ fontSize: 22, color: "#000", marginTop: 25 }}> {this.state.pickedElements} </Text>
