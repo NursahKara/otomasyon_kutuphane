@@ -15,6 +15,7 @@ import SonCikanlar from './screens/sonCikanlar';
 import EnCokOkunanlar from './screens/enCokOkunanlar';
 import EnCokBegenilenler from './screens/enCokBegenilenler';
 import LoginForm from './components/loginForm';
+import FavoriteScreen from './screens/favorite';
 import { Icon } from 'galio-framework';
 
 function CustomDrawerContent(props){
@@ -68,7 +69,7 @@ function ProfileStack(){
   return(
     <StackSettings.Navigator initialRouteName="Profile">
     <StackSettings.Screen name="Profile" component={ProfileScreen} options={navOptionHandler}/>
-   
+    <StackSettings.Screen name="Favori" component={FavoriteScreen} options={navOptionHandler}/>
     </StackSettings.Navigator>
   )
 }
@@ -113,14 +114,8 @@ const Drawer = createDrawerNavigator();
 
 function DrawerNavigator(){
   return(
-      <Drawer.Navigator drawerContentOptions={{
-        activeTintColor: '#e91e63',
-        itemStyle: { marginLeft: 30 },
-        marginTop:'60%',
-        initialRouteName:"MenuTab"
-      }}
-       drawerContent={props=>CustomDrawerContent(props)}>
-        <Drawer.Screen name="MenuTab" component={TabNavigator} />
+      <Drawer.Navigator initialRouteName="MenuTab" drawerContent={props=>CustomDrawerContent(props)}>
+        <Drawer.Screen  name="MenuTab" component={TabNavigator} />
         <Drawer.Screen name="Profile" component={ProfileScreen} />
       </Drawer.Navigator>
   )
