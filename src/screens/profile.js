@@ -17,7 +17,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 
 
  class ProfileScreen extends React.Component{
-     
+ 
     componentDidMount(){
         this.props.fetchProfileInformations();
        
@@ -28,12 +28,19 @@ import Icon from 'react-native-vector-icons/FontAwesome';
                 // <Text style={styles.textStyle}>{(item.checkbox !== undefined)?item.checkbox.split(',')[0]:''}</Text>  
                 // </View>
                 <View>
-                    {/* <Text style={styles.textStyle}>{item.email}</Text> */}
-                    <Text style={styles.textStyle}>Merhaba {item.name}, Hoş Geldin!</Text>
-                    {/* <Text style={styles.textStyle}>{item.surname}</Text> */}
-                    {/* <Text style={styles.textStyle}>{item.nick} Nickini kullanarak yarışmalara katılabilirsin:)</Text> */}
+                    <View style={styles.welcomeText}>
+                    <Text style={{fontWeight:'bold',fontSize:18}}>Merhaba {item.name}, Hoş Geldin!</Text>
+                    </View>
+                   <View>
+                    <Text>Bilgilerin:</Text>
+                    <Text style={styles.textStyle}>Email: {item.email}</Text>
+                    <Text style={styles.textStyle}>Ad: {item.name}</Text>
+                    <Text style={styles.textStyle}>Soyad: {item.surname}</Text>
+                     <Text style={styles.textStyle}>Nick: {item.nick} </Text> 
                     {/* <Text style={styles.textStyle}>{item.gender}</Text> */}
                     {/* <Text style={styles.textStyle}>{item.birthday}</Text>   */}
+                   
+                    </View>
                 </View>   
         )
     }
@@ -48,16 +55,16 @@ import Icon from 'react-native-vector-icons/FontAwesome';
                 >
             <SafeAreaView style={{ flex: 1}}>
             <CustomHeader title="Profile" isHome={true} bg_white={true} navigation={this.props.navigation}/>
-            <View style={{flex:1,justifyContent:'center',alignItems:'center' ,marginTop:'30%'}}>
+            <View style={{flex:1,justifyContent:'center',alignItems:'center' ,marginTop:'20%'}}>
            <FlatList data={profileInformationList}
                     renderItem={this.renderItem}
-                   // keyExtractor={(item)=>item.uid}
                     />
                     <View style={styles.buttonWrapper}>
-                    {/* <TouchableOpacity  style={styles.textStyle} onPress={()=>this.props.navigation.navigate('Kategoriler')} >
-            <Icon name="music" size={40}/>
-              </TouchableOpacity> */}
-              <Icon name="bars"/>
+                        <TouchableOpacity  onPress={()=>this.props.navigation.navigate('Favori')}style={{justifyContent:'center',alignItems:'center'}} >
+                        <Icon name="star"  size={50} color="#FFC400"/>
+                        <Text>Favorilerim</Text>
+                        </TouchableOpacity>
+                        <Text style={{justifyContent:'flex-end',marginTop:40}}>Not: Nickini Kullanarak Yarışmalara Katılabilirsin:)</Text>
                     </View>
                    
 
@@ -82,14 +89,14 @@ const styles=StyleSheet.create({
         fontSize:16,
         height:70
     },
-    // textStyle:{
-    //     color:'#d8d8d8',
-    //     fontSize:18,
-    //     justifyContent:'center',
-    //     alignItems:'center',
-    //      marginTop:35,
-    //      marginLeft:13
-    // },
+welcomeText:{
+    fontWeight:'bold',
+    alignItems:'center',
+    justifyContent:'center',
+    flex:1,
+    flexDirection:'row',
+    marginBottom:25
+},
     container:{
         flexDirection:'row'
     },
@@ -108,7 +115,7 @@ const styles=StyleSheet.create({
         flexGrow:2,
         fontSize:17,
         paddingLeft:20,
-        fontWeight:'bold'
+
     },
     ImageContainer: {
       flex:1,
@@ -127,7 +134,9 @@ const styles=StyleSheet.create({
       alignItems:'flex-end',
       marginRight:20,
       borderRadius:10000,
-      backgroundColor:'white'
+      backgroundColor:'transparent',
+      shadowColor:'black',
+      
     
    }
   });
