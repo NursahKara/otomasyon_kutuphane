@@ -19,7 +19,9 @@ const styles=StyleSheet.create({
        padding:13,
        backgroundColor:'#d8d8d8',
        borderTopColor:'#ededed',
-       margin: 20,
+       marginRight: 20,
+       marginLeft:20,
+       marginTop:5,
        borderRadius:5,
        fontSize:16,
        flex:2
