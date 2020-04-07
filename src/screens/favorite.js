@@ -1,17 +1,78 @@
-
 import * as React from 'react';
-import { View, Text, Button ,SafeAreaView} from 'react-native';
+import _ from 'lodash';
+import firebase from 'firebase';
+import { View, Text,SafeAreaView,FlatList} from 'react-native';
+import {connect} from 'react-redux';
 import CustomHeader from './CustomHeader';
+import {fetchCheckboxInformations} from '../actions';
 
-export default class FavoriteScreen extends React.Component{
+ class FavoriteScreen extends React.Component{
+    componentDidMount(){
+        this.props.fetchCheckboxInformations();
+    }
+    
+    renderItem({item}){
+        // function dfsl(){
+        //     let i
+        //     for(i=0;i<item.checkbox.split(',').length;i++){
+        //       const con=console.log("i",item.checkbox.split(',')[i])  
+        //       return con;
+        //     }
+           
+        // }
+        function createTable() {
+            let i
+            for(i=0;i<item.checkbox.split(',').length;i++){
+              (item.checkbox.split(',')[i])
+              
+              
+            } 
+            return item.checkbox.split(',')
+            
+        }
+        
+            //  let i
+            // for(i=0;i<item.checkbox.split(',').length;i++){
+            //     console.log("i",item.checkbox.split(',')[i])  
+            // }
+       
+        return(
+            
+                <View>
+                <Text> {createTable()}</Text>
+                </View> 
+        )
+    }
+
     render(){
+        const {checkboxListReducer}=this.props;
         return(
             <SafeAreaView style={{ flex: 1}}>
             <CustomHeader title="Favori" bg_white={true} navigation={this.props.navigation}/>
             <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
-            <Text>Favori</Text>  
+            <Text>Favori</Text> 
+            <FlatList data={checkboxListReducer}
+                    renderItem={this.renderItem}
+                    /> 
             </View>
           </SafeAreaView>
         );
     }
 }
+
+
+const mapStateToProps=state=>{
+    const currentUser=firebase.auth().currentUser;
+
+    // const checkboxListReducer=_.map(state.checkboxListReducer,(val,uid)=>{
+    //     return {...val,uid}
+    // })
+     const checkboxListReducer=_.filter(state.checkboxListReducer,val=>val.email===currentUser.email)
+   
+    return {
+        checkboxListReducer
+    }
+}
+export default connect(mapStateToProps,{
+    fetchCheckboxInformations
+})(FavoriteScreen);

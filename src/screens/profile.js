@@ -66,9 +66,6 @@ import Icon from 'react-native-vector-icons/FontAwesome';
                         </TouchableOpacity>
                         <Text style={{justifyContent:'flex-end',marginTop:40}}>Not: Nickini Kullanarak Yarışmalara Katılabilirsin:)</Text>
                     </View>
-                   
-
-       
             </View>
           </SafeAreaView>
           </ImageBackground>
