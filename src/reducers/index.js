@@ -6,6 +6,7 @@ import ProfileInformationReducer from './profileInformationReducer';
 import ProfileInformationListReducer from './profileInformationListReducer';
 import RegisterInformationReducer from './registerInformationReducer';
 import CheckboxReducer from './checkboxReducer';
+import CheckboxListReducer from './checkboxListReducer';
 
 export default combineReducers({
     books: BooksReducer,
@@ -14,5 +15,6 @@ export default combineReducers({
     profileInformation: ProfileInformationReducer,
     profileInformationList:ProfileInformationListReducer,
     registerInformationRed:RegisterInformationReducer,
-    checkboxReducer:CheckboxReducer
+    checkboxReducer:CheckboxReducer,
+    checkboxListReducer:CheckboxListReducer,
 });

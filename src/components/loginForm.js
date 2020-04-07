@@ -17,11 +17,17 @@ import {createStore} from 'redux';
 import { getDatabase } from './common/database';
 import ProfileScreen from '../screens/profile';
 import { Block, theme } from "galio-framework";
+import Icon from 'react-native-vector-icons/FontAwesome';
 getDatabase().ref('login')
 const { width, height } = Dimensions.get("screen");
 class LoginForm extends Component{
 //componentDidMount firebase connection
-
+// constructor(props){
+//     super(props)
+//     this.state={
+       
+//     }
+// }
     onButtonClicked(){
         const {email,password}=this.props;
         this.props.loginUser(email,password);
@@ -40,7 +46,7 @@ class LoginForm extends Component{
         {error}
     </Text>
 ) : null;
-      
+     
         return(
             <Block flex>
                 <ImageBackground
@@ -64,7 +70,27 @@ class LoginForm extends Component{
                                     onChangeText={this.onEmailChange.bind(this)}
                                     value={this.props.email}
                                     />
-                                <TextInput 
+
+
+<View style={styles.passwordContainer}>
+  <TextInput
+    style={styles.textInputStyle} 
+    placeholder='Enter Password' 
+    placeholderTextColor='black' 
+    underlineColorAndroid='transparent'
+    secureTextEntry
+    onChangeText={this.onPasswordChange.bind(this)}
+    value={this.props.password}
+    />
+    <View style={{justifyContent:'center',alignItems:'center',marginRight:8}}>
+  <Icon
+    name='eye-slash'
+    color='#000'
+    size={19}
+
+  /></View>
+</View>
+                                {/* <TextInput 
                                     style={styles.textInputStyle} 
                                     placeholder='Enter Password' 
                                     placeholderTextColor='black' 
@@ -72,8 +98,9 @@ class LoginForm extends Component{
                                     secureTextEntry
                                     onChangeText={this.onPasswordChange.bind(this)}
                                     value={this.props.password}
-                                    />
                                     
+                                    />
+                                     */}
                                 {errorMsg}
                                 </View>
                                 <MyButton spinner={loading}
@@ -171,7 +198,11 @@ const styles=StyleSheet.create({
     },
     container:{
         flexDirection:'row'
-    }
+    },
+    passwordContainer: {
+        flexDirection: 'row',
+        paddingBottom: 10,
+      },
      
 });
 const mapStateToProps = state =>{
