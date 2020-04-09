@@ -6,11 +6,11 @@ import {View, Text, StyleSheet,
         ScrollView,
         Image,
         ImageBackground,
-        Platform,TextInput
+        Platform,TextInput, TouchableWithoutFeedbackBase
 } from 'react-native';
-import {Input, MyButton} from './common';
+import {Input, MyButton, Spinner} from './common';
 import firebase from 'firebase';
-import {emailChanged,passwordChanged,loginUser} from '../actions/index';
+import {emailChanged,passwordChanged,loginUser, isLoggedIn} from '../actions/index';
 import {connect} from 'react-redux';
 import {Provider} from 'react-redux';
 import {createStore} from 'redux';
@@ -21,13 +21,12 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 getDatabase().ref('login')
 const { width, height } = Dimensions.get("screen");
 class LoginForm extends Component{
-//componentDidMount firebase connection
-// constructor(props){
-//     super(props)
-//     this.state={
+    componentDidMount(){
+        if(this.props.fullLoading){
+            this.props.isLoggedIn();
+        }
        
-//     }
-// }
+    }
     onButtonClicked(){
         const {email,password}=this.props;
         this.props.loginUser(email,password);
@@ -40,7 +39,12 @@ class LoginForm extends Component{
         this.props.passwordChanged(text);
     }
     render(){
-        const {error,loading}=this.props;
+        const {error,loading,fullLoading}=this.props;
+        if(fullLoading){
+            return(
+                <Spinner/>
+            )
+        }
         const errorMsg = error ? (
     <Text style={styles.errorStyle}>
         {error}
@@ -206,11 +210,11 @@ const styles=StyleSheet.create({
      
 });
 const mapStateToProps = state =>{
-    const{email,password,loading,error}=state.auth;
+    const{email,password,loading,error,fullLoading}=state.auth;
     return {
-       email,password,loading,error
+       email,password,loading,error,fullLoading
     }
 }
 
   
-export default connect(mapStateToProps,{emailChanged,passwordChanged,loginUser})(LoginForm);
+export default connect(mapStateToProps,{emailChanged,passwordChanged,loginUser,isLoggedIn})(LoginForm);

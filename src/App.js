@@ -1,5 +1,9 @@
 import  React,{Component} from 'react';
-import { Text, View ,SafeAreaView,Image,TouchableOpacity,ScrollView,Button,FlatList,TextInput,StyleSheet} from 'react-native';
+import { Text, View ,SafeAreaView,
+         Image,TouchableOpacity,
+         ScrollView,Button,FlatList,
+         TextInput,StyleSheet,
+         Modal} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import {createStackNavigator} from '@react-navigation/stack';
@@ -16,7 +20,12 @@ import EnCokOkunanlar from './screens/enCokOkunanlar';
 import EnCokBegenilenler from './screens/enCokBegenilenler';
 import LoginForm from './components/loginForm';
 import FavoriteScreen from './screens/favorite';
-import { Icon } from 'galio-framework';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import firebase from 'firebase';
+import { Actions } from 'react-native-router-flux';
+import { TouchableHighlight } from 'react-native-gesture-handler';
+import { MyButton } from './components/common';
+//import LogOut from './screens/logOut';
 
 function CustomDrawerContent(props){
   return(
@@ -27,13 +36,24 @@ function CustomDrawerContent(props){
         />
       </View>
       <ScrollView style={{marginLeft:20,marginTop:'15%'}}>
-      <TouchableOpacity style={{marginTop:20}} onPress={()=>props.navigation.navigate('MenuTab')}>
-        <Text style={{fontSize:16}}>Menu Tab</Text>
-      
+    <View>
+      <TouchableOpacity style={{marginTop:20,flexDirection:'row'}} onPress={()=>props.navigation.navigate('MenuTab')}>
+         <Icon name="home"  size={20} />
+        <Text style={{fontSize:16,marginLeft:15}}>Home</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={{marginTop:20}} onPress={()=>props.navigation.navigate('Profile')}>
-        <Text style={{fontSize:16}}>Profile</Text>
+      </View>
+      <View >
+      <TouchableOpacity style={{marginTop:20,flexDirection:'row'}} onPress={()=>props.navigation.navigate('Profile')}>
+      <Icon name="user-circle"  size={20}/>
+        <Text style={{fontSize:16,marginLeft:15}}>Profile</Text>
       </TouchableOpacity>
+      </View>
+      <View>
+      <TouchableOpacity style={{marginTop:20,flexDirection:'row'}} onPress={()=>props.navigation.navigate('LogOut')}>
+      <Icon name="sign-out"  size={20} />
+        <Text style={{fontSize:16,marginLeft:15}}>Log Out</Text>
+      </TouchableOpacity>
+      </View>
       </ScrollView>
     </SafeAreaView>
   )
@@ -94,7 +114,6 @@ function TabNavigator(){
          :require('../assest/images/user-white.png')
        }
 
-       // You can return any component that you like here!
        return <Image source={iconName} style={{width:20,height:20}} resizeMode="contain" size={size} color={color} />;
      },
    })}
@@ -110,13 +129,38 @@ function TabNavigator(){
  </Tab.Navigator>
   )
 }
+
 const Drawer = createDrawerNavigator();
 
+class signOut extends Component{
+  constructor(){
+    super();
+    this.state={
+      show:false
+    }
+  }
+  render(){
+    return(
+     <View>
+       <Modal transparent={true} visible={this.state.show}>
+         <View style={{backgroundColor:'#000000aa',flex:1}}>
+           <View style={{backgroundColor:'#ffffff',marginBottom:425,marginTop:100,marginLeft:100,marginRight:100,paddingTop:25,borderRadius:10,flex:1}}>
+              <Button title="Çıkış Yap"
+              onPress={()=>this.setState({show:false}),firebase.auth().signOut().then(()=>Actions.auth())}
+                      /> 
+           </View>
+         </View>
+       </Modal>
+     </View>
+    )
+  }
+}
 function DrawerNavigator(){
   return(
       <Drawer.Navigator initialRouteName="MenuTab" drawerContent={props=>CustomDrawerContent(props)}>
         <Drawer.Screen  name="MenuTab" component={TabNavigator} />
         <Drawer.Screen name="Profile" component={ProfileScreen} />
+        <Drawer.Screen name="LogOut" component={signOut}/>
       </Drawer.Navigator>
   )
 }

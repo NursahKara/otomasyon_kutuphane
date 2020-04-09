@@ -12,6 +12,8 @@ import SonCikanlar from './sonCikanlar';
 import EnCokOkunanlar from './enCokOkunanlar';
 import EnCokBegenilenler from './enCokBegenilenler';
 import FavoriteScreen from './favorite';
+import Graphics from './graphics';
+import LogOut from './logOut';
 export{
     HomeScreen,
     OpinionsScreen,
@@ -26,6 +28,8 @@ export{
     Kategoriler,
     SonCikanlar,
     EnCokOkunanlar,
-    FavoriteScreen
+    FavoriteScreen,
+    Graphics,
+    LogOut
 }
 

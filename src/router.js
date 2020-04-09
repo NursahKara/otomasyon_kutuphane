@@ -15,18 +15,19 @@ import {createStore,applyMiddleware} from 'redux';
 import reducers from './reducers';
 import ReduxThunk from 'redux-thunk';
 import LoginNavigation from './components/loginNavigation';
+import firebase from 'firebase';
 
 const RouterComp=()=>{
     return(
-        <Provider store={createStore(reducers,{},applyMiddleware(ReduxThunk))}>
+        // <Provider store={createStore(reducers,{},applyMiddleware(ReduxThunk))}>
         <Router titleStyle={{color:'#E87B79'}}  >
             <Scene key='root'  hideNavBar={true}>
-                <Scene key='auth'initial>
+                <Scene key='auth'>
                     <Scene key='login'
                         component={LoginNavigation}
                         title='Login'
                         hideNavBar={true} // dersek header gözükmez
-                        initial
+                       
                         />
                 </Scene>
                 <Scene key='main' >
@@ -34,26 +35,29 @@ const RouterComp=()=>{
                         component={App}
                         title='App'
                         hideNavBar={true}
-                        initial
+                        // onLeft={()=>{
+                        //     firebase.auth().signOut()
+                        // }}
+                        // leftTitle="LogOut"
                         />
                 </Scene>
                 <Scene key='signUp' >
                     <Scene key='sign'
                     component={SignUpScreen}
                     title='Sign Up'
-                    initial
+            
                     /> 
                 </Scene>
                 <Scene key='checkbox' >
                     <Scene key='checkboxes'
                     component={AppCheck}
                     title='İlgilendiklerinizi Seçin'
-                    initial
+                 
                     /> 
                 </Scene>
             </Scene>
         </Router>
-        </Provider>
+     //   </Provider>
     )
 }
 export default RouterComp;
