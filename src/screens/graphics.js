@@ -1,12 +1,14 @@
 import React from 'react'
 import { Grid, LineChart, XAxis, YAxis } from 'react-native-svg-charts'
 import { View } from 'react-native'
+import { getDatabase } from '../components/common/database';
+//https://github.com/JesperLekland/react-native-svg-charts-examples
 
-class AxesExample extends React.PureComponent {
-
+class Graphics extends React.PureComponent {
+    
     render() {
-
-        const data = [ 50, 10, 40, 95, -4, -24, 85, 91, 35, 53 ]
+        
+        const data = [ 50, 10, 40, 95, -4, -24, 85, 91, 35, 53, -53, 24, 50, -20, -80 ]
 
         const axesSvg = { fontSize: 10, fill: 'grey' };
         const verticalContentInset = { top: 10, bottom: 10 }
@@ -49,4 +51,4 @@ class AxesExample extends React.PureComponent {
 
 }
 
-export default AxesExample
+export default Graphics

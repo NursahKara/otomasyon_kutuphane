@@ -12,32 +12,14 @@ import {fetchCheckboxInformations} from '../actions';
     }
     
     renderItem({item}){
-        // function dfsl(){
-        //     let i
-        //     for(i=0;i<item.checkbox.split(',').length;i++){
-        //       const con=console.log("i",item.checkbox.split(',')[i])  
-        //       return con;
-        //     }
-           
-        // }
         function createTable() {
             let i
             for(i=0;i<item.checkbox.split(',').length;i++){
-              (item.checkbox.split(',')[i])
-              
-              
+              (item.checkbox.split(',')[i]) 
             } 
-            return item.checkbox.split(',')
-            
+            return item.checkbox.split(',')  
         }
-        
-            //  let i
-            // for(i=0;i<item.checkbox.split(',').length;i++){
-            //     console.log("i",item.checkbox.split(',')[i])  
-            // }
-       
         return(
-            
                 <View>
                 <Text> {createTable()}</Text>
                 </View> 

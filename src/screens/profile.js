@@ -7,7 +7,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import {Input, MyButton} from '../components/common';
 import {connect} from 'react-redux';
 import CustomHeader from './CustomHeader';
-import {fetchProfileInformations} from '../actions';
+import {fetchProfileInformations,isLoggedIn} from '../actions';
 import {fetchCheckboxInformations} from '../actions';
 import {Card} from '../components/common/card';
 import { Block, theme } from "galio-framework";
@@ -19,8 +19,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
  class ProfileScreen extends React.Component{
  
     componentDidMount(){
-        this.props.fetchProfileInformations();
-       
+            this.props.fetchProfileInformations();
     }
     renderItem({item}){
         return(
