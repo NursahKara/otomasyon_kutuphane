@@ -1,9 +1,8 @@
 import React, {Component} from 'react';
-import {StyleSheet,Text,TouchableOpacity,View} from 'react-native';
+import {StyleSheet,Text,TouchableOpacity,View,ScrollView} from 'react-native';
 import {Card} from './common';
 import * as actions from '../actions';
 import {connect} from 'react-redux';
-import { ScrollView } from 'react-native-gesture-handler';
 
 class BookItem extends Component{
     onPressed(){

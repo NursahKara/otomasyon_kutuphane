@@ -35,9 +35,9 @@ import Icon from 'react-native-vector-icons/FontAwesome';
                     <Text style={styles.textStyle}>Email: {item.email}</Text>
                     <Text style={styles.textStyle}>Ad: {item.name}</Text>
                     <Text style={styles.textStyle}>Soyad: {item.surname}</Text>
-                     <Text style={styles.textStyle}>Nick: {item.nick} </Text> 
-                    {/* <Text style={styles.textStyle}>{item.gender}</Text> */}
-                    {/* <Text style={styles.textStyle}>{item.birthday}</Text>   */}
+                    <Text style={styles.textStyle}>Nick: {item.nick} </Text> 
+                    <Text style={styles.textStyle}>Cinsiyet: {item.gender}</Text> 
+                    <Text style={styles.textStyle}>Doğum Günü: {item.birthday}</Text>  
                    
                     </View>
                 </View>   
@@ -54,7 +54,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
                 >
             <SafeAreaView style={{ flex: 1}}>
             <CustomHeader title="Profile" isHome={true} bg_white={true} navigation={this.props.navigation}/>
-            <View style={{flex:1,justifyContent:'center',alignItems:'center' ,marginTop:'20%'}}>
+            <View style={{flex:1,justifyContent:'center',alignItems:'center' ,marginTop:'17%'}}>
            <FlatList data={profileInformationList}
                     renderItem={this.renderItem}
                     />
@@ -91,7 +91,7 @@ welcomeText:{
     justifyContent:'center',
     flex:1,
     flexDirection:'row',
-    marginBottom:25
+    marginBottom:20
 },
     container:{
         flexDirection:'row'

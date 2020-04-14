@@ -25,6 +25,7 @@ import firebase from 'firebase';
 import { Actions } from 'react-native-router-flux';
 import { TouchableHighlight } from 'react-native-gesture-handler';
 import { MyButton } from './components/common';
+import SelectedBook from './screens/selectedBookPage';
 //import LogOut from './screens/logOut';
 
 function CustomDrawerContent(props){
@@ -36,23 +37,23 @@ function CustomDrawerContent(props){
         />
       </View>
       <ScrollView style={{marginLeft:20,marginTop:'15%'}}>
-    <View>
-      <TouchableOpacity style={{marginTop:20,flexDirection:'row'}} onPress={()=>props.navigation.navigate('MenuTab')}>
-         <Icon name="home"  size={20} />
-        <Text style={{fontSize:16,marginLeft:15}}>Home</Text>
-      </TouchableOpacity>
+      <View>
+        <TouchableOpacity style={{marginTop:20,flexDirection:'row'}} onPress={()=>props.navigation.navigate('MenuTab')}>
+          <Icon name="home"  size={20} />
+          <Text style={{fontSize:16,marginLeft:15}}>Home</Text>
+        </TouchableOpacity>
       </View>
       <View >
-      <TouchableOpacity style={{marginTop:20,flexDirection:'row'}} onPress={()=>props.navigation.navigate('Profile')}>
-      <Icon name="user-circle"  size={20}/>
-        <Text style={{fontSize:16,marginLeft:15}}>Profile</Text>
-      </TouchableOpacity>
+        <TouchableOpacity style={{marginTop:20,flexDirection:'row'}} onPress={()=>props.navigation.navigate('Profile')}>
+          <Icon name="user-circle"  size={20}/>
+          <Text style={{fontSize:16,marginLeft:15}}>Profile</Text>
+        </TouchableOpacity>
       </View>
       <View>
-      <TouchableOpacity style={{marginTop:20,flexDirection:'row'}} onPress={()=>props.navigation.navigate('LogOut')}>
-      <Icon name="sign-out"  size={20} />
-        <Text style={{fontSize:16,marginLeft:15}}>Log Out</Text>
-      </TouchableOpacity>
+        <TouchableOpacity style={{marginTop:20,flexDirection:'row'}} onPress={()=>props.navigation.navigate('LogOut')}>
+          <Icon name="sign-out"  size={20} />
+          <Text style={{fontSize:16,marginLeft:15}}>Log Out</Text>
+        </TouchableOpacity>
       </View>
       </ScrollView>
     </SafeAreaView>
@@ -72,6 +73,7 @@ function HomeStack(){
     <StackHome.Screen name="EnCokBegenilenler" component={EnCokBegenilenler} options={navOptionHandler}/>
     <StackHome.Screen name="EnCokOkunanlar" component={EnCokOkunanlar} options={navOptionHandler}/>
     <StackHome.Screen name="SonCikanlar" component={SonCikanlar} options={navOptionHandler}/>
+    <StackHome.Screen name="SelectedBook" component={SelectedBook} options={navOptionHandler}/>
     </StackHome.Navigator>
   )
 }

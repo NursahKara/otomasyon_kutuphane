@@ -65,9 +65,6 @@ class Register extends Component{
                                         value={this.props.password}
                                         />
                                         {errorMsg}
-
-                                      
-
                                         </View>
                                         <MyButton spinner={loading}
                                                 title='Register'
