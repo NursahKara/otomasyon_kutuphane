@@ -11,7 +11,7 @@ class Book extends Component{
         const { book } =this.props;
         return(
             <ScrollView>
-                    <Text style = {styles.titleStyle}>{book.title}</Text>
+                    <Text style = {styles.titleStyle}>{book.title} </Text>
                     <Text style = {styles.authorStyle}>{book.author}</Text>
                     <Text style = {styles.titleStyle}>{book.subtitle}</Text>
                     <Text style = {styles.authorStyle}>{book.pages}</Text>
