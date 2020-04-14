@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {StyleSheet,Text,TouchableOpacity,View,ScrollView} from 'react-native';
+import { Actions } from 'react-native-router-flux';
 import {Card} from './common';
 import * as actions from '../actions';
 import {connect} from 'react-redux';
@@ -18,11 +19,11 @@ class BookItem extends Component{
         return(
             <ScrollView>
             <TouchableOpacity onPress={this.onPressed.bind(this)}>
-            <Card>
-                <Text style = {styles.titleStyle}>{book.title}</Text>
-                <Text style = {styles.authorStyle}>{book.author}</Text>
-            </Card>
-            {descriptionField}
+                <Card>
+                    <Text style = {styles.titleStyle}>{book.title}</Text>
+                    <Text style = {styles.authorStyle}>{book.author}</Text>
+                </Card>
+                <TouchableOpacity onPress={()=> Actions.book()}>{descriptionField}</TouchableOpacity> 
             </TouchableOpacity>
             </ScrollView>
         )

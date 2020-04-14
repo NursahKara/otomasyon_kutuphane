@@ -89,10 +89,10 @@ function SettingsStack(){
 const StackProfile = createStackNavigator();
 function ProfileStack(){
   return(
-    <StackSettings.Navigator initialRouteName="Profile">
-    <StackSettings.Screen name="Profile" component={ProfileScreen} options={navOptionHandler}/>
-    <StackSettings.Screen name="Favori" component={FavoriteScreen} options={navOptionHandler}/>
-    </StackSettings.Navigator>
+    <StackProfile.Navigator initialRouteName="Profile">
+    <StackProfile.Screen name="Profile" component={ProfileScreen} options={navOptionHandler}/>
+    <StackProfile.Screen name="Favori" component={FavoriteScreen} options={navOptionHandler}/>
+    </StackProfile.Navigator>
   )
 }
 function TabNavigator(){

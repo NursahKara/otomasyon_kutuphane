@@ -16,6 +16,7 @@ import reducers from './reducers';
 import ReduxThunk from 'redux-thunk';
 import LoginNavigation from './components/loginNavigation';
 import firebase from 'firebase';
+import SelectedBook from './screens/selectedBookPage';
 
 const RouterComp=()=>{
     return(
@@ -40,6 +41,10 @@ const RouterComp=()=>{
                         // }}
                         // leftTitle="LogOut"
                         />
+                    <Scene key='book'
+                           component={SelectedBook}
+                           title='SelectedBook'
+                           hideNavBar={true}/>
                 </Scene>
                 <Scene key='signUp' >
                     <Scene key='sign'

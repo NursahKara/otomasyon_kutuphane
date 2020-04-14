@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {StyleSheet,Text,TouchableOpacity,View,FlatList} from 'react-native';
+import {StyleSheet,Text,TouchableOpacity,View,FlatList,SafeAreaView} from 'react-native';
 import CustomHeader from './CustomHeader';
 
 export default class SelectedBook extends Component{
