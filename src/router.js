@@ -17,17 +17,19 @@ import ReduxThunk from 'redux-thunk';
 import LoginNavigation from './components/loginNavigation';
 import firebase from 'firebase';
 import SelectedBook from './screens/selectedBookPage';
+import * as actions from './actions';
+import {connect} from 'react-redux';
+
 
 const RouterComp=()=>{
     return(
-        // <Provider store={createStore(reducers,{},applyMiddleware(ReduxThunk))}>
         <Router titleStyle={{color:'#E87B79'}}  >
             <Scene key='root'  hideNavBar={true}>
                 <Scene key='auth'>
                     <Scene key='login'
                         component={LoginNavigation}
                         title='Login'
-                        hideNavBar={true} // dersek header gözükmez
+                        hideNavBar={true} 
                        
                         />
                 </Scene>
@@ -36,33 +38,26 @@ const RouterComp=()=>{
                         component={App}
                         title='App'
                         hideNavBar={true}
-                        // onLeft={()=>{
-                        //     firebase.auth().signOut()
-                        // }}
-                        // leftTitle="LogOut"
                         />
                     <Scene key='book'
                            component={SelectedBook}
-                           title='SelectedBook'
+                           title='selectedBook'
                            hideNavBar={true}/>
                 </Scene>
                 <Scene key='signUp' >
                     <Scene key='sign'
                     component={SignUpScreen}
                     title='Sign Up'
-            
                     /> 
                 </Scene>
                 <Scene key='checkbox' >
                     <Scene key='checkboxes'
                     component={AppCheck}
                     title='İlgilendiklerinizi Seçin'
-                 
                     /> 
                 </Scene>
             </Scene>
         </Router>
-     //   </Provider>
     )
 }
-export default RouterComp;
+export default RouterComp

@@ -73,7 +73,7 @@ function HomeStack(){
     <StackHome.Screen name="EnCokBegenilenler" component={EnCokBegenilenler} options={navOptionHandler}/>
     <StackHome.Screen name="EnCokOkunanlar" component={EnCokOkunanlar} options={navOptionHandler}/>
     <StackHome.Screen name="SonCikanlar" component={SonCikanlar} options={navOptionHandler}/>
-    <StackHome.Screen name="SelectedBook" component={SelectedBook} options={navOptionHandler}/>
+   
     </StackHome.Navigator>
   )
 }
