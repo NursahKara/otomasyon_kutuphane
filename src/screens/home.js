@@ -26,7 +26,7 @@ export default class HomeScreen extends Component{
               <SearchBox/>
               <View style={{height:50}}>
                 <ScrollView horizontal={true}>
-                  <TouchableOpacity  style={styles.textStyle} onPress={()=>this.props.navigation.navigate('Kategoriler')} >
+                  <TouchableOpacity style={styles.textStyle}  onPress={()=>this.props.navigation.navigate('Kategoriler')} >
                     <Text>Kategoriler</Text>
                   </TouchableOpacity>
                   <TouchableOpacity style={styles.textStyle}  onPress={()=>this.props.navigation.navigate('SonCikanlar')}>   
@@ -42,7 +42,7 @@ export default class HomeScreen extends Component{
               </View>
               <Provider store={createStore(reducers)}>
                 <ScrollView>
-                <BookList />
+                <BookList/>
                 </ScrollView>
               </Provider>
             </SafeAreaView>
