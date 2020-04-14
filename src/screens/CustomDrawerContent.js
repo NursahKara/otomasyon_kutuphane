@@ -11,10 +11,10 @@ export default class CustomDrawerContent extends Component{
             />
           </View>
           <ScrollView style={{marginLeft:5}}>
-          <TouchableOpacity style={{marginTop:20}} onPress={()=>props.navigation.navigate('MenuTab')}>
+          <TouchableOpacity style={{marginTop:20}} onPress={()=>this.props.navigation.navigate('MenuTab')}>
             <Text>Menu Tab</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={{marginTop:20}} onPress={()=>props.navigation.navigate('Profile')}>
+          <TouchableOpacity style={{marginTop:20}} onPress={()=>this.props.navigation.navigate('Profile')}>
             <Text>Profile</Text>
           </TouchableOpacity>
           </ScrollView>

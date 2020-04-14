@@ -72,41 +72,28 @@ class LoginForm extends Component{
                                     placeholderTextColor='black' 
                                     underlineColorAndroid='transparent'
                                     onChangeText={this.onEmailChange.bind(this)}
-                                    value={this.props.email}
+                                    value={this.props.email} />
+                                    <View style={styles.passwordContainer}>
+                                    <TextInput
+                                        style={styles.textInputStyle} 
+                                        placeholder='Enter Password' 
+                                        placeholderTextColor='black' 
+                                        underlineColorAndroid='transparent'
+                                        secureTextEntry
+                                        onChangeText={this.onPasswordChange.bind(this)}
+                                        value={this.props.password}
+                                        />
+                                        <View style={{justifyContent:'center',alignItems:'center',marginRight:8}}>
+                                    <Icon
+                                        name='eye-slash'
+                                        color='#000'
+                                        size={19}
+
                                     />
-
-
-<View style={styles.passwordContainer}>
-  <TextInput
-    style={styles.textInputStyle} 
-    placeholder='Enter Password' 
-    placeholderTextColor='black' 
-    underlineColorAndroid='transparent'
-    secureTextEntry
-    onChangeText={this.onPasswordChange.bind(this)}
-    value={this.props.password}
-    />
-    <View style={{justifyContent:'center',alignItems:'center',marginRight:8}}>
-  <Icon
-    name='eye-slash'
-    color='#000'
-    size={19}
-
-  /></View>
-</View>
-                                {/* <TextInput 
-                                    style={styles.textInputStyle} 
-                                    placeholder='Enter Password' 
-                                    placeholderTextColor='black' 
-                                    underlineColorAndroid='transparent'
-                                    secureTextEntry
-                                    onChangeText={this.onPasswordChange.bind(this)}
-                                    value={this.props.password}
-                                    
-                                    />
-                                     */}
-                                {errorMsg}
-                                </View>
+                                    </View>
+                                    </View>                      
+                                        {errorMsg}
+                                    </View>
                                 <MyButton spinner={loading}
                                         title='Login'
                                         onPress={this.onButtonClicked.bind(this)}

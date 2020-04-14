@@ -38,4 +38,4 @@ const styles=StyleSheet.create({
        flexDirection:'row'
    }
 });
-export {SearchBox}
+export default SearchBox;
