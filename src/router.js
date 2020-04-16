@@ -27,34 +27,34 @@ const RouterComp=()=>{
             <Scene key='root'  hideNavBar={true}>
                 <Scene key='auth'>
                     <Scene key='login'
-                        component={LoginNavigation}
-                        title='Login'
-                        hideNavBar={true} 
-                       
+                           component={LoginNavigation}
+                           title='Login'
+                           hideNavBar={true} 
                         />
                 </Scene>
                 <Scene key='main' >
                     <Scene key='home'
-                        component={App}
-                        title='App'
-                        hideNavBar={true}
+                           component={App}
+                           title='App'
+                           hideNavBar={true}
                         />
                     <Scene key='book'
                            component={SelectedBook}
                            title='selectedBook'
-                           hideNavBar={true}/>
+                           hideNavBar={true}
+                           />
                 </Scene>
                 <Scene key='signUp' >
                     <Scene key='sign'
-                    component={SignUpScreen}
-                    title='Sign Up'
-                    /> 
+                           component={SignUpScreen}
+                           title='Sign Up'
+                        /> 
                 </Scene>
                 <Scene key='checkbox' >
                     <Scene key='checkboxes'
-                    component={AppCheck}
-                    title='İlgilendiklerinizi Seçin'
-                    /> 
+                           component={AppCheck}
+                           title='İlgilendiklerinizi Seçin'
+                        /> 
                 </Scene>
             </Scene>
         </Router>

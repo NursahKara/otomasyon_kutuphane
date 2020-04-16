@@ -4,6 +4,7 @@ import { Actions } from 'react-native-router-flux';
 import {Card} from '../components/common';
 import * as actions from '../actions';
 import {connect} from 'react-redux';
+import _ from 'lodash';
 
 class Book extends Component{
     
@@ -45,8 +46,8 @@ const styles=StyleSheet.create({
 })
 
 const mapStateToProps = (state,props) => {
-    const selected  = state.seletedBook 
-                    && state.seletedBook.isbn === props.book.isbn;
+    const selected  =state.seletedBook 
+                    && state.seletedBook.isbn === props.book.isbn
     return{
         selected
     }

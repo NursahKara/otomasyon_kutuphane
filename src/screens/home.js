@@ -16,13 +16,13 @@ const { width, height } = Dimensions.get("screen");
 export default class HomeScreen extends Component{
     render(){
         return(
-          <Block flex>
+          <Block flex style={{backgroundColor:'#c0c0c0'}}>
             <ImageBackground
-                source={require('../../assest/themes/bg.png')}
+                source={require('../../assest/themes/baloncuklu.jpg')}
                 style={styles.ImageContainer}
                 >
             <SafeAreaView style={{ flex: 1}}>
-              <CustomHeader title="Home" isHome={true} bg_white={false} navigation={this.props.navigation}/>
+              <CustomHeader title="Home" isHome={true} bg_white={true} navigation={this.props.navigation}/>
               <SearchBox/>
               <View style={{height:50}}>
                 <ScrollView horizontal={true}>
@@ -65,7 +65,7 @@ const styles=StyleSheet.create({
     ImageContainer: {
       flex:1,
        padding: 0,
-       zIndex: 1
+       zIndex: 1,
      },
  
 })

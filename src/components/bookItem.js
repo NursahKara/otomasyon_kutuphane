@@ -23,7 +23,7 @@ class BookItem extends Component{
                     <Text style = {styles.titleStyle}>{book.title}</Text>
                     <Text style = {styles.authorStyle}>{book.author}</Text>
                 </Card>
-                <TouchableOpacity onPress={()=> Actions.book()}>{descriptionField}</TouchableOpacity> 
+                <TouchableOpacity onPress={()=> Actions.book(this.props)}>{descriptionField}</TouchableOpacity> 
             </TouchableOpacity>
             </ScrollView>
         )
@@ -32,17 +32,17 @@ class BookItem extends Component{
 const styles=StyleSheet.create({
     titleStyle:{
         fontSize:16,
-        color:'#d8d8d8'
+        color:'black'
     },
     authorStyle:{
         fontSize:13,
-        color:'gray'
+        color:'black'
     },
     descriptionStyles:{
         marginLeft:10,
         marginRight:10,
         fontSize:13,
-        color:'gray',
+        color:'black',
         textAlign:'justify'
     },
     cardStyle:{

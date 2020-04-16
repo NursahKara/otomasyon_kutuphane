@@ -7,7 +7,7 @@ import BookItem from './bookItem';
 class BookList extends Component{
     renderItem({item}){
         return(
-          <BookItem book={item}/>
+          <BookItem book={item} home={true}/>
         )
     }
     render(){
@@ -18,7 +18,6 @@ class BookList extends Component{
                 data={books}
                 renderItem={this.renderItem}
                 keyExtractor={(item)=>item.isbn}
-                navigation={this.props.navigation}
                 />
             </View>
         )
