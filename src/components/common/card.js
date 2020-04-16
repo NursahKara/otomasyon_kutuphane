@@ -21,6 +21,7 @@ const styles=StyleSheet.create({
         borderColor:'gray',
         alignItems:'center',
         justifyContent:'center',
+        
     }
 });
 

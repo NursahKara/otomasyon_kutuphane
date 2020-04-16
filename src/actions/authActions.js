@@ -9,6 +9,7 @@ export const LOGIN_USER_FAILED ='login_user_failed';
 export const LOGIN ='login';
 export const LOGGED_IN='logged_in';
 export const NOT_LOGGED_IN='not_logged_in';
+export const GO_TO_DEFINITON='go_to_definition';
 
 export const isLoggedIn=()=>{
 return dispatch =>{
@@ -80,6 +81,7 @@ export const deselectBook=() =>{
         payload : {}
     }
 }
+
 //actionlarda returnun 2 tipi var
 //type:actionin tipi ne. reducer la eslestirebilmek  icin
 //payload: bu action uzerinde ne tasiyacak

@@ -2,7 +2,7 @@ import  React,{Component} from 'react';
 import { Text, View ,SafeAreaView,
          Image,TouchableOpacity,
          ScrollView,Button,FlatList,
-         TextInput,StyleSheet,
+         TextInput,StyleSheet,Dimensions,
          Modal} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -27,31 +27,31 @@ import { TouchableHighlight } from 'react-native-gesture-handler';
 import { MyButton } from './components/common';
 import SelectedBook from './screens/selectedBookPage';
 //import LogOut from './screens/logOut';
-
+const { width1, height1 } = Dimensions.get("screen");
 function CustomDrawerContent(props){
   return(
     <SafeAreaView style={{flex:1}}>
       <View style={{height:150,alignItems:'center',justifyContent:'center'}}>
-        <Image source={require('../assest/images/user.png')}
-               style={{height:120,width:120,borderRadius:60}}
+        <Image source={require('../assest/images/library.jpg')}
+               style={{height:300,width:'100%'}}
         />
       </View>
-      <ScrollView style={{marginLeft:20,marginTop:'15%'}}>
-      <View>
+      <ScrollView style={{marginLeft:20,marginTop:'30%'}}>
+      <View style={{marginBottom:10}}>
         <TouchableOpacity style={{marginTop:20,flexDirection:'row'}} onPress={()=>props.navigation.navigate('MenuTab')}>
-          <Icon name="home"  size={20} />
+          <Icon name="home"  size={25} />
           <Text style={{fontSize:16,marginLeft:15}}>Home</Text>
         </TouchableOpacity>
       </View>
-      <View >
+      <View  style={{marginBottom:10}}>
         <TouchableOpacity style={{marginTop:20,flexDirection:'row'}} onPress={()=>props.navigation.navigate('Profile')}>
-          <Icon name="user-circle"  size={20}/>
+          <Icon name="user-circle"  size={25}/>
           <Text style={{fontSize:16,marginLeft:15}}>Profile</Text>
         </TouchableOpacity>
       </View>
       <View>
         <TouchableOpacity style={{marginTop:20,flexDirection:'row'}} onPress={()=>props.navigation.navigate('LogOut')}>
-          <Icon name="sign-out"  size={20} />
+          <Icon name="sign-out"  size={25} />
           <Text style={{fontSize:16,marginLeft:15}}>Log Out</Text>
         </TouchableOpacity>
       </View>
@@ -97,8 +97,9 @@ function ProfileStack(){
 }
 function TabNavigator(){
   return(
-    <Tab.Navigator
+    <Tab.Navigator 
     screenOptions={({ route }) => ({
+      
      tabBarIcon: ({ focused, color, size }) => {
        let iconName;
 
@@ -122,6 +123,9 @@ function TabNavigator(){
    tabBarOptions={{
      activeTintColor: 'red',
      inactiveTintColor: 'black',
+     style:{
+       backgroundColor:'#fff7ef',
+     }
    }}
  >
    <Tab.Screen name="Home" component={HomeStack} />
