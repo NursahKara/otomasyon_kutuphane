@@ -1,26 +1,37 @@
 import React from 'react';
-import {StyleSheet,View,Text} from 'react-native';
-
+import {StyleSheet,View,Text,Dimensions} from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
+const { width1, height1 } = Dimensions.get("screen");
 const Card = (props) => {
     return(
         <View style = {styles.cardWrapper}>
-            {props.children}  
+            <View style={{alignItems:'flex-start',justifyContent:'center',flex:3,marginLeft:10}}>
+                {props.children}
+            </View>
+            <View  style={{alignItems:'flex-end',marginRight:10,justifyContent:'center',flex:1}}>
+            <Icon
+                name='heart'
+                color='gray'
+                size={35}
+                />  
+            </View>
         </View>
     )
 }
 
 const styles=StyleSheet.create({
     cardWrapper:{
-        height:50,
+        height:60,
         marginTop:5,
         marginBottom:5,
-        marginLeft:13,
-        marginRight:13,
-        borderWidth:1,
-        borderRadius:30,
+        marginLeft:5,
+        marginRight:5,
+        borderWidth:0.2,
         borderColor:'gray',
-        alignItems:'center',
-        justifyContent:'center',
+        flexDirection:'row',
+        flex:1
+     
+    
         
     }
 });
