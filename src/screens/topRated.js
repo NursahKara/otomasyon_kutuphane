@@ -3,13 +3,13 @@ import * as React from 'react';
 import { View, Text, Button ,SafeAreaView} from 'react-native';
 import CustomHeader from './CustomHeader';
 
-export default class SonCikanlar extends React.Component{
+export default class TopRated extends React.Component{
     render(){
         return(
             <SafeAreaView style={{ flex: 1}}>
-            <CustomHeader title="Son Çıkanlar" bg_white={true} navigation={this.props.navigation}/>
+            <CustomHeader title="En Çok Beğenilenler" bg_white={true} navigation={this.props.navigation}/>
             <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
-            <Text>Son Çıkanlar</Text>  
+            <Text>En Çok Beğenilenler</Text>  
             </View>
           </SafeAreaView>
         );

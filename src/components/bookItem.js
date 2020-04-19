@@ -14,14 +14,14 @@ class BookItem extends Component{
     render(){
         const { book,selected } =this.props;
         const descriptionField = selected ? (
-        <Text style={styles.descriptionStyles}>{book.description}</Text>
+        <Text style={styles.descriptionStyles}>{book.shortDescription}</Text>
         ) : null;
         return(
             <ScrollView>
             <TouchableOpacity onPress={this.onPressed.bind(this)}>
                 <Card>
                     <Text style = {styles.titleStyle}>{book.title}</Text>
-                    <Text style = {styles.authorStyle}>{book.author}</Text>
+                    <Text style = {styles.authorStyle}>{book.authors}</Text>
                 </Card>
                 <TouchableOpacity onPress={()=> Actions.book(this.props)}>{descriptionField}</TouchableOpacity> 
             </TouchableOpacity>

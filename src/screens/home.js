@@ -26,16 +26,16 @@ export default class HomeScreen extends Component{
               <SearchBox/>
               <View style={{height:50}}>
                 <ScrollView horizontal={true}>
-                  <TouchableOpacity style={styles.textStyle}  onPress={()=>this.props.navigation.navigate('Kategoriler')} >
+                  <TouchableOpacity style={styles.textStyle}  onPress={()=>this.props.navigation.navigate('Categories')} >
                     <Text>Kategoriler</Text>
                   </TouchableOpacity>
-                  <TouchableOpacity style={styles.textStyle}  onPress={()=>this.props.navigation.navigate('SonCikanlar')}>   
+                  <TouchableOpacity style={styles.textStyle}  onPress={()=>this.props.navigation.navigate('RecentReleases')}>   
                     <Text>Son Çıkanlar</Text>
                   </TouchableOpacity>
-                  <TouchableOpacity style={styles.textStyle}  onPress={()=>this.props.navigation.navigate('EnCokOkunanlar')}>
+                  <TouchableOpacity style={styles.textStyle}  onPress={()=>this.props.navigation.navigate('MostRead')}>
                     <Text>En Çok Okunanlar</Text>
                   </TouchableOpacity>
-                  <TouchableOpacity style={styles.textStyle}  onPress={()=>this.props.navigation.navigate('EnCokBegenilenler')}>
+                  <TouchableOpacity style={styles.textStyle}  onPress={()=>this.props.navigation.navigate('TopRated')}>
                     <Text>En Çok Beğenilenler</Text>
                   </TouchableOpacity>
                 </ScrollView>
