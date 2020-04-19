@@ -12,22 +12,10 @@ import CalendarPicker from 'react-native-calendar-picker';
 import { Dropdown } from 'react-native-material-dropdown';
 
  class SignUpScreen extends React.Component{
-    // constructor(props) {
-    //     super(props);
-    //     this.state = {
-    //       selectedStartDate: null,
-    //     };
-    //     this.onDateChange = this.onDateChange.bind(this);
-    //   }
       state = {
         date: new Date(),
       }
-      onChange = date => this.setState({ date })
-      // onDateChange(date) {
-      //   this.setState({
-      //     selectedStartDate: date,
-      //   });
-      // }
+    onChange = date => this.setState({ date })
     onChangeName(name){
         this.props.changeName(name);
     }
@@ -48,7 +36,6 @@ import { Dropdown } from 'react-native-material-dropdown';
         this.props.sendInformationProfile(name,surname,nick,gender,birthday);
         Actions.checkbox();
     }
-   
     render(){
         let data = [{
             value: 'Kadın',
@@ -62,14 +49,8 @@ import { Dropdown } from 'react-native-material-dropdown';
             {error}
         </Text>
         ) : null;
-
-
-    
-        // const { selectedStartDate } = this.state;
-        // const startDate = selectedStartDate ? selectedStartDate.toString() : '';
         return(
             <ScrollView style={{ flex: 1}}>
-            {/* <CustomHeader title="Sign Up!"  navigation={this.props.navigation}/> */}
             <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
             <TextInput 
                     style={styles.textInputStyle} 
@@ -92,21 +73,14 @@ import { Dropdown } from 'react-native-material-dropdown';
                     underlineColorAndroid='transparent'
                     onChangeText={this.changeNick.bind(this)}
                     />
-            {/* <TextInput 
-                    style={styles.textInputStyle} 
-                    placeholder='Gender' 
-                    placeholderTextColor='black' 
-                    underlineColorAndroid='transparent'
-                    onChangeText={this.changeGender.bind(this)}
-                    /> */}
-                    <Dropdown
-                        label='Gender'
-                        data={data}
-                        onChangeText={this.changeGender.bind(this)}
-                        dropdownOffset={{ 'top': 3 }}
-                        pickerStyle={{borderBottomColor:'transparent',borderWidth: 0}}
-                        containerStyle = {styles.textInputStyle}
-                        />
+            <Dropdown
+                label='Gender'
+                data={data}
+                onChangeText={this.changeGender.bind(this)}
+                dropdownOffset={{ 'top': 3 }}
+                pickerStyle={{borderBottomColor:'transparent',borderWidth: 0}}
+                containerStyle = {styles.textInputStyle}
+                />
             {/* <TextInput 
                     style={styles.textInputStyle} 
                     placeholder='Birthday' 
@@ -115,23 +89,16 @@ import { Dropdown } from 'react-native-material-dropdown';
                     onChangeText={this.changeBirthday.bind(this)}
                     /> */}
 
-
-
-                  <DatePicker
-                    onChange={this.onChange}
-                    value={this.state.date}
-                    dateFormat="MMMM d, yyyy h:mm aa"
-                  />
-
-
-
+            <DatePicker
+              onChange={this.onChange}
+              value={this.state.date}
+              dateFormat="MMMM d, yyyy h:mm aa"
+            />
 
         {/* <View>
           <Text onChangeText={this.changeBirthday.bind(this)}>SELECTED DATE:{ startDate }</Text>
         </View> */}
                   
-
-
             <MyButton spinner={loading}
                       title='Send'
                       onPress={this.sendInformationProfile.bind(this)}
