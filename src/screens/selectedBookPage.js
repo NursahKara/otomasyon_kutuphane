@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {StyleSheet,Text,TouchableOpacity,View,FlatList,SafeAreaView,ListView} from 'react-native';
+import {StyleSheet,Text,TouchableOpacity,View,FlatList,SafeAreaView,ListView,Image,ScrollView} from 'react-native';
 import CustomHeader from './CustomHeader';
 import {connect} from 'react-redux';
 import Book from './book';
@@ -17,17 +17,32 @@ class SelectedBook extends Component{
         return(
             <Provider store={createStore(reducers)}>
                 <CustomHeader title="Select Book" isHome={false} bg_white={true} navigation={this.props.navigation}/>
-                   <View style={{justifyContent:'center',alignItems:'center'}}>
-                        <Text>{book.isbn}</Text>
-                        <Text>{book.title}</Text>
-                        <Text>{book.author}</Text>
-                        <Text>{book.subtitle}</Text>
-                        <Text>{book.pages}</Text>
-                        <Text>{book.description}</Text>
+                  <ScrollView>
+                  <View style={{justifyContent:'center',alignItems:'center'}}>
+                        <Image source={{uri: book.thumbnailUrl}}  style={styles.imageView}/>
+                        <Text>ISBN No: {book.isbn}</Text>
+                        <Text>Başlık: {book.title}</Text>
+                        <Text>Yazarlar: {book.authors}</Text>
+                        <Text>Sayfa Sayısı: {book.pageCount}</Text>
+                        <Text>Açıklama: {book.longDescription}</Text>
+                        <Text>Kategoriler: {book.categories}</Text>
+                       
                     </View>
+                    </ScrollView>
             </Provider>
         )
     }
 }
+const styles = StyleSheet.create({
+
+imageView: {
+    width: '50%',
+    height: 250 ,
+    margin: 7,
+    borderRadius : 7
+},
+
+ 
+});
 
 export default SelectedBook //connect reduceri  birbirine baglamak icin

@@ -14,10 +14,10 @@ import OpinionsScreen from './screens/opinions';
 import SettingsScreen from './screens/settings';
 import ScanBarcodeScreen from './screens/scan_barcode';
 import ProfileScreen from './screens/profile';
-import Kategoriler from './screens/kategoriler';
-import SonCikanlar from './screens/sonCikanlar';
-import EnCokOkunanlar from './screens/enCokOkunanlar';
-import EnCokBegenilenler from './screens/enCokBegenilenler';
+import Categories from './screens/categories';
+import RecentReleases from './screens/recentReleases';
+import MostRead from './screens/mostRead';
+import TopRated from './screens/topRated';
 import LoginForm from './components/loginForm';
 import FavoriteScreen from './screens/favorite';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -69,10 +69,10 @@ function HomeStack(){
     <StackHome.Navigator initialRouteName="Home">
     <StackHome.Screen name="Home" component={HomeScreen} options={navOptionHandler}/>
     <StackHome.Screen name="Opinions" component={OpinionsScreen} options={navOptionHandler}/>
-    <StackHome.Screen name="Kategoriler" component={Kategoriler} options={navOptionHandler}/>
-    <StackHome.Screen name="EnCokBegenilenler" component={EnCokBegenilenler} options={navOptionHandler}/>
-    <StackHome.Screen name="EnCokOkunanlar" component={EnCokOkunanlar} options={navOptionHandler}/>
-    <StackHome.Screen name="SonCikanlar" component={SonCikanlar} options={navOptionHandler}/>
+    <StackHome.Screen name="Categories" component={Categories} options={navOptionHandler}/>
+    <StackHome.Screen name="TopRated" component={TopRated} options={navOptionHandler}/>
+    <StackHome.Screen name="MostRead" component={MostRead} options={navOptionHandler}/>
+    <StackHome.Screen name="RecentReleases" component={RecentReleases} options={navOptionHandler}/>
    
     </StackHome.Navigator>
   )
