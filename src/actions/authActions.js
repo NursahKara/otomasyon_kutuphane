@@ -50,11 +50,6 @@ export const loginUser=(email,password)=>{
         firebase.auth().signInWithEmailAndPassword(email,password)
         .then(user=>loginSuccess(dispatch,user))
         .catch(()=>loginUserFailed(dispatch))
-        // {
-        //     firebase.auth().createUserWithEmailAndPassword(email,password)
-        //     .then(user=>loginSuccess(dispatch,user))
-        //     .catch(()=>loginUserFailed(dispatch))
-        // })
     } 
 }
 const loginSuccess =(dispatch,user)=>{

@@ -4,45 +4,54 @@ import { Actions } from 'react-native-router-flux';
 // import {Card} from './common';
 // import * as actions from '../actions';
 import {sendFavoriteBook,noFavBook,favBook,deselectBook,selectBook} from '../actions';
-import thunk from 'redux-thunk';
+import ReduxThunk from 'redux-thunk';
 import {createStore,applyMiddleware} from 'redux';
-import {Provider} from 'react-redux';
+import {Provider,connect} from 'react-redux';
 import reducers from '../reducers';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import {connect} from 'react-redux';
 
 class BookItem extends Component{
+    constructor() {
+        super();
+        this.state = {
+          liked: false
+        };
+        this.handleClick = this.handleClick.bind(this);
+      }
+    handleClick() {
+        this.setState({
+          liked: !this.state.liked
+        });
+      }
     onPressed(){
         const { book,selected} =this.props;
         selected ? this.props.deselectBook()
         :this.props.selectBook(book);
     }
-    onPressedFav(){
-        const{favBook,selected}=this.props;
-        selected?this.props.noFavBook()
-        :this.props.favBook(favBook);
-    }
     sendFavoriteBook(){
-        const {book}=this.props;
-        this.props.sendFavoriteBook(book);
+        const { selected} =this.props;
+        const obj={...this.props.book,
+        favBook:this.props.book.isbn}
+        selected ?this.props.sendFavoriteBook(obj)
+        :null
     }
     render(){
+        const color = this.state.liked ? '#E53935' : '#9E9E9E'
         const store = createStore(
             reducers,
             {},
-            applyMiddleware(thunk)
+            applyMiddleware(ReduxThunk)
           )
         const { book,selected } =this.props;
         const descriptionField = selected ? (
         <Text style={styles.descriptionStyles}>{book.shortDescription}</Text>
         ) : null;
         return(
-           
             <ScrollView>
             <TouchableOpacity onPress={this.onPressed.bind(this)}>
             <View style = {styles.cardWrapper}>
-                <View style={{flex:2}}>
-                    {/* <Image source={{uri:book.thumbnailUrl}}  style={styles.imageView}/> */}
+                <View style={{flex:2,justifyContent:'center'}}>
+                     <Image source={{uri:book.thumbnailUrl}}  style={styles.imageView}/> 
                 </View>
                 <View style={{alignItems:'flex-start',justifyContent:'center',flex:4,marginLeft:10,marginBottom:5,marginTop:5}}>
                     <Text style = {styles.titleStyle}>{book.title}</Text>
@@ -50,11 +59,11 @@ class BookItem extends Component{
                 </View>
                 <Provider store={store}>
                 <TouchableOpacity  
-                style={{alignItems:'flex-end',marginRight:10,justifyContent:'center',flex:1}}
-                onPress={this.onPressedFav.bind(this),this.sendFavoriteBook.bind(this)}>
+                style={{alignItems:'flex-end',marginRight:10,justifyContent:'center',flex:1}} onPress={this.handleClick}
+                 >
                     <Icon
                         name='heart'
-                        color='gray'
+                        color={color} 
                         size={35}
                         />  
                 </TouchableOpacity>
@@ -102,17 +111,15 @@ const styles=StyleSheet.create({
     },
     imageView: {
         width: 65,
-        height: 65 ,
+        height: 65,
     },
 })
 
 const mapStateToProps = (state,props) => {
     const selected  = state.seletedBook 
                     && state.seletedBook.isbn === props.book.isbn;
-    const {favBook} =state.favBookReducer;
-    
     return{
-        selected,sendFavoriteBook,favBook
+        selected,sendFavoriteBook
     }
 }
 

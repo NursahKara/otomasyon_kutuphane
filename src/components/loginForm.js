@@ -21,11 +21,22 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 getDatabase().ref('login')
 const { width, height } = Dimensions.get("screen");
 class LoginForm extends Component{
+    constructor() {
+        super();
+        this.state = {
+          clicked: false
+        };
+        this.handleClick = this.handleClick.bind(this);
+      }
+    handleClick() {
+        this.setState({
+            clicked: !this.state.clicked
+        });
+      }
     componentDidMount(){
         if(this.props.fullLoading){
             this.props.isLoggedIn();
         }
-       
     }
     onButtonClicked(){
         const {email,password}=this.props;
@@ -39,6 +50,9 @@ class LoginForm extends Component{
         this.props.passwordChanged(text);
     }
     render(){
+        const name = this.state.clicked ? 'eye' : 'eye-slash'
+        const isSecureTextEntry = this.state.clicked ? false : true
+
         const {error,loading,fullLoading}=this.props;
         if(fullLoading){
             return(
@@ -79,18 +93,18 @@ class LoginForm extends Component{
                                         placeholder='Enter Password' 
                                         placeholderTextColor='black' 
                                         underlineColorAndroid='transparent'
-                                        secureTextEntry
+                                        secureTextEntry = {isSecureTextEntry}
                                         onChangeText={this.onPasswordChange.bind(this)}
                                         value={this.props.password}
                                         />
-                                        <View style={{justifyContent:'center',alignItems:'center',marginRight:8}}>
-                                    <Icon
-                                        name='eye-slash'
-                                        color='#000'
-                                        size={19}
+                                        <TouchableOpacity style={{justifyContent:'center',alignItems:'center',marginRight:8}} onPress={this.handleClick}>
+                                        <Icon
+                                            name={name} 
+                                            color='#000'
+                                            size={19}
 
-                                    />
-                                    </View>
+                                        />
+                                    </TouchableOpacity>
                                     </View>                      
                                         {errorMsg}
                                     </View>

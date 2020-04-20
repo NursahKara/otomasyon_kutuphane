@@ -41,7 +41,6 @@ export const changeBirthday  =(birthday)=>{
     }
 }
 
-
 export const sendInformationProfile =(name,surname,nick,gender,birthday)=>{
     const currentUser=firebase.auth().currentUser;
     const email=currentUser.email;
@@ -56,8 +55,6 @@ export const sendInformationProfile =(name,surname,nick,gender,birthday)=>{
         })
     }
 }
-
-
 
 export const fetchProfileInformations=()=>{
     return(dispatch)=>{
