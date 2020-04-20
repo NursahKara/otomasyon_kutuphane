@@ -34,7 +34,7 @@ import {fetchCheckboxInformations} from '../actions';
             <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
             <Text>Favori</Text> 
             <FlatList data={checkboxListReducer}
-                    renderItem={this.renderItem}
+                      renderItem={this.renderItem}
                     /> 
             </View>
           </SafeAreaView>
