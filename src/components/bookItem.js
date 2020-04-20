@@ -35,16 +35,29 @@ class BookItem extends Component{
         selected ?this.props.sendFavoriteBook(obj)
         :null
     }
-    render(){
+    render(){ 
+        const { book,selected } =this.props;
         const color = this.state.liked ? '#E53935' : '#9E9E9E'
         const store = createStore(
             reducers,
             {},
             applyMiddleware(ReduxThunk)
           )
-        const { book,selected } =this.props;
+       
         const descriptionField = selected ? (
-        <Text style={styles.descriptionStyles}>{book.shortDescription}</Text>
+            <View style = {styles.descriptionWrapper}>
+            <View style={{alignItems:'flex-start',justifyContent:'center',flex:5,marginLeft:5,marginBottom:5,marginTop:5,textAlign:'justify'}}>
+                <Text style={styles.descriptionStyles}>{book.shortDescription}</Text>
+            </View>
+    
+            <View style={{alignItems:'flex-end',marginRight:10,justifyContent:'center',flex:1}}>
+                <Icon
+                    name='forward'
+                    color='black' 
+                    size={15}
+                    />  
+            </View>
+        </View>
         ) : null;
         return(
             <ScrollView>
@@ -105,6 +118,18 @@ const styles=StyleSheet.create({
         marginLeft:5,
         marginRight:5,
         borderWidth:0.2,
+        borderColor:'gray',
+        flexDirection:'row',
+        flex:1
+    },
+    descriptionWrapper:{
+        height:'auto',
+        marginBottom:5,
+        marginLeft:5,
+        marginRight:5,
+        borderLeftWidth:0.2,
+        borderRightWidth:0.2,
+        borderBottomWidth:0.2,
         borderColor:'gray',
         flexDirection:'row',
         flex:1
