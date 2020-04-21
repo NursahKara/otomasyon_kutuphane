@@ -8,24 +8,26 @@ import {Provider,connect} from 'react-redux';
 class Categories extends Component{
   
     render(){
-        const { books } =this.props;
-        const distinct=(value,index,self)=>{
-            return self.indexOf(value)===index;
-        }
-        const distinctArray=[... new Set(books.map(data=>data.categories))]
-        console.log(distinctArray)
-        return(
+        const { books } = this.props;
+        const allCategories = [];
+        books.forEach((book) => {
+            book.categories.forEach((category) => {
+                if (category != "")
+                    allCategories.push(category);
+            })
+        });
+        const distinctArray = [... new Set(allCategories.map(data => data))];  
+
+        return (
             <ScrollView>
-                <CustomHeader title="Kategoriler" bg_white={true} navigation={this.props.navigation}/>
+                <CustomHeader title="Kategoriler" bg_white={true} navigation={this.props.navigation} />
                 <View >
-                <FlatList
-                data={books}
-                renderItem={({item})=><Text>{item.categories}</Text>}
-                keyExtractor={(item)=>item.isbn}
-                />
+                    <FlatList
+                        data={distinctArray}
+                        renderItem={({ item }) => <Text>{item}</Text>}
+                    />
                 </View>
             </ScrollView>
-            
         )
     }
 }
@@ -49,7 +51,6 @@ const styles=StyleSheet.create({
         flex:3,
         flexDirection:"row",
         width:'30%'
-
     },
     cardWrapper:{
         height:'auto',

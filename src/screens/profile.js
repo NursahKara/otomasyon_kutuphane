@@ -50,7 +50,6 @@ import Icon from 'react-native-vector-icons/FontAwesome';
             <ImageBackground
                 source={require('../../assest/themes/mermer-beyaz.jpg')}
                 style={styles.ImageContainer}
-
                 >
             <SafeAreaView style={{ flex: 1}}>
             <CustomHeader title="Profile" isHome={true} bg_white={true} navigation={this.props.navigation}/>

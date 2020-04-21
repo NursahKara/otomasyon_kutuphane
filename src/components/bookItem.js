@@ -36,54 +36,61 @@ class BookItem extends Component{
         :null
     }
     render(){ 
-        const { book,selected } =this.props;
+        const { book, selected } = this.props;
         const color = this.state.liked ? '#E53935' : '#9E9E9E'
         const store = createStore(
             reducers,
             {},
             applyMiddleware(ReduxThunk)
-          )
-       
+        );
+        const authorsView = [];
+        book.authors.forEach((author) => {
+            authorsView.push(
+                <Text style={styles.authorStyle}>
+                    {author}
+                </Text>
+            );
+        })
         const descriptionField = selected ? (
-            <View style = {styles.descriptionWrapper}>
-            <View style={{alignItems:'flex-start',justifyContent:'center',flex:5,marginLeft:5,marginBottom:5,marginTop:5,textAlign:'justify'}}>
-                <Text style={styles.descriptionStyles}>{book.shortDescription}</Text>
-            </View>
-    
-            <View style={{alignItems:'flex-end',marginRight:10,justifyContent:'center',flex:1}}>
-                <Icon
-                    name='forward'
-                    color='black' 
-                    size={15}
-                    />  
-            </View>
-        </View>
-        ) : null;
-        return(
-            <ScrollView>
-            <TouchableOpacity onPress={this.onPressed.bind(this)}>
-            <View style = {styles.cardWrapper}>
-                <View style={{flex:2,justifyContent:'center'}}>
-                     <Image source={{uri:book.thumbnailUrl}}  style={styles.imageView}/> 
+            <View style={styles.descriptionWrapper}>
+                <View style={{ alignItems: 'flex-start', justifyContent: 'center', flex: 5, marginLeft: 5, marginBottom: 5, marginTop: 5, textAlign: 'justify' }}>
+                    <Text style={styles.descriptionStyles}>{book.shortDescription}</Text>
                 </View>
-                <View style={{alignItems:'flex-start',justifyContent:'center',flex:4,marginLeft:10,marginBottom:5,marginTop:5}}>
-                    <Text style = {styles.titleStyle}>{book.title}</Text>
-                    <Text style = {styles.authorStyle}>{book.authors}</Text>
-                </View>
-                <Provider store={store}>
-                <TouchableOpacity  
-                style={{alignItems:'flex-end',marginRight:10,justifyContent:'center',flex:1}} onPress={this.handleClick}
-                 >
+
+                <View style={{ alignItems: 'flex-end', marginRight: 10, justifyContent: 'center', flex: 1 }}>
                     <Icon
-                        name='heart'
-                        color={color} 
-                        size={35}
-                        />  
-                </TouchableOpacity>
-                </Provider>
+                        name='forward'
+                        color='black'
+                        size={15}
+                    />
+                </View>
             </View>
-                <TouchableOpacity onPress={()=> Actions.book(this.props)}>{descriptionField}</TouchableOpacity> 
-            </TouchableOpacity>
+        ) : null;
+        return (
+            <ScrollView>
+                <TouchableOpacity onPress={this.onPressed.bind(this)}>
+                    <View style={styles.cardWrapper}>
+                        <View style={{ flex: 2, justifyContent: 'center' }}>
+                            <Image source={{ uri: book.thumbnailUrl }} style={styles.imageView} />
+                        </View>
+                        <View style={{ alignItems: 'flex-start', justifyContent: 'center', flex: 4, marginLeft: 10, marginBottom: 5, marginTop: 5 }}>
+                            <Text style={styles.titleStyle}>{book.title}</Text>
+                            {authorsView}
+                        </View>
+                        <Provider store={store}>
+                            <TouchableOpacity
+                                style={{ alignItems: 'flex-end', marginRight: 10, justifyContent: 'center', flex: 1 }} onPress={this.handleClick}
+                            >
+                                <Icon
+                                    name='heart'
+                                    color={color}
+                                    size={35}
+                                />
+                            </TouchableOpacity>
+                        </Provider>
+                    </View>
+                    <TouchableOpacity onPress={() => Actions.book(this.props)}>{descriptionField}</TouchableOpacity>
+                </TouchableOpacity>
             </ScrollView>
             
         )
