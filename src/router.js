@@ -19,7 +19,7 @@ import firebase from 'firebase';
 import SelectedBook from './screens/selectedBookPage';
 import * as actions from './actions';
 import {connect} from 'react-redux';
-
+import FavoriteScreen from './screens/favorite'
 
 const RouterComp=()=>{
     return(
@@ -42,7 +42,7 @@ const RouterComp=()=>{
                            component={SelectedBook}
                            title='selectedBook'
                            hideNavBar={true}
-                           />
+                        />
                 </Scene>
                 <Scene key='signUp' >
                     <Scene key='sign'
@@ -50,10 +50,17 @@ const RouterComp=()=>{
                            title='Sign Up'
                         /> 
                 </Scene>
-                <Scene key='checkbox' initial >
+                <Scene key='checkbox' >
                     <Scene key='checkboxes'
                            component={AppCheck}
                            title='İlgilendiklerinizi Seçin'
+                        /> 
+                </Scene>
+                <Scene key='favorite' >
+                    <Scene key='favorites'
+                           component={FavoriteScreen}
+                           title='Favoriler'
+                           hideNavBar={true}
                         /> 
                 </Scene>
             </Scene>

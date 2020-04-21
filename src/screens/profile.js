@@ -1,6 +1,7 @@
 import * as React from 'react';
 import _ from 'lodash';
 import firebase from 'firebase';
+import { Actions } from 'react-native-router-flux';
 import { View, Text, Button, StyleSheet,SafeAreaView,TextInput,FlatList,Dimensions,ImageBackground ,Image} from 'react-native';
 import { NavigationContainer, CommonActions } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -23,22 +24,18 @@ import Icon from 'react-native-vector-icons/FontAwesome';
     }
     renderItem({item}){
         return(
-                // <View>
-                // <Text style={styles.textStyle}>{(item.checkbox !== undefined)?item.checkbox.split(',')[0]:''}</Text>  
-                // </View>
                 <View>
                     <View style={styles.welcomeText}>
-                    <Text style={{fontWeight:'bold',fontSize:18}}>Merhaba {item.name}, Hoş Geldin!</Text>
+                        <Text style={{fontWeight:'bold',fontSize:18}}>Merhaba {item.name}, Hoş Geldin!</Text>
                     </View>
-                   <View>
-                    <Text>Bilgilerin:</Text>
-                    <Text style={styles.textStyle}>Email: {item.email}</Text>
-                    <Text style={styles.textStyle}>Ad: {item.name}</Text>
-                    <Text style={styles.textStyle}>Soyad: {item.surname}</Text>
-                    <Text style={styles.textStyle}>Nick: {item.nick} </Text> 
-                    <Text style={styles.textStyle}>Cinsiyet: {item.gender}</Text> 
-                    <Text style={styles.textStyle}>Doğum Günü: {item.birthday}</Text>  
-                   
+                    <View>
+                        <Text>Bilgilerin:</Text>
+                        <Text style={styles.textStyle}>Email: {item.email}</Text>
+                        <Text style={styles.textStyle}>Ad: {item.name}</Text>
+                        <Text style={styles.textStyle}>Soyad: {item.surname}</Text>
+                        <Text style={styles.textStyle}>Nick: {item.nick} </Text> 
+                        <Text style={styles.textStyle}>Cinsiyet: {item.gender}</Text> 
+                        <Text style={styles.textStyle}>Doğum Günü: {item.birthday}</Text>  
                     </View>
                 </View>   
         )
@@ -47,26 +44,25 @@ import Icon from 'react-native-vector-icons/FontAwesome';
         const {profileInformationList}=this.props;
         return(
             <Block flex>
-            <ImageBackground
-                source={require('../../assest/themes/mermer-beyaz.jpg')}
-                style={styles.ImageContainer}
-                >
-            <SafeAreaView style={{ flex: 1}}>
-            <CustomHeader title="Profile" isHome={false} bg_white={true} navigation={this.props.navigation}/>
-            <View style={{flex:1,justifyContent:'center',alignItems:'center' ,marginTop:'17%'}}>
-           <FlatList data={profileInformationList}
-                    renderItem={this.renderItem}
-                    />
+                <ImageBackground
+                    source={require('../../assest/themes/mermer-beyaz.jpg')}
+                    style={styles.ImageContainer}
+                    >
+                <SafeAreaView style={{ flex: 1}}>
+                <CustomHeader title="Profile" isHome={false} bg_white={true} navigation={this.props.navigation}/>
+                <View style={{flex:1,justifyContent:'center',alignItems:'center' ,marginTop:'17%'}}>
+                    <FlatList data={profileInformationList}
+                            renderItem={this.renderItem}/>
                     <View style={styles.buttonWrapper}>
-                        <TouchableOpacity  onPress={()=>this.props.navigation.navigate('Favori')}style={{justifyContent:'center',alignItems:'center'}} >
-                        <Icon name="star"  size={50} color="#FFC400"/>
-                        <Text>Favorilerim</Text>
+                        <TouchableOpacity  onPress={()=>Actions.favorite()}style={{justifyContent:'center',alignItems:'center'}} >
+                            <Icon name="star"  size={50} color="#FFC400"/>
+                            <Text>Favorilerim</Text>
                         </TouchableOpacity>
                         <Text style={{justifyContent:'flex-end',marginTop:40}}>Not: Nickini Kullanarak Yarışmalara Katılabilirsin:)</Text>
                     </View>
-            </View>
-          </SafeAreaView>
-          </ImageBackground>
+                </View>
+            </SafeAreaView>
+            </ImageBackground>
             </Block>
         );
     }
