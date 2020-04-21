@@ -59,7 +59,7 @@ class BookItem extends Component{
 
                 <View style={{ alignItems: 'flex-end', marginRight: 10, justifyContent: 'center', flex: 1 }}>
                     <Icon
-                        name='forward'
+                        name='chevron-right'
                         color='black'
                         size={15}
                     />

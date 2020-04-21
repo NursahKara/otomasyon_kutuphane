@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
-import { View, Text, Button ,SafeAreaView,StyleSheet,ScrollView,FlatList} from 'react-native';
+import { View, Text, Button ,SafeAreaView,StyleSheet,ScrollView,FlatList,TouchableOpacity} from 'react-native';
 import CustomHeader from './CustomHeader';
 import * as actions from '../actions';
 import {Provider,connect} from 'react-redux';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 
 class Categories extends Component{
@@ -24,17 +25,44 @@ class Categories extends Component{
                 <View >
                     <FlatList
                         data={distinctArray}
-                        renderItem={({ item }) => <Text>{item}</Text>}
-                    />
+                        renderItem={({ item }) => 
+                        <TouchableOpacity style={styles.container}>
+                            <View style={{alignItems: 'flex-start',flex: 5}}>
+                                <Text style={styles.titleStyle}>{item}</Text>
+                            </View>
+                            <View style={{alignItems: 'flex-end',flex: 1}}>
+                                <Icon
+                                        name='chevron-right'
+                                        color='black'
+                                        size={15}
+                                    />
+                            </View>
+                        </TouchableOpacity>
+                    }/>
                 </View>
             </ScrollView>
         )
     }
 }
 const styles=StyleSheet.create({
+    container:{
+        height:30,
+        marginTop:10,
+        marginBottom:5,
+        marginLeft:20,
+        marginRight:20, 
+        borderBottomWidth:0.2,
+        borderColor:'gray',
+        flexDirection:'row',
+        flex:1,
+        paddingLeft:10,
+        alignItems:'center'
+    },
     titleStyle:{
         fontSize:16,
-        color:'black'
+        color:'black',
+        justifyContent:'center',
+        alignItems:'center'
     },
     authorStyle:{
         fontSize:12,

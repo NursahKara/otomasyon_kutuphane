@@ -50,7 +50,7 @@ const RouterComp=()=>{
                            title='Sign Up'
                         /> 
                 </Scene>
-                <Scene key='checkbox' >
+                <Scene key='checkbox' initial >
                     <Scene key='checkboxes'
                            component={AppCheck}
                            title='İlgilendiklerinizi Seçin'
