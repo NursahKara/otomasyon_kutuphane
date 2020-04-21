@@ -97,7 +97,8 @@ class LoginForm extends Component{
                                         onChangeText={this.onPasswordChange.bind(this)}
                                         value={this.props.password}
                                         />
-                                        <TouchableOpacity style={{justifyContent:'center',alignItems:'center',marginRight:8}} onPress={this.handleClick}>
+                                        <View style={{alignItems:'flex-end',justifyContent:'center',marginRight:10}}>
+                                        <TouchableOpacity onPress={this.handleClick}>
                                         <Icon
                                             name={name} 
                                             color='#000'
@@ -105,6 +106,7 @@ class LoginForm extends Component{
 
                                         />
                                     </TouchableOpacity>
+                                    </View>
                                     </View>                      
                                         {errorMsg}
                                     </View>

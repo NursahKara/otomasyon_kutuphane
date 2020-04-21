@@ -52,7 +52,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
                 style={styles.ImageContainer}
                 >
             <SafeAreaView style={{ flex: 1}}>
-            <CustomHeader title="Profile" isHome={true} bg_white={true} navigation={this.props.navigation}/>
+            <CustomHeader title="Profile" isHome={false} bg_white={true} navigation={this.props.navigation}/>
             <View style={{flex:1,justifyContent:'center',alignItems:'center' ,marginTop:'17%'}}>
            <FlatList data={profileInformationList}
                     renderItem={this.renderItem}

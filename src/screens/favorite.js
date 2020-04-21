@@ -10,7 +10,6 @@ import {fetchCheckboxInformations} from '../actions';
     componentDidMount(){
         this.props.fetchCheckboxInformations();
     }
-    
     renderItem({item}){
         function createTable() {
             let i
@@ -25,7 +24,6 @@ import {fetchCheckboxInformations} from '../actions';
                 </View> 
         )
     }
-
     render(){
         const {checkboxListReducer}=this.props;
         return(
