@@ -6,10 +6,9 @@ import { Text, View ,SafeAreaView,
          Modal} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import {createStackNavigator} from '@react-navigation/stack';
+import { createStackNavigator } from '@react-navigation/stack';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import HomeScreen from './screens/home';
-import SuggestionsScreen from './screens/suggestions';
 import OpinionsScreen from './screens/opinions';
 import SettingsScreen from './screens/settings';
 import ScanBarcodeScreen from './screens/scan_barcode';
@@ -18,15 +17,10 @@ import Categories from './screens/categories';
 import RecentReleases from './screens/recentReleases';
 import MostRead from './screens/mostRead';
 import TopRated from './screens/topRated';
-import LoginForm from './components/loginForm';
 import FavoriteScreen from './screens/favorite';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import firebase from 'firebase';
 import { Actions } from 'react-native-router-flux';
-import { TouchableHighlight } from 'react-native-gesture-handler';
-import { MyButton } from './components/common';
-import SelectedBook from './screens/selectedBookPage';
-//import LogOut from './screens/logOut';
 const { width1, height1 } = Dimensions.get("screen");
 function CustomDrawerContent(props){
   return(
@@ -73,7 +67,6 @@ function HomeStack(){
     <StackHome.Screen name="TopRated" component={TopRated} options={navOptionHandler}/>
     <StackHome.Screen name="MostRead" component={MostRead} options={navOptionHandler}/>
     <StackHome.Screen name="RecentReleases" component={RecentReleases} options={navOptionHandler}/>
-   
     </StackHome.Navigator>
   )
 }
@@ -91,7 +84,7 @@ function ProfileStack(){
   return(
     <StackProfile.Navigator initialRouteName="Profile">
     <StackProfile.Screen name="Profile" component={ProfileScreen} options={navOptionHandler}/>
-    <StackProfile.Screen name="Favori" component={FavoriteScreen} options={navOptionHandler}/>
+    <StackProfile.Screen name="Favorite" component={FavoriteScreen} options={navOptionHandler}/>
     </StackProfile.Navigator>
   )
 }
