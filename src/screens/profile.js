@@ -1,7 +1,6 @@
 import * as React from 'react';
 import _ from 'lodash';
 import firebase from 'firebase';
-import { Actions } from 'react-native-router-flux';
 import { View, Text, Button, StyleSheet,SafeAreaView,TextInput,FlatList,Dimensions,ImageBackground ,Image} from 'react-native';
 import { NavigationContainer, CommonActions } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -54,7 +53,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
                     <FlatList data={profileInformationList}
                             renderItem={this.renderItem}/>
                     <View style={styles.buttonWrapper}>
-                        <TouchableOpacity  onPress={()=>Actions.favorite()}style={{justifyContent:'center',alignItems:'center'}} >
+                        <TouchableOpacity  onPress={()=>this.props.navigation.navigate('Favorite')}style={{justifyContent:'center',alignItems:'center'}} >
                             <Icon name="star"  size={50} color="#FFC400"/>
                             <Text>Favorilerim</Text>
                         </TouchableOpacity>

@@ -117,7 +117,7 @@ function TabNavigator(){
      activeTintColor: 'red',
      inactiveTintColor: 'black',
      style:{
-       backgroundColor:'#fff7ef',
+       backgroundColor:'white',
      }
    }}
  >

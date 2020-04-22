@@ -9,6 +9,9 @@ import {createStore,applyMiddleware} from 'redux';
 import {Provider,connect} from 'react-redux';
 import reducers from '../reducers';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import firebase from 'firebase';
+import { getDatabase } from '../components/common/database';
+
 
 class BookItem extends Component{
     constructor() {
@@ -29,20 +32,20 @@ class BookItem extends Component{
         :this.props.selectBook(book);
     }
     sendFavoriteBook(){
-        const { selected} =this.props;
-        const obj={...this.props.book,
-        favBook:this.props.book.isbn}
-        selected ?this.props.sendFavoriteBook(obj)
-        :null
+        this.setState({
+            liked: !this.state.liked
+        });
+       const {book}=this.props
+       const bookIsbn=book.isbn
+       const currentUser=firebase.auth().currentUser;
+       const email=currentUser.email;
+        getDatabase().ref('Favorite_Books')                  
+           .push({email,bookIsbn})
     }
     render(){ 
         const { book, selected } = this.props;
         const color = this.state.liked ? '#E53935' : '#9E9E9E'
-        const store = createStore(
-            reducers,
-            {},
-            applyMiddleware(ReduxThunk)
-        );
+        const store=createStore(reducers,{},applyMiddleware(ReduxThunk));
         const authorsView = [];
         book.authors.forEach((author) => {
             authorsView.push(
@@ -56,7 +59,6 @@ class BookItem extends Component{
                 <View style={{ alignItems: 'flex-start', justifyContent: 'center', flex: 5, marginLeft: 5, marginBottom: 5, marginTop: 5, textAlign: 'justify' }}>
                     <Text style={styles.descriptionStyles}>{book.shortDescription}</Text>
                 </View>
-
                 <View style={{ alignItems: 'flex-end', marginRight: 10, justifyContent: 'center', flex: 1 }}>
                     <Icon
                         name='chevron-right'
@@ -67,6 +69,7 @@ class BookItem extends Component{
             </View>
         ) : null;
         return (
+            <Provider store={store}>
             <ScrollView>
                 <TouchableOpacity onPress={this.onPressed.bind(this)}>
                     <View style={styles.cardWrapper}>
@@ -77,9 +80,9 @@ class BookItem extends Component{
                             <Text style={styles.titleStyle}>{book.title}</Text>
                             {authorsView}
                         </View>
-                        <Provider store={store}>
+                       
                             <TouchableOpacity
-                                style={{ alignItems: 'flex-end', marginRight: 10, justifyContent: 'center', flex: 1 }} onPress={this.handleClick}
+                                style={{ alignItems: 'flex-end', marginRight: 10, justifyContent: 'center', flex: 1 }} onPress={this.sendFavoriteBook.bind(this)}
                             >
                                 <Icon
                                     name='heart'
@@ -87,12 +90,12 @@ class BookItem extends Component{
                                     size={35}
                                 />
                             </TouchableOpacity>
-                        </Provider>
+                      
                     </View>
                     <TouchableOpacity onPress={() => Actions.book(this.props)}>{descriptionField}</TouchableOpacity>
                 </TouchableOpacity>
             </ScrollView>
-            
+            </Provider>
         )
     }
 }
@@ -151,8 +154,8 @@ const mapStateToProps = (state,props) => {
     const selected  = state.seletedBook 
                     && state.seletedBook.isbn === props.book.isbn;
     return{
-        selected,sendFavoriteBook
+        selected,
     }
 }
 
-export default connect(mapStateToProps,{sendFavoriteBook,noFavBook,favBook,deselectBook,selectBook})(BookItem);
+export default connect(mapStateToProps,{deselectBook,selectBook})(BookItem);
