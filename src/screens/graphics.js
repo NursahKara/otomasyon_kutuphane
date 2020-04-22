@@ -1,6 +1,7 @@
 import React from 'react'
 import { Grid, LineChart, XAxis, YAxis } from 'react-native-svg-charts'
 import { View } from 'react-native'
+import CustomHeader from './CustomHeader';
 import { getDatabase } from '../components/common/database';
 //https://github.com/JesperLekland/react-native-svg-charts-examples
 
@@ -14,13 +15,9 @@ class Graphics extends React.PureComponent {
         const verticalContentInset = { top: 10, bottom: 10 }
         const xAxisHeight = 30
 
-        // Layout of an x-axis together with a y-axis is a problem that stems from flexbox.
-        // All react-native-svg-charts components support full flexbox and therefore all
-        // layout problems should be approached with the mindset "how would I layout regular Views with flex in this way".
-        // In order for us to align the axes correctly we must know the height of the x-axis or the width of the x-axis
-        // and then displace the other axis with just as many pixels. Simple but manual.
-
         return (
+            <View>
+                <CustomHeader title="Grafikler" isHome={false} bg_white={true} navigation={this.props.navigation}/>
             <View style={{ height: 200, padding: 20, flexDirection: 'row' }}>
                 <YAxis
                     data={data}
@@ -45,6 +42,7 @@ class Graphics extends React.PureComponent {
                         svg={axesSvg}
                     />
                 </View>
+            </View>
             </View>
         )
     }

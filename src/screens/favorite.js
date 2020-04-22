@@ -12,11 +12,10 @@ import {fetchCheckboxInformations} from '../actions';
     }
     renderItem({item}){
         function createTable() {
-            let i
-            for(i=0;i<item.checkbox.split(',').length;i++){
-              (item.checkbox.split(',')[i]) 
-            } 
-            return item.checkbox.split(',')  
+            var arr = item.checkbox;
+            arr = arr.replace(",","\n");
+            console.log(arr);
+            return arr;    
         }
         return(
                 <View>
@@ -30,7 +29,7 @@ import {fetchCheckboxInformations} from '../actions';
             <SafeAreaView style={{ flex: 1}}>
             <CustomHeader title="Favori" bg_white={true} navigation={this.props.navigation}/>
             <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
-            <Text>Favori</Text> 
+           
             <FlatList data={checkboxListReducer}
                       renderItem={this.renderItem}
                     /> 

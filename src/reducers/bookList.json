@@ -1168,23 +1168,6 @@
     "categories": ["Microsoft/.NET"]
   },
   {
-    "title": "Portlets and Apache Portals",
-    "pageCount": 500,
-    "publishedDate": { "$date": "2005-10-01T00:00:00.000-0700" },
-    "thumbnailUrl": "https://s3.amazonaws.com/AKIAJC5RLADLUMVRPFDQ.book-thumb-images/hepper.jpg",
-    "shortDescription": "Portlets and Apache Portals was not published by Manning, but the manuscript is available for download from our website \"as is.\"",
-    "longDescription": "Due to the growing complexity of web sites, portals and portlets are experiencing serious growth. Portals help reduce complexity by allowing the dynamic aggregation and display of diverse content in a single web page. Portal components are pluggable parts called portlets. To be \"pluggable\" portlets and portals must satisfy standards. The authors of this book, all but one employees of IBM, created these standards: Java Portlet Specification JSR 168 and Web Services for Remote Portlets (WSRP).    The book starts gently with the basics of portlet technology and a functionrich portlet example. It then dives more deeply into portlets and J2EE, portlet architecture, best practices, and explores how the popular JSF web framework can ease portlet development. It shows how to set up an open source portal and create portlets that dynamically access backend data of various types. It is rich in something readers want: code examples that show them how to do it.",
-    "status": "PUBLISH",
-    "authors": [
-      "Stefan Hepper",
-      "Peter Fischer",
-      "Stephan Hesmer",
-      "Richard Jacob",
-      "David Sean Taylor"
-    ],
-    "categories": ["Java"]
-  },
-  {
     "title": "Code Generation in Action",
     "isbn": "1930110979",
     "pageCount": 350,
