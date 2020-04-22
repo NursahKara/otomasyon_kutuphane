@@ -1,7 +1,9 @@
 import * as React from 'react';
 import _ from 'lodash';
 import firebase from 'firebase';
-import { View, Text, Button, StyleSheet,SafeAreaView,TextInput,FlatList,Dimensions,ImageBackground ,Image} from 'react-native';
+import { TouchableOpacity, ScrollView,View, Text, Button, 
+        StyleSheet,SafeAreaView,TextInput,FlatList,Dimensions,
+        ImageBackground ,Image,TouchableHighlight,StatusBar} from 'react-native';
 import { NavigationContainer, CommonActions } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import {Input, MyButton} from '../components/common';
@@ -12,8 +14,10 @@ import {fetchCheckboxInformations} from '../actions';
 import {Card} from '../components/common/card';
 import { Block, theme } from "galio-framework";
 import { Right } from 'native-base';
-import { TouchableOpacity } from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import Swiper from 'react-native-swiper'
+import { Actions } from 'react-native-router-flux';
+
 
 
  class ProfileScreen extends React.Component{
@@ -23,18 +27,63 @@ import Icon from 'react-native-vector-icons/FontAwesome';
     }
     renderItem({item}){
         return(
-                <View>
+                <View> 
                     <View style={styles.welcomeText}>
                         <Text style={{fontWeight:'bold',fontSize:18}}>Merhaba {item.name}, Hoş Geldin!</Text>
                     </View>
                     <View>
-                        <Text>Bilgilerin:</Text>
-                        <Text style={styles.textStyle}>Email: {item.email}</Text>
-                        <Text style={styles.textStyle}>Ad: {item.name}</Text>
-                        <Text style={styles.textStyle}>Soyad: {item.surname}</Text>
-                        <Text style={styles.textStyle}>Nick: {item.nick} </Text> 
-                        <Text style={styles.textStyle}>Cinsiyet: {item.gender}</Text> 
-                        <Text style={styles.textStyle}>Doğum Günü: {item.birthday}</Text>  
+                     
+                        <View style={{ flexDirection:'row',flex:1,marginLeft:20}}>
+                            <View style={{ alignItems: 'flex-start',  justifyContent: 'center', flex: 1 }}>
+                                <Icon
+                                name='envelope'
+                                color='black'
+                                size={15}
+                                />
+                            </View>
+                            <View style={{ alignItems: 'flex-end', marginRight: 10, justifyContent: 'center', flex: 5 }}>
+                                <Text style={styles.textStyle}>{item.email} </Text> 
+                            </View>
+                        </View>
+                        {/* <Text style={styles.textStyle}>Ad: {item.name}</Text>
+                        <Text style={styles.textStyle}>Soyad: {item.surname}</Text> */}
+                        <View style={{ flexDirection:'row',flex:1,marginLeft:20}}>
+                            <View style={{ alignItems: 'flex-start', justifyContent: 'center', flex: 1 }}>
+                                <Icon
+                                name='slack'
+                                color='black'
+                                size={15}
+                                />
+                            </View>
+                            <View style={{ alignItems: 'flex-end', marginRight: 10, justifyContent: 'center', flex: 5 }}>
+                                <Text style={styles.textStyle}>{item.nick} </Text> 
+                            </View>
+                        </View>
+                        <View style={{ flexDirection:'row',flex:1,marginLeft:20}}>
+                            <View style={{ alignItems: 'flex-start', justifyContent: 'center', flex: 1 }}>
+                                <Icon
+                                name='venus-mars'
+                                color='black'
+                                size={15}
+                                />
+                            </View>
+                            <View style={{ alignItems: 'flex-end', marginRight: 10, justifyContent: 'center', flex: 5 }}>
+                                <Text style={styles.textStyle}>{item.gender} </Text> 
+                            </View>
+                        </View>
+                        <View style={{ flexDirection:'row',flex:1,marginLeft:20}}>
+                            <View style={{ alignItems: 'flex-start', justifyContent: 'center', flex: 1 }}>
+                                <Icon
+                                name='birthday-cake'
+                                color='black'
+                                size={15}
+                                />
+                            </View>
+                            <View style={{ alignItems: 'flex-end', marginRight: 10, justifyContent: 'center', flex: 5 }}>
+                                <Text style={styles.textStyle}>{item.birthday} </Text> 
+                            </View>
+                        </View>
+                        
                     </View>
                 </View>   
         )
@@ -42,32 +91,117 @@ import Icon from 'react-native-vector-icons/FontAwesome';
     render(){
         const {profileInformationList}=this.props;
         return(
-            <Block flex>
-                <ImageBackground
-                    source={require('../../assest/themes/mermer-beyaz.jpg')}
-                    style={styles.ImageContainer}
-                    >
                 <SafeAreaView style={{ flex: 1}}>
                 <CustomHeader title="Profile" isHome={false} bg_white={true} navigation={this.props.navigation}/>
-                <View style={{flex:1,justifyContent:'center',alignItems:'center' ,marginTop:'17%'}}>
+                <View style={styles.wrapper} >
+                <StatusBar barStyle="light-content" />
+                <Swiper
+                 dot={
+                    <View
+                      style={{
+                        backgroundColor: 'rgba(255,255,255,.3)',
+                        width: 10,
+                        height: 10,
+                        borderRadius: 7,
+                        marginLeft: 4,
+                        marginRight: 4
+                      }}
+                    />
+                  }
+                  activeDot={
+                    <View
+                      style={{
+                        backgroundColor: '#fff',
+                        width: 10,
+                        height: 10,
+                        borderRadius: 7,
+                        marginLeft: 4,
+                        marginRight: 4
+                      }}
+                      />
+                    }
+                        autoplay
+                        autoplayDelay={2} 
+                        showsButtons={false}>
+                   <TouchableOpacity style={styles.slide1}  onPress={()=>this.props.navigation.navigate('Suggestions')}>
+                    {/* <ImageBackground
+                        source={require('../../assest/themes/baloncuklu.jpg')}
+                        style={styles.ImageContainer}
+                    > */}
+                    <View>
+                        <Text style={styles.text}>Senin İçin Önerdiklerimiz</Text>
+                    </View>
+                    {/* </ImageBackground> */}
+                    </TouchableOpacity>
+                   <TouchableOpacity style={styles.slide2}  onPress={()=>this.props.navigation.navigate('RecentReleases')}>
+                    <View>
+                        <Text style={styles.text}>En Son Eklenen Kitaplar</Text>
+                    </View>
+                    </TouchableOpacity>
+                   <TouchableOpacity style={styles.slide3}  onPress={()=>this.props.navigation.navigate('MostRead')}>
+                    <View>
+                        <Text style={styles.text}>En Çok Okunan Kitaplar</Text>
+                    </View>
+                    </TouchableOpacity>
+                   <TouchableOpacity style={styles.slide4}  onPress={()=>this.props.navigation.navigate('Graphics')}>
+                    <View >
+                        <Text style={styles.text}>Grafiklere Göz At</Text>
+                    </View>
+                    </TouchableOpacity>
+                </Swiper>
+                </View>
+                <View style={{flex:1,justifyContent:'center' ,marginTop:'8%'}}>
                     <FlatList data={profileInformationList}
                             renderItem={this.renderItem}/>
                     <View style={styles.buttonWrapper}>
                         <TouchableOpacity  onPress={()=>this.props.navigation.navigate('Favorite')}style={{justifyContent:'center',alignItems:'center'}} >
-                            <Icon name="star"  size={50} color="#FFC400"/>
-                            <Text>Favorilerim</Text>
+                        
+                           <Icon name="star"  size={35} color="#B87D95"/>
+                           <Text>Favorilerim</Text>
                         </TouchableOpacity>
-                        <Text style={{justifyContent:'flex-end',marginTop:40}}>Not: Nickini Kullanarak Yarışmalara Katılabilirsin:)</Text>
+                        {/* <Text style={{justifyContent:'flex-end'}}>Not: Nickini Kullanarak Yarışmalara Katılabilirsin:)</Text> */}
                     </View>
                 </View>
             </SafeAreaView>
-            </ImageBackground>
-            </Block>
+
         );
     }
 }
 
 const styles=StyleSheet.create({
+    wrapper: {
+        height:'30%'
+    },
+  slide1: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#BCAAE8'
+  },
+  slide2: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#AAB9E8'
+  },
+  slide3: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#C8C7FF'
+  },
+  slide4: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#BBDEFF'
+  },
+  text: {
+    color: '#fff',
+    fontSize: 30,
+    fontWeight: 'bold',
+    
+  },
     textInputStyle:{
         alignSelf:'stretch',
         color:'black',
@@ -97,13 +231,12 @@ welcomeText:{
         borderRadius:5,
         fontSize:16,
         flexDirection:'row',
-        height:50,
         
         borderColor:'#E5E5E8',
         // borderBottomWidth:1,
         alignItems:'center',
         flexGrow:2,
-        fontSize:17,
+        fontSize:13,
         paddingLeft:20,
 
     },
@@ -120,7 +253,6 @@ welcomeText:{
       justifyContent:'center',
       fontSize: 18,
       marginLeft:'auto',
-    
       alignItems:'flex-end',
       marginRight:20,
       borderRadius:10000,

@@ -13,7 +13,15 @@ class SelectedBook extends Component{
   
     render(){
         const { book} =this.props;
-
+        const categoryView = [];
+        book.categories.forEach((category) => {
+            categoryView.push(
+                <Text>
+                    {category}
+                </Text>
+            );
+        })
+       
         return(
             <Provider store={createStore(reducers)}>
                 <CustomHeader title="Select Book" isHome={false} bg_white={true} navigation={this.props.navigation}/>
@@ -25,8 +33,8 @@ class SelectedBook extends Component{
                         <Text>Yazarlar: {book.authors}</Text>
                         <Text>Sayfa Sayısı: {book.pageCount}</Text>
                         <Text>Açıklama: {book.longDescription}</Text>
-                        <Text>Kategoriler: {book.categories}</Text>
-                       
+                        <Text>Kategoriler:</Text>
+                        {categoryView}
                     </View>
                     </ScrollView>
             </Provider>
@@ -42,7 +50,8 @@ imageView: {
     borderRadius : 7
 },
 
+
  
 });
 
-export default SelectedBook //connect reduceri  birbirine baglamak icin
+export default SelectedBook 

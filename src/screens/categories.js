@@ -4,7 +4,7 @@ import CustomHeader from './CustomHeader';
 import * as actions from '../actions';
 import {Provider,connect} from 'react-redux';
 import Icon from 'react-native-vector-icons/FontAwesome';
-
+import { Actions } from 'react-native-router-flux';
 
 class Categories extends Component{
   
@@ -26,7 +26,7 @@ class Categories extends Component{
                     <FlatList
                         data={distinctArray}
                         renderItem={({ item }) => 
-                        <TouchableOpacity style={styles.container}>
+                        <TouchableOpacity style={styles.container}onPress={() => Actions.categoryToBook(this.props)}>
                             <View style={{alignItems: 'flex-start',flex: 5}}>
                                 <Text style={styles.titleStyle}>{item}</Text>
                             </View>

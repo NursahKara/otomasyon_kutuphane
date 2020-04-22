@@ -80,9 +80,13 @@ class BookItem extends Component{
                             <Text style={styles.titleStyle}>{book.title}</Text>
                             {authorsView}
                         </View>
-                       
                             <TouchableOpacity
-                                style={{ alignItems: 'flex-end', marginRight: 10, justifyContent: 'center', flex: 1 }} onPress={this.sendFavoriteBook.bind(this)}
+                                style={{ alignItems: 'flex-end', 
+                                marginRight: 10, 
+                                justifyContent: 'center', 
+                                flex: 1 
+                                }} 
+                                onPress={this.sendFavoriteBook.bind(this)}
                             >
                                 <Icon
                                     name='heart'

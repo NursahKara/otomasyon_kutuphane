@@ -19,8 +19,8 @@ import firebase from 'firebase';
 import SelectedBook from './screens/selectedBookPage';
 import * as actions from './actions';
 import {connect} from 'react-redux';
-import FavoriteScreen from './screens/favorite'
-
+import FavoriteScreen from './screens/favorite';
+import BooksInCategory from './screens/booksInCategory';
 const RouterComp=()=>{
     return(
         <Router titleStyle={{color:'#E87B79'}}  >
@@ -43,6 +43,10 @@ const RouterComp=()=>{
                            title='selectedBook'
                            hideNavBar={true}
                         />
+                    <Scene key='categoryToBook'
+                           component={BooksInCategory}
+                           title='BooksInCategory'
+                           hideNavBar={true}/>
                 </Scene>
                 <Scene key='signUp' >
                     <Scene key='sign'
@@ -56,7 +60,7 @@ const RouterComp=()=>{
                            title='İlgilendiklerinizi Seçin'
                         /> 
                 </Scene>
-                <Scene key='favorite' >
+                <Scene key='profile' >
                     <Scene key='favorites'
                            component={FavoriteScreen}
                            title='Favoriler'

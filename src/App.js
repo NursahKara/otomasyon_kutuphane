@@ -14,12 +14,14 @@ import SettingsScreen from './screens/settings';
 import ScanBarcodeScreen from './screens/scan_barcode';
 import ProfileScreen from './screens/profile';
 import Categories from './screens/categories';
+import SuggestionsScreen from './screens/suggestions';
 import RecentReleases from './screens/recentReleases';
 import MostRead from './screens/mostRead';
 import TopRated from './screens/topRated';
 import FavoriteScreen from './screens/favorite';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import firebase from 'firebase';
+import Graphics from './screens/graphics';
 import { Actions } from 'react-native-router-flux';
 const { width1, height1 } = Dimensions.get("screen");
 function CustomDrawerContent(props){
@@ -85,6 +87,10 @@ function ProfileStack(){
     <StackProfile.Navigator initialRouteName="Profile">
     <StackProfile.Screen name="Profile" component={ProfileScreen} options={navOptionHandler}/>
     <StackProfile.Screen name="Favorite" component={FavoriteScreen} options={navOptionHandler}/>
+    <StackProfile.Screen name="Graphics" component={Graphics} options={navOptionHandler}/>
+    <StackProfile.Screen name="Suggestions" component={SuggestionsScreen} options={navOptionHandler}/>
+    <StackProfile.Screen name="RecentReleases" component={RecentReleases} options={navOptionHandler}/>
+    <StackProfile.Screen name="MostRead" component={MostRead} options={navOptionHandler}/>
     </StackProfile.Navigator>
   )
 }
