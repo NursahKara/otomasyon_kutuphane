@@ -40,7 +40,7 @@ class Register extends Component{
                     source={require('../../assest/themes/register-bg.png')}
                     style={styles.ImageContainer}
                     >
-                    <CustomHeader  title="Register" bg_white={false} navigation={this.props.navigation}/>
+                    <CustomHeader  title="Kayıt Ol!" bg_white={false} navigation={this.props.navigation}/>
                     <ScrollView 
                         showsVerticalScrollIndicator={false}
                         style={{ width, marginTop: '20%' }}

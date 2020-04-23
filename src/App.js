@@ -36,19 +36,19 @@ function CustomDrawerContent(props){
       <View style={{marginBottom:10}}>
         <TouchableOpacity style={{marginTop:20,flexDirection:'row'}} onPress={()=>props.navigation.navigate('MenuTab')}>
           <Icon name="home"  size={25} />
-          <Text style={{fontSize:16,marginLeft:15}}>Home</Text>
+          <Text style={{fontSize:16,marginLeft:15}}>Ana Sayfa</Text>
         </TouchableOpacity>
       </View>
       <View  style={{marginBottom:10}}>
         <TouchableOpacity style={{marginTop:20,flexDirection:'row'}} onPress={()=>props.navigation.navigate('Profile')}>
           <Icon name="user-circle"  size={25}/>
-          <Text style={{fontSize:16,marginLeft:15}}>Profile</Text>
+          <Text style={{fontSize:16,marginLeft:15}}>Profil</Text>
         </TouchableOpacity>
       </View>
       <View>
         <TouchableOpacity style={{marginTop:20,flexDirection:'row'}} onPress={()=>props.navigation.navigate('LogOut')}>
           <Icon name="sign-out"  size={25} />
-          <Text style={{fontSize:16,marginLeft:15}}>Log Out</Text>
+          <Text style={{fontSize:16,marginLeft:15}}>Çıkış Yap</Text>
         </TouchableOpacity>
       </View>
       </ScrollView>
@@ -95,6 +95,7 @@ function ProfileStack(){
   )
 }
 function TabNavigator(){
+  
   return(
     <Tab.Navigator 
     screenOptions={({ route }) => ({
@@ -102,15 +103,15 @@ function TabNavigator(){
      tabBarIcon: ({ focused, color, size }) => {
        let iconName;
 
-       if (route.name === 'Home') {
+       if (route.name === 'Ana Sayfa') {
          iconName = focused
            ? require('../assest/images/home.png')
            : require('../assest/images/home-white.png')
-       } else if (route.name === 'Settings') {
+       } else if (route.name === 'Ayarlar') {
          iconName = focused 
          ? require('../assest/images/settings.png')
          : require('../assest/images/settings-white.png')
-       }else if (route.name==='Profile'){
+       }else if (route.name==='Profil'){
          iconName=focused
          ?require('../assest/images/user.png')
          :require('../assest/images/user-white.png')
@@ -119,17 +120,26 @@ function TabNavigator(){
        return <Image source={iconName} style={{width:20,height:20}} resizeMode="contain" size={size} color={color} />;
      },
    })}
+   tabBarComponent= 'TabBarBottomKeyboardAware'
    tabBarOptions={{
-     activeTintColor: 'red',
-     inactiveTintColor: 'black',
+     activeTintColor: 'black',
+     inactiveTintColor: 'gray',
      style:{
        backgroundColor:'white',
+      //  borderBottomWidth:0.2,shadowColor: "#000",
+      //     shadowOffset: {
+      //       width: 0,
+      //       height: 5,
+      //     },
+      //     shadowOpacity: 0.13,
+      //     shadowRadius: 15,
+      //     elevation: 5
      }
    }}
  >
-   <Tab.Screen name="Home" component={HomeStack} />
-   <Tab.Screen name="Settings" component={SettingsStack} />
-   <Tab.Screen name="Profile" component={ProfileStack} />
+   <Tab.Screen name="Ana Sayfa" component={HomeStack} />
+   <Tab.Screen name="Ayarlar" component={SettingsStack} />
+   <Tab.Screen name="Profil" component={ProfileStack} />
 
  </Tab.Navigator>
   )

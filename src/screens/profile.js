@@ -32,8 +32,7 @@ import { Actions } from 'react-native-router-flux';
                         <Text style={{fontWeight:'bold',fontSize:18}}>Merhaba {item.name}, Hoş Geldin!</Text>
                     </View>
                     <View>
-                     
-                        <View style={{ flexDirection:'row',flex:1,marginLeft:20}}>
+                        <View style={{ flexDirection:'row',flex:1,marginLeft:20,borderBottomWidth:0.2,marginRight:20}}>
                             <View style={{ alignItems: 'flex-start',  justifyContent: 'center', flex: 1 }}>
                                 <Icon
                                 name='envelope'
@@ -47,7 +46,7 @@ import { Actions } from 'react-native-router-flux';
                         </View>
                         {/* <Text style={styles.textStyle}>Ad: {item.name}</Text>
                         <Text style={styles.textStyle}>Soyad: {item.surname}</Text> */}
-                        <View style={{ flexDirection:'row',flex:1,marginLeft:20}}>
+                        <View style={{ flexDirection:'row',flex:1,marginLeft:20,borderBottomWidth:0.2,marginRight:20}}>
                             <View style={{ alignItems: 'flex-start', justifyContent: 'center', flex: 1 }}>
                                 <Icon
                                 name='slack'
@@ -59,7 +58,7 @@ import { Actions } from 'react-native-router-flux';
                                 <Text style={styles.textStyle}>{item.nick} </Text> 
                             </View>
                         </View>
-                        <View style={{ flexDirection:'row',flex:1,marginLeft:20}}>
+                        <View style={{ flexDirection:'row',flex:1,marginLeft:20,borderBottomWidth:0.2,marginRight:20}}>
                             <View style={{ alignItems: 'flex-start', justifyContent: 'center', flex: 1 }}>
                                 <Icon
                                 name='venus-mars'
@@ -71,7 +70,7 @@ import { Actions } from 'react-native-router-flux';
                                 <Text style={styles.textStyle}>{item.gender} </Text> 
                             </View>
                         </View>
-                        <View style={{ flexDirection:'row',flex:1,marginLeft:20}}>
+                        <View style={{ flexDirection:'row',flex:1,marginLeft:20,borderBottomWidth:0.2,marginRight:20}}>
                             <View style={{ alignItems: 'flex-start', justifyContent: 'center', flex: 1 }}>
                                 <Icon
                                 name='birthday-cake'
@@ -92,10 +91,11 @@ import { Actions } from 'react-native-router-flux';
         const {profileInformationList}=this.props;
         return(
                 <SafeAreaView style={{ flex: 1}}>
-                <CustomHeader title="Profile" isHome={false} bg_white={true} navigation={this.props.navigation}/>
+                <CustomHeader title="Profil" isHome={false} bg_white={true} navigation={this.props.navigation}/>
                 <View style={styles.wrapper} >
                 <StatusBar barStyle="light-content" />
                 <Swiper
+                style={{borderRadius:20}}
                  dot={
                     <View
                       style={{
@@ -170,7 +170,8 @@ import { Actions } from 'react-native-router-flux';
 
 const styles=StyleSheet.create({
     wrapper: {
-        height:'30%'
+        height:'30%',    
+
     },
   slide1: {
     flex: 1,

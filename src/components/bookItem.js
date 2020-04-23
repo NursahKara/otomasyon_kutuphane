@@ -73,7 +73,7 @@ class BookItem extends Component{
             <ScrollView>
                 <TouchableOpacity onPress={this.onPressed.bind(this)}>
                     <View style={styles.cardWrapper}>
-                        <View style={{ flex: 2, justifyContent: 'center' }}>
+                        <View style={{ flex: 2, justifyContent: 'center' ,padding:3}}>
                             <Image source={{ uri: book.thumbnailUrl }} style={styles.imageView} />
                         </View>
                         <View style={{ alignItems: 'flex-start', justifyContent: 'center', flex: 4, marginLeft: 10, marginBottom: 5, marginTop: 5 }}>
@@ -94,7 +94,6 @@ class BookItem extends Component{
                                     size={35}
                                 />
                             </TouchableOpacity>
-                      
                     </View>
                     <TouchableOpacity onPress={() => Actions.book(this.props)}>{descriptionField}</TouchableOpacity>
                 </TouchableOpacity>
@@ -131,10 +130,21 @@ const styles=StyleSheet.create({
         marginBottom:5,
         marginLeft:5,
         marginRight:5,
-        borderWidth:0.2,
         borderColor:'gray',
+        borderBottomWidth:0.8,
         flexDirection:'row',
-        flex:1
+        flex:1,
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 5,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+        elevation:0.2
+            
+       
+        
     },
     descriptionWrapper:{
         height:'auto',
@@ -151,6 +161,7 @@ const styles=StyleSheet.create({
     imageView: {
         width: 65,
         height: 65,
+        
     },
 })
 

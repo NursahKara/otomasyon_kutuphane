@@ -7,7 +7,7 @@ export default class OpinionsScreen extends Component{
     render(){
         return(
             <SafeAreaView style={{ flex: 1}}>
-            <CustomHeader title="Opinions"  bg_white={true} navigation={this.props.navigation}/>
+            <CustomHeader title="Düşünceler"  bg_white={true} navigation={this.props.navigation}/>
             <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
             <Text>Opinions!</Text>  
             </View>

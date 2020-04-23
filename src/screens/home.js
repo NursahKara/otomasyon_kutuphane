@@ -22,8 +22,11 @@ export default class HomeScreen extends Component{
                 style={styles.ImageContainer}
                 >
             <SafeAreaView style={{ flex: 1}}>
-              <CustomHeader title="Home" isHome={true} bg_white={true} navigation={this.props.navigation}/>
-              <SearchBox/>
+              <CustomHeader title="Ana Sayfa" isHome={true} bg_white={true} navigation={this.props.navigation}/>
+              <View style={{marginTop:7}}>
+               <SearchBox/> 
+              </View>
+              
               <View style={{height:50}}>
                 <ScrollView horizontal={true}>
                   <TouchableOpacity style={styles.textStyle}  onPress={()=>this.props.navigation.navigate('Categories')} >

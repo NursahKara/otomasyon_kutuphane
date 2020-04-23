@@ -7,7 +7,7 @@ export default class SettingsScreen extends React.Component{
     render(){
         return(
           <SafeAreaView style={{ flex: 1}}>
-          <CustomHeader title="Settings" isHome={false} bg_white={true} navigation={this.props.navigation}/>
+          <CustomHeader title="Ayarlar" isHome={false} bg_white={true} navigation={this.props.navigation}/>
           <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
           <Text>Settings!</Text>  
           <TouchableOpacity style={{marginTop:20}} onPress={()=>this.props.navigation.navigate('ScanBarcode')}>

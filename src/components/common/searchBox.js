@@ -7,7 +7,7 @@ class SearchBox extends Component{
         return(
             <View style={styles.container}>
                
-                <TextInput style={styles.textInputStyle} placeholder='Search' placeholderTextColor='black' underlineColorAndroid='transparent'></TextInput>
+                <TextInput style={styles.textInputStyle} placeholder='Ara...' placeholderTextColor='black' underlineColorAndroid='transparent'></TextInput>
             </View>
         )
     }
