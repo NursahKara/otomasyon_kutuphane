@@ -3,8 +3,16 @@ import {Text,View,SafeAreaView,Image,TouchableOpacity,ScrollView} from 'react-na
 
 export default class CustomHeader extends Component{
     render(){
-        return(
-          <View style={{flexDirection:'row',height:50}}>
+        return(  
+          <View style={{flexDirection:'row',height:50,borderBottomWidth:0.2,shadowColor: "#000",
+          shadowOffset: {
+            width: 0,
+            height: 5,
+          },
+          shadowOpacity: 0.13,
+          shadowRadius: 15,
+          
+          elevation: 3,}}> 
       <View style={{flex:1,justifyContent:'center'}}>
       {
         this.props.isHome?
