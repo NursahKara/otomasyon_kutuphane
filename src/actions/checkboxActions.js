@@ -29,12 +29,10 @@ export const sendInformationCheckbox =(checkbox)=>{
     }
 }
 
-
 export const fetchCheckboxInformations=()=>{
     return(dispatch)=>{
         getDatabase().ref('User_Checkbox_Informations')
         .on('value', (snapshot)=>{
-            console.log(snapshot.val())
             dispatch({
                 type:FETCH_CHECKBOX_INFORMATIONS,
                 payload:snapshot.val()

@@ -1,17 +1,17 @@
-import React, {Component} from 'react';
-import { View, Text, Button ,SafeAreaView,StyleSheet,ScrollView,FlatList,TouchableOpacity,TouchableHighlight} from 'react-native';
+import React, { Component } from 'react';
+import { View, Text, Button, SafeAreaView, StyleSheet, ScrollView, FlatList, TouchableOpacity, TouchableHighlight } from 'react-native';
 import CustomHeader from './CustomHeader';
 import * as actions from '../actions';
-import {Provider,connect} from 'react-redux';
+import { Provider, connect } from 'react-redux';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { 
-  Alert, 
-  Image, 
-  Platform, 
-  
+import {
+  Alert,
+  Image,
+  Platform,
+
 } from 'react-native';
 import PropTypes from 'prop-types';
-import {changeCheckbox,sendInformationCheckbox} from '../actions';
+import { changeCheckbox, sendInformationCheckbox } from '../actions';
 import { Actions } from 'react-native-router-flux';
 
 class SelectedCheckboxes {
@@ -32,8 +32,8 @@ class Checkbox extends Component {
 
   constructor() {
     super();
-    this.state = { 
-      checked: null 
+    this.state = {
+      checked: null
     }
   }
   componentDidMount() {
@@ -47,21 +47,21 @@ class Checkbox extends Component {
         // this.onChangeCheckbox.bind(this)
       });
     } else {
-      this.setState({ 
+      this.setState({
         checked: false
       });
     }
   }
- 
+
   stateSwitcher(key, label, value) {
     this.setState({ checked: !this.state.checked }, () => {
       if (this.state.checked) {
-        this.props.checkedObjArr.addItem({ 
+        this.props.checkedObjArr.addItem({
           'key': key,
           'value': value,
           'label': label
         });
-  
+
       } else {
         this.props.checkedObjArr.fetchArray().splice(
           this.props.checkedObjArr.fetchArray().findIndex(y => y.key == key), 1
@@ -73,28 +73,29 @@ class Checkbox extends Component {
   render() {
     return (
       <TouchableHighlight
-        onPress={this.stateSwitcher.bind(this, this.props.keyValue, this.props.label, this.props.value)} 
+        onPress={this.stateSwitcher.bind(this, this.props.keyValue, this.props.label, this.props.value)}
         underlayColor="transparent"
         style={{ marginVertical: 20 }}>
 
-        <View style={{ 
-          flexDirection: 'row', 
-          alignItems: 'center' }}>
-            <View style={{
-              padding: 4, 
-              width: this.props.size, 
-              height: this.props.size, 
-              backgroundColor: this.props.color
-            }}>
-              {
-                (this.state.checked)
-                  ?
-                  (<View style={styles.selectedUI}>
-                    <Image source={require('../../assest/images/check-black.png')} style={styles.checkboxTickImg} />
-                  </View>)
-                  :
-                  (<View style={styles.uncheckedCheckbox} />)
-              }
+        <View style={{
+          flexDirection: 'row',
+          alignItems: 'center'
+        }}>
+          <View style={{
+            padding: 4,
+            width: this.props.size,
+            height: this.props.size,
+            backgroundColor: this.props.color
+          }}>
+            {
+              (this.state.checked)
+                ?
+                (<View style={styles.selectedUI}>
+                  <Image source={require('../../assest/images/check-black.png')} style={styles.checkboxTickImg} />
+                </View>)
+                :
+                (<View style={styles.uncheckedCheckbox} />)
+            }
           </View>
           <Text style={[styles.checkboxLabel, { color: this.props.labelColor }]}>
             {this.props.label}
@@ -105,70 +106,69 @@ class Checkbox extends Component {
     );
   }
 }
-class AppCheck   extends Component{
-  onChangeCheckbox(checkbox){
+class AppCheck extends Component {
+  onChangeCheckbox(checkbox) {
     this.props.changeCheckbox(checkbox);
-}  
-sendInformationCheckbox(){
-    var pickedElements =  CheckedArrObject.fetchArray().map(res => res.label).join()
-    const {checkbox}=this.props;
+  }
+  sendInformationCheckbox() {
+    var pickedElements = CheckedArrObject.fetchArray().map(res => res.label)
+    const { checkbox } = this.props;
     this.props.sendInformationCheckbox(pickedElements);
-      Actions.main();
-    
-}
-constructor() {
+    Actions.main();
+  }
+  constructor() {
     super();
     CheckedArrObject = new SelectedCheckboxes();
     this.state = { pickedElements: '' }
-}
+  }
 
-renderSelectedElements = () => {
-if (CheckedArrObject.fetchArray().length == 0) {
-  Alert.alert('No Item Selected');
-} else {
-  this.setState(() => {
-    this.sendInformationCheckbox.bind(this);
-    return { 
-      pickedElements: CheckedArrObject.fetchArray().map(res => res.value).join()
+  renderSelectedElements = () => {
+    if (CheckedArrObject.fetchArray().length == 0) {
+      Alert.alert('No Item Selected');
+    } else {
+      this.setState(() => {
+        this.sendInformationCheckbox.bind(this);
+        return {
+          pickedElements: CheckedArrObject.fetchArray().map(res => res.value).join()
+        }
+      });
     }
-  });
-}
-}
-    render(){
-        const { books } = this.props;
-        const allCategories = [];
-        books.forEach((book) => {
-            book.categories.forEach((category) => {
-                if (category != "")
-                    allCategories.push(category);
-            })
-        });
-        const distinctArray = [... new Set(allCategories.map(data => data))];  
+  }
+  render() {
+    const { books } = this.props;
+    const allCategories = [];
+    books.forEach((book) => {
+      book.categories.forEach((category) => {
+        if (category != "")
+          allCategories.push(category);
+      })
+    });
+    const distinctArray = [... new Set(allCategories.map(data => data))];
 
-        return (
-            <ScrollView>
-                <View>
-                    <FlatList
-                        data={distinctArray}
-                        renderItem={({ item }) => 
-                        <View style={{marginLeft:20}}>
-                        <Checkbox size={30}
-                          checked={false}
-                          color="#E81E63"
-                          labelColor="#000000"
-                          label={item}
-                          value={item} 
-                          checkedObjArr={CheckedArrObject} />
-                          </View>
-                    }/>
-                      <TouchableHighlight style={styles.showSelectedButton} onPress={this.renderSelectedElements, this.sendInformationCheckbox.bind(this)}>
-                          <Text style={styles.buttonText}>Kaydet</Text>
-                      </TouchableHighlight>
-                     <Text style={{ fontSize: 22, color: "#000", marginTop: 25 }}> {this.state.pickedElements} </Text>
-                </View>
-            </ScrollView>
-        )
-    }
+    return (
+      <ScrollView>
+        <View>
+          <FlatList
+            data={distinctArray}
+            renderItem={({ item }) =>
+              <View style={{ marginLeft: 20 }}>
+                <Checkbox size={30}
+                  checked={false}
+                  color="#E81E63"
+                  labelColor="#000000"
+                  label={item}
+                  value={item}
+                  checkedObjArr={CheckedArrObject} />
+              </View>
+            } />
+          <TouchableHighlight style={styles.showSelectedButton} onPress={this.renderSelectedElements, this.sendInformationCheckbox.bind(this)}>
+            <Text style={styles.buttonText}>Kaydet</Text>
+          </TouchableHighlight>
+          <Text style={{ fontSize: 22, color: "#000", marginTop: 25 }}> {this.state.pickedElements} </Text>
+        </View>
+      </ScrollView>
+    )
+  }
 }
 Checkbox.propTypes = {
   keyValue: PropTypes.number.isRequired,
@@ -187,70 +187,70 @@ Checkbox.defaultProps = {
   value: 'Default',
   label: 'Default',
   color: '#cecece',
-  labelColor: '000000',    
+  labelColor: '000000',
 }
 
 const styles = StyleSheet.create(
-{
-  CheckboxContainer: {
-    flex: 1,
-    padding: 22,
-    marginTop:5,
-   //alignItems: 'center',
-    justifyContent: 'center',
-    paddingTop: (Platform.OS === 'ios') ? 25 : 0,
-  },
+  {
+    CheckboxContainer: {
+      flex: 1,
+      padding: 22,
+      marginTop: 5,
+      //alignItems: 'center',
+      justifyContent: 'center',
+      paddingTop: (Platform.OS === 'ios') ? 25 : 0,
+    },
 
-  showSelectedButton: {
-    padding: 15,
-    marginTop: 25,
-    alignSelf: 'stretch',
-    backgroundColor: '#5D52FF',
-    marginLeft:55,
-    marginRight:55,
-    borderRadius:5
-  },
+    showSelectedButton: {
+      padding: 15,
+      marginTop: 25,
+      alignSelf: 'stretch',
+      backgroundColor: '#5D52FF',
+      marginLeft: 55,
+      marginRight: 55,
+      borderRadius: 5
+    },
 
-  buttonText: {
-    fontSize: 20,
-    color: '#ffffff',
-    textAlign: 'center',
-    alignSelf: 'stretch'
-  },
+    buttonText: {
+      fontSize: 20,
+      color: '#ffffff',
+      textAlign: 'center',
+      alignSelf: 'stretch'
+    },
 
-  selectedUI: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
+    selectedUI: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center'
+    },
 
-  checkboxTickImg: {
-    width: '85%',
-    height: '85%',
-    tintColor: '#ffffff',
-    resizeMode: 'contain'
-  },
+    checkboxTickImg: {
+      width: '85%',
+      height: '85%',
+      tintColor: '#ffffff',
+      resizeMode: 'contain'
+    },
 
-  uncheckedCheckbox: {
-    flex: 1,
-    backgroundColor: '#ffffff'
-  },
+    uncheckedCheckbox: {
+      flex: 1,
+      backgroundColor: '#ffffff'
+    },
 
-  checkboxLabel: {
-    fontSize: 18,
-    paddingLeft: 15,
-    marginRight:15
-  }
-});
+    checkboxLabel: {
+      fontSize: 18,
+      paddingLeft: 15,
+      marginRight: 15
+    }
+  });
 
-const mapStateToProps=state=>{
-  const {checkbox} =state.checkboxReducer;
-  return{
-   checkbox,sendInformationCheckbox,books:state.books
+const mapStateToProps = state => {
+  const { checkbox } = state.checkboxReducer;
+  return {
+    checkbox, sendInformationCheckbox, books: state.books
   }
 }
 
 
-export default connect(mapStateToProps,{
-  changeCheckbox,sendInformationCheckbox
+export default connect(mapStateToProps, {
+  changeCheckbox, sendInformationCheckbox
 })(AppCheck);

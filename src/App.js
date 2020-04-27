@@ -34,7 +34,7 @@ function CustomDrawerContent(props){
       </View>
       <ScrollView style={{marginLeft:20,marginTop:'30%'}}>
       <View style={{marginBottom:10}}>
-        <TouchableOpacity style={{marginTop:20,flexDirection:'row'}} onPress={()=>props.navigation.navigate('MenuTab')}>
+        <TouchableOpacity style={{marginTop:20,flexDirection:'row'}} onPress={()=>props.navigation.navigate('Home')}>
           <Icon name="home"  size={25} />
           <Text style={{fontSize:16,marginLeft:15}}>Ana Sayfa</Text>
         </TouchableOpacity>

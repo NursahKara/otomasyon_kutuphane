@@ -11,6 +11,7 @@ import SplashScreen from 'react-native-splash-screen';
 export default class App extends Component{
   componentDidMount() {
       SplashScreen.hide(); //android/app/src/res/drawable/launch_screen.png
+      console.disableYellowBox = true; 
   }
   componentWillMount(){
         getDatabase()
