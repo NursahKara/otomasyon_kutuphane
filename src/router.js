@@ -21,6 +21,8 @@ import * as actions from './actions';
 import {connect} from 'react-redux';
 import FavoriteScreen from './screens/favorite';
 import BooksInCategory from './screens/booksInCategory';
+import BookFromCategory from './screens/bookFromCategory'
+import Categories from './screens/categories';
 const RouterComp=()=>{
     return(
         <Router titleStyle={{color:'#E87B79'}}  >
@@ -43,6 +45,14 @@ const RouterComp=()=>{
                            title='selectedBook'
                            hideNavBar={true}
                         />
+                    <Scene key='bookFromCategory'
+                    component={BookFromCategory}
+                    title='selectedBook'
+                    hideNavBar={true}/>
+                    <Scene key='category'
+                           component={Categories}
+                           title='Category'
+                           hideNavBar={true}/>
                     <Scene key='categoryToBook'
                            component={BooksInCategory}
                            title='BooksInCategory'
@@ -54,7 +64,7 @@ const RouterComp=()=>{
                            title='Sign Up'
                         /> 
                 </Scene>
-                <Scene key='checkbox' >
+                <Scene key='checkbox'>
                     <Scene key='checkboxes'
                            component={AppCheck}
                            title='İlgilendiklerinizi Seçin'

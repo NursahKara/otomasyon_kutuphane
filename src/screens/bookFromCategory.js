@@ -11,10 +11,10 @@ import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import { Block, theme } from "galio-framework";
 
-class SelectedBook extends Component {
+class BookFromCategory extends Component {
 
     render() {
-        var book = this.props.book;
+        var book  = this.props.book;
         console.log(book);
         const categoryView = [];
         book.categories.forEach((category) => {
@@ -121,4 +121,4 @@ const styles = StyleSheet.create({
 
 });
 
-export default SelectedBook
+export default BookFromCategory

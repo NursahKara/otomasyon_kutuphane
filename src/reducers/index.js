@@ -9,6 +9,7 @@ import CheckboxReducer from './checkboxReducer';
 import CheckboxListReducer from './checkboxListReducer';
 import GraphicReducer from './graphicReducer';
 import FavoriteBookReducer from './favBookReducer';
+import FavoriteBooksListReducer from './favBooksListReducer';
 
 export default combineReducers({
     books: BooksReducer,
@@ -20,5 +21,6 @@ export default combineReducers({
     checkboxReducer:CheckboxReducer,
     checkboxListReducer:CheckboxListReducer,
     graphicReducer:GraphicReducer,
-    favBookReducer:FavoriteBookReducer
+    favBookReducer:FavoriteBookReducer,
+    favBooksListReducer:FavoriteBooksListReducer
 });

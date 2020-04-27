@@ -10,8 +10,8 @@ import {createStore} from 'redux';
 import reducers from '../reducers';
 import CustomHeader from './CustomHeader';
 import { Block, theme } from "galio-framework";
+import { Actions } from 'react-native-router-flux';
 const { width, height } = Dimensions.get("screen");
-
 
 export default class HomeScreen extends Component{
     render(){
@@ -29,7 +29,7 @@ export default class HomeScreen extends Component{
               
               <View style={{height:50}}>
                 <ScrollView horizontal={true}>
-                  <TouchableOpacity style={styles.textStyle}  onPress={()=>this.props.navigation.navigate('Categories')} >
+                  <TouchableOpacity style={styles.textStyle}  onPress={()=>Actions.category()} >
                     <Text>Kategoriler</Text>
                   </TouchableOpacity>
                   <TouchableOpacity style={styles.textStyle}  onPress={()=>this.props.navigation.navigate('RecentReleases')}>   
