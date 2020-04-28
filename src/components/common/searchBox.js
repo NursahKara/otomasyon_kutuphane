@@ -3,10 +3,8 @@ import{StyleSheet,Text,View,TextInput} from 'react-native';
 
 class SearchBox extends Component{
     render(){
-        const{textInputStyle}=styles;
         return(
             <View style={styles.container}>
-               
                 <TextInput style={styles.textInputStyle} placeholder='Ara...' placeholderTextColor='black' underlineColorAndroid='transparent'></TextInput>
             </View>
         )

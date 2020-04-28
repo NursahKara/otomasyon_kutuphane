@@ -105,16 +105,16 @@ function TabNavigator(){
 
        if (route.name === 'Ana Sayfa') {
          iconName = focused
-           ? require('../assest/images/home.png')
+           ? require('../assest/images/home-blue.png')
            : require('../assest/images/home-white.png')
-       } else if (route.name === 'Ayarlar') {
+       } else if (route.name === 'Ara') {
          iconName = focused 
-         ? require('../assest/images/settings.png')
-         : require('../assest/images/settings-white.png')
+         ? require('../assest/images/loupe.png')
+         : require('../assest/images/search.png')
        }else if (route.name==='Profil'){
          iconName=focused
-         ?require('../assest/images/user.png')
-         :require('../assest/images/user-white.png')
+         ?require('../assest/images/man.png')
+         :require('../assest/images/man-white.png')
        }
 
        return <Image source={iconName} style={{width:20,height:20}} resizeMode="contain" size={size} color={color} />;
@@ -126,19 +126,11 @@ function TabNavigator(){
      inactiveTintColor: 'gray',
      style:{
        backgroundColor:'white',
-      //  borderBottomWidth:0.2,shadowColor: "#000",
-      //     shadowOffset: {
-      //       width: 0,
-      //       height: 5,
-      //     },
-      //     shadowOpacity: 0.13,
-      //     shadowRadius: 15,
-      //     elevation: 5
      }
    }}
  >
    <Tab.Screen name="Ana Sayfa" component={HomeStack} />
-   <Tab.Screen name="Ayarlar" component={SettingsStack} />
+   <Tab.Screen name="Ara" component={SettingsStack} />
    <Tab.Screen name="Profil" component={ProfileStack} />
 
  </Tab.Navigator>
