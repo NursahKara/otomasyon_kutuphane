@@ -26,6 +26,7 @@ class BooksInCategory extends Component {
         var booksView = [];
         books.forEach((book) => {
             booksView.push(
+                
                 <TouchableOpacity style={styles.container} onPress={() => Actions.book({ book })}>
                     <View style={{ alignItems: 'flex-start', flex: 2, justifyContent: 'center', padding: 3 }}>
                         <Image source={{ uri: book.thumbnailUrl }} style={styles.imageView} />
@@ -40,7 +41,9 @@ class BooksInCategory extends Component {
                             size={13}
                         />
                     </View>
+                    
                 </TouchableOpacity>
+            
             )
         });
         return (
@@ -54,15 +57,11 @@ class BooksInCategory extends Component {
                         <CustomHeader title="İlgili Kitaplar" isHome={false} bg_white={true} navigation={this.props.navigation} />
                         <View>
                             <ScrollView>
-
-
-                                <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+                                <View style={{ justifyContent: 'center', alignItems: 'center', marginBottom:50 }}>
                                     {booksView}
                                 </View>
-
                             </ScrollView>
                         </View>
-
                     </ImageBackground>
                 </Block>
             </Provider>

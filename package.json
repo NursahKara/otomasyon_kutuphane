@@ -1,3 +1,4 @@
+
 {
   "name": "b_otomasyon_kutuphane",
   "version": "0.0.1",
@@ -39,6 +40,7 @@
     "react-native-safe-area-context": "^0.7.3",
     "react-native-screens": "^2.4.0",
     "react-native-search-box": "0.0.19",
+    "react-native-search-filter": "^0.1.5",
     "react-native-splash-screen": "^3.2.0",
     "react-native-svg": "^12.0.3",
     "react-native-svg-charts": "^5.3.0",
@@ -52,7 +54,8 @@
     "react-navigation-tabs": "^2.8.6",
     "react-redux": "^7.2.0",
     "redux": "^4.0.5",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "searchable-flatlist": "0.0.4"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",

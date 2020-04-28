@@ -6,7 +6,6 @@ import { SearchBar } from 'react-native-elements';
 export default class SearchBox extends React.Component {
   constructor(props) {
     super(props);
-    //setting default state
     this.state = { isLoading: true, search: '' };
     this.arrayholder = [];
   }
@@ -81,7 +80,7 @@ export default class SearchBox extends React.Component {
           placeholder="Type Here..."
           value={this.state.search}
           />
-          {/* <FlatList
+          <FlatList
           data={this.state.dataSource}
           ItemSeparatorComponent={this.ListViewItemSeparator}
           //Item Separator View
@@ -92,7 +91,7 @@ export default class SearchBox extends React.Component {
           enableEmptySections={true}
           style={{ marginTop: 10 }}
           keyExtractor={(item, index) => index.toString()}
-        /> */}
+        />
       </View>
     );
   }

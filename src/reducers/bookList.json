@@ -9,7 +9,7 @@
     "longDescription": "Android is an open source mobile phone platform based on the Linux operating system and developed by the Open Handset Alliance, a consortium of over 30 hardware, software and telecom companies that focus on open standards for mobile devices. Led by search giant, Google, Android is designed to deliver a better and more open and cost effective mobile experience.    Unlocking Android: A Developer's Guide provides concise, hands-on instruction for the Android operating system and development tools. This book teaches important architectural concepts in a straightforward writing style and builds on this with practical and useful examples throughout. Based on his mobile development experience and his deep knowledge of the arcane Android technical documentation, the author conveys the know-how you need to develop practical applications that build upon or replace any of Androids features, however small.    Unlocking Android: A Developer's Guide prepares the reader to embrace the platform in easy-to-understand language and builds on this foundation with re-usable Java code examples. It is ideal for corporate and hobbyists alike who have an interest, or a mandate, to deliver software functionality for cell phones.    WHAT'S INSIDE:        * Android's place in the market      * Using the Eclipse environment for Android development      * The Intents - how and why they are used      * Application classes:            o Activity            o Service            o IntentReceiver       * User interface design      * Using the ContentProvider to manage data      * Persisting data with the SQLite database      * Networking examples      * Telephony applications      * Notification methods      * OpenGL, animation & multimedia      * Sample Applications  ",
     "status": "PUBLISH",
     "authors": ["W. Frank Ableson", "Charlie Collins", "Robi Sen"],
-    "categories": ["Open Source", "Mobile"]
+    "categories": ["Open Source", "Mobile Technology"]
   },
   {
     "title": "Android in Action, Second Edition",
@@ -108,7 +108,7 @@
   },
   {
     "title": "OSGi in Depth",
-    "isbn": "193518217X",
+    "isbn": "1935182171",
     "pageCount": 325,
     "publishedDate": { "$date": "2011-12-12T00:00:00.000-0800" },
     "thumbnailUrl": "https://s3.amazonaws.com/AKIAJC5RLADLUMVRPFDQ.book-thumb-images/alves.jpg",
@@ -239,7 +239,7 @@
   },
   {
     "title": "Hibernate in Action",
-    "isbn": "193239415X",
+    "isbn": "1932394157",
     "pageCount": 400,
     "publishedDate": { "$date": "2004-08-01T00:00:00.000-0700" },
     "thumbnailUrl": "https://s3.amazonaws.com/AKIAJC5RLADLUMVRPFDQ.book-thumb-images/bauer.jpg",
@@ -458,7 +458,7 @@
   },
   {
     "title": "iPhone in Action",
-    "isbn": "193398886X",
+    "isbn": "1933988861",
     "pageCount": 472,
     "publishedDate": { "$date": "2008-12-01T00:00:00.000-0800" },
     "thumbnailUrl": "https://s3.amazonaws.com/AKIAJC5RLADLUMVRPFDQ.book-thumb-images/callen.jpg",
@@ -482,7 +482,7 @@
   },
   {
     "title": "The Quick Python Book, Second Edition",
-    "isbn": "193518220X",
+    "isbn": "1935182200",
     "pageCount": 360,
     "publishedDate": { "$date": "2010-01-01T00:00:00.000-0800" },
     "thumbnailUrl": "https://s3.amazonaws.com/AKIAJC5RLADLUMVRPFDQ.book-thumb-images/ceder.jpg",
@@ -506,7 +506,7 @@
   },
   {
     "title": "Practical Methods for Your Year 2000 Problem",
-    "isbn": "188477752X",
+    "isbn": "1884777520",
     "pageCount": 236,
     "publishedDate": { "$date": "1998-01-01T00:00:00.000-0800" },
     "shortDescription": "Practical Methods for Your Year 2000 Problem gives the Year 2000 project team a step-by-step methodology for addressing the Year 2000 problem.",
@@ -541,7 +541,7 @@
   },
   {
     "title": "SQL Server 2008 Administration in Action",
-    "isbn": "193398872X",
+    "isbn": "1933988721",
     "pageCount": 468,
     "publishedDate": { "$date": "2009-08-01T00:00:00.000-0700" },
     "thumbnailUrl": "https://s3.amazonaws.com/AKIAJC5RLADLUMVRPFDQ.book-thumb-images/colledge.jpg",
@@ -778,7 +778,7 @@
     "shortDescription":"Açıklama yok.",
     "status": "PUBLISH",
     "authors": ["Jos Dirksen"],
-    "categories": ["java"]
+    "categories": ["Java"]
   },
   {
     "title": "RSS and Atom in Action",
@@ -1165,7 +1165,7 @@
     "status": "PUBLISH",
     "shortDescription":"Açıklama yok.",
     "authors": ["Kevin Hazzard", "Jason Bock"],
-    "categories": ["Microsoft/.NET"]
+    "categories": ["Microsoft .NET"]
   },
   {
     "title": "Code Generation in Action",
@@ -1702,7 +1702,7 @@
     "status": "PUBLISH",
     "shortDescription":"Açıklama yok.",
     "authors": ["Patrick Lightbody", "Jason Carreira"],
-    "categories": ["internet"]
+    "categories": ["Internet"]
   },
   {
     "title": "MacRuby in Action",
@@ -2114,27 +2114,7 @@
   },
   {
     "title": "SQL Server MVP Deep Dives",
-    "isbn": "1935182048",
-    "pageCount": 848,
-    "publishedDate": { "$date": "2009-11-01T00:00:00.000-0700" },
-    "thumbnailUrl": "https://s3.amazonaws.com/AKIAJC5RLADLUMVRPFDQ.book-thumb-images/nielsen.jpg",
-    "shortDescription": "SQL Server MVP Deep Dives is organized into five parts: Design and Architecture, Development, Administration, Performance Tuning and Optimization, and Business Intelligence. In each, you'll find concise, brilliantly clear chapters that take on key topics like mobile data strategies, Dynamic Management Views, or query performance.",
-    "longDescription": "This is no ordinary SQL Server book. In SQL Server MVP Deep Dives, the world's leading experts and practitioners offer a masterful collection of techniques and best practices for SQL Server development and administration. 53 MVPs each pick an area of passionate interest to them and then share their insights and practical know-how with you.    SQL Server MVP Deep Dives is organized into five parts: Design and Architecture, Development, Administration, Performance Tuning and Optimization, and Business Intelligence. In each, you'll find concise, brilliantly clear chapters that take on key topics like mobile data strategies, Dynamic Management Views, or query performance.    WHAT'S INSIDE        * Topics important for SQL Server pros      * Accessible to readers of all levels      * New features of SQL Server 2008    Whether you're just getting started with SQL Server or you're an old master looking for new tricks, this book belongs on your bookshelf.    The authors of this book have generously donated 100% of their royalties to support War Child International.",
-    "status": "PUBLISH",
-    "authors": [
-      "Contributions from 53 SQL Server MVPs",
-      "Edited by Paul Nielsen",
-      "Kalen Delaney",
-      "Greg Low",
-      "Adam Machanic",
-      "Paul S. Randal",
-      "Kimberly L. Tripp"
-    ],
-    "categories": ["Microsoft .NET"]
-  },
-  {
-    "title": "SQL Server MVP Deep Dives",
-    "isbn": "9781935182047",
+    "isbn": "9781935182049",
     "pageCount": 848,
     "publishedDate": { "$date": "2009-11-15T00:00:00.000-0800" },
     "thumbnailUrl": "https://s3.amazonaws.com/AKIAJC5RLADLUMVRPFDQ.book-thumb-images/nielsenaw.jpg",
@@ -2143,24 +2123,6 @@
     "status": "PUBLISH",
     "authors": [
       "Contributions from 53 SQL Server MVPs; Edited by Paul Nielsen",
-      "Kalen Delaney",
-      "Greg Low",
-      "Adam Machanic",
-      "Paul S. Randal",
-      "Kimberly L. Tripp"
-    ],
-    "categories": ["Microsoft .NET"]
-  },
-  {
-    "title": "SQL Server MVP Deep Dives",
-    "isbn": "9781935182047",
-    "pageCount": 848,
-    "publishedDate": { "$date": "2009-11-01T00:00:00.000-0700" },
-    "thumbnailUrl": "https://s3.amazonaws.com/AKIAJC5RLADLUMVRPFDQ.book-thumb-images/nielsonaw.jpg",
-    "shortDescription":"Açıklama yok.",
-    "status": "PUBLISH",
-    "authors": [
-      "Paul Nielsen",
       "Kalen Delaney",
       "Greg Low",
       "Adam Machanic",
@@ -2374,7 +2336,7 @@
     "status": "PUBLISH",
     "shortDescription":"Açıklama yok.",
     "authors": ["Pete Brown"],
-    "categories": ["Microsoft", ".NET"]
+    "categories": ["Microsoft .NET"]
   },
   {
     "title": "Hibernate Quickly",
@@ -3891,7 +3853,7 @@
   },
   {
     "title": "Jaguar Development with PowerBuilder 7",
-    "isbn": "1884777864",
+    "isbn": "1884777865",
     "pageCount": 0,
     "publishedDate": { "$date": "1999-08-09T00:00:00.000-0700" },
     "shortDescription":"Açıklama yok.",

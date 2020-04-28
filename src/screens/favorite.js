@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import CustomHeader from './CustomHeader';
 import { fetchCheckboxInformations, fetchFavoriteBooksInformations } from '../actions';
 import { ScrollView, TouchableOpacity, TouchableHighlight } from 'react-native-gesture-handler';
+import { Actions } from 'react-native-router-flux';
 
 class FavoriteScreen extends React.Component {
     componentDidMount() {
@@ -20,12 +21,17 @@ class FavoriteScreen extends React.Component {
         )
     }
     render() {
+        console.log(this.props);
         const { favBooksListReducer } = this.props;
         var arr = this.props.checkboxListReducer[0].checkbox;
         const categoriesView = [];
         arr.forEach((category) => {
             categoriesView.push(
-                <TouchableOpacity>
+                <TouchableOpacity
+                    onPress={() => {
+                        Actions.categoryToBook({ books: this.props.books, selectedCategory: category });
+                    }}
+                    >
                     <View style={styles.cardDesign}>
                         <Text>
                             {category}
@@ -90,14 +96,10 @@ const styles = StyleSheet.create({
 })
 const mapStateToProps = state => {
     const currentUser = firebase.auth().currentUser;
-
-    // const checkboxListReducer=_.map(state.checkboxListReducer,(val,uid)=>{
-    //     return {...val,uid}
-    // })
     const checkboxListReducer = _.filter(state.checkboxListReducer, val => val.email === currentUser.email)
     const favBooksListReducer = _.filter(state.favBooksListReducer, val => val.email === currentUser.email)
     return {
-        checkboxListReducer, favBooksListReducer
+        checkboxListReducer, favBooksListReducer, books:state.books
     }
 }
 export default connect(mapStateToProps, {

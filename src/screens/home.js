@@ -23,9 +23,9 @@ export default class HomeScreen extends Component{
                 >
             <SafeAreaView style={{ flex: 1}}>
               <CustomHeader title="Ana Sayfa" isHome={true} bg_white={true} navigation={this.props.navigation}/>
-              <View style={{marginTop:7}}>
+              {/* <View style={{marginTop:7}}>
                <SearchBox/> 
-              </View>
+              </View> */}
               
               <View style={{height:50}}>
                 <ScrollView horizontal={true}>
