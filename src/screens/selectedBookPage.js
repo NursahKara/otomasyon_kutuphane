@@ -15,7 +15,6 @@ class SelectedBook extends Component {
 
     render() {
         var book = this.props.book;
-        console.log(book);
         const categoryView = [];
         book.categories.forEach((category) => {
             categoryView.push(

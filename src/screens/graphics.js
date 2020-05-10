@@ -17,7 +17,7 @@ class Graphics extends React.PureComponent {
 
         return (
             <View>
-                <CustomHeader title="Grafikler" isHome={false} bg_white={true} navigation={this.props.navigation}/>
+                <CustomHeader title="Grafikler" isHome={true} bg_white={true} navigation={this.props.navigation}/>
             <View style={{ height: 200, padding: 20, flexDirection: 'row' }}>
                 <YAxis
                     data={data}

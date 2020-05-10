@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, TouchableOpacity, View, FlatList, SafeAreaView, Dimensions, ListView, Image, ScrollView, ImageBackground } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View, FlatList, 
+         SafeAreaView, Dimensions, ListView, Image, ScrollView, 
+         ImageBackground } from 'react-native';
 import CustomHeader from './CustomHeader';
 import { connect } from 'react-redux';
 import Book from './book';
@@ -26,7 +28,7 @@ class BooksInCategory extends Component {
         var booksView = [];
         books.forEach((book) => {
             booksView.push(
-                
+
                 <TouchableOpacity style={styles.container} onPress={() => Actions.book({ book })}>
                     <View style={{ alignItems: 'flex-start', flex: 2, justifyContent: 'center', padding: 3 }}>
                         <Image source={{ uri: book.thumbnailUrl }} style={styles.imageView} />
@@ -41,14 +43,13 @@ class BooksInCategory extends Component {
                             size={13}
                         />
                     </View>
-                    
+
                 </TouchableOpacity>
-            
+
             )
         });
         return (
             <Provider store={createStore(reducers)}>
-
                 <Block flex style={{ backgroundColor: '#c0c0c0' }}>
                     <ImageBackground
                         source={require('../../assest/themes/baloncuklu.jpg')}
@@ -57,7 +58,7 @@ class BooksInCategory extends Component {
                         <CustomHeader title="İlgili Kitaplar" isHome={false} bg_white={true} navigation={this.props.navigation} />
                         <View>
                             <ScrollView>
-                                <View style={{ justifyContent: 'center', alignItems: 'center', marginBottom:50 }}>
+                                <View style={{ justifyContent: 'center', alignItems: 'center', marginBottom: 50 }}>
                                     {booksView}
                                 </View>
                             </ScrollView>
@@ -69,8 +70,6 @@ class BooksInCategory extends Component {
     }
 }
 const styles = StyleSheet.create({
-
-
     container: {
         height: 'auto',
         marginTop: 15,
@@ -98,12 +97,10 @@ const styles = StyleSheet.create({
         borderBottomWidth: 0.8,
         flexDirection: 'row',
         flex: 1,
-
     },
     imageView: {
         width: 65,
         height: 65,
-
     },
     ImageContainer: {
         flex: 1,

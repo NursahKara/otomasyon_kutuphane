@@ -15,11 +15,11 @@ export const isLoggedIn=()=>{
 return dispatch =>{
     firebase.auth().onAuthStateChanged(user=>{
         if(user){
-            Actions.main();
             dispatch({
                 type:LOGGED_IN,
                 payload:user
             })
+           Actions.main()
         }
         else{
             dispatch({

@@ -88,19 +88,19 @@ import { Dropdown } from 'react-native-material-dropdown';
                     underlineColorAndroid='transparent'
                     onChangeText={this.changeBirthday.bind(this)}
                     /> */}
-
+{/* 
             <DatePicker
               onChange={this.onChange}
               value={this.state.date}
               dateFormat="MMMM d, yyyy h:mm aa"
-            />
+            /> */}
 
         {/* <View>
           <Text onChangeText={this.changeBirthday.bind(this)}>SELECTED DATE:{ startDate }</Text>
         </View> */}
                   
             <MyButton spinner={loading}
-                      title='Send'
+                      title='Kaydet'
                       onPress={this.sendInformationProfile.bind(this)}
                       color='#E87B79'
                       />
@@ -151,4 +151,3 @@ const styles=StyleSheet.create({
 
   //birthday, gender eklenecek.
   //profilde kitap önerisi çıkarabilmek için kitap türleri arasında seçim yapma sayfasına yönlendirilebilir.
-  

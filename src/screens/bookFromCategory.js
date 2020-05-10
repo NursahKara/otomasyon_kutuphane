@@ -15,7 +15,6 @@ class BookFromCategory extends Component {
 
     render() {
         var book  = this.props.book;
-        console.log(book);
         const categoryView = [];
         book.categories.forEach((category) => {
             categoryView.push(
@@ -64,7 +63,7 @@ class BookFromCategory extends Component {
                                 </View>
                                 <View style={styles.cardStyle}>
                                     <Text style={styles.headerStyle}>Açıklama: </Text>
-                                    <Text>{book.longDescription}</Text>
+                                    <Text style={{textAlign:'justify'}}>{book.longDescription}</Text>
                                 </View>
                                 <View style={styles.cardStyle}>
                                     <Text style={styles.headerStyle}>Kategoriler: </Text>

@@ -61,7 +61,7 @@ const RouterComp=()=>{
                 <Scene key='signUp' >
                     <Scene key='sign'
                            component={SignUpScreen}
-                           title='Sign Up'
+                           title='Kullanıcı Bilgileri'
                         /> 
                 </Scene>
                 <Scene key='checkbox'>

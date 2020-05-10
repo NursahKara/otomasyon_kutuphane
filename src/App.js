@@ -22,6 +22,7 @@ import FavoriteScreen from './screens/favorite';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import firebase from 'firebase';
 import Graphics from './screens/graphics';
+import ChangePassword from './screens/changePassword';
 import { Actions } from 'react-native-router-flux';
 const { width1, height1 } = Dimensions.get("screen");
 function CustomDrawerContent(props){
@@ -81,6 +82,14 @@ function SettingsStack(){
     </StackSettings.Navigator>
   )
 }
+const StackGraphics = createStackNavigator();
+function GraphicsStack(){
+  return(
+    <StackGraphics.Navigator initialRouteName="Graphics">
+    <StackGraphics.Screen name="Graphics" component={Graphics} options={navOptionHandler}/>
+    </StackGraphics.Navigator>
+  )
+}
 const StackProfile = createStackNavigator();
 function ProfileStack(){
   return(
@@ -91,6 +100,8 @@ function ProfileStack(){
     <StackProfile.Screen name="Suggestions" component={SuggestionsScreen} options={navOptionHandler}/>
     <StackProfile.Screen name="RecentReleases" component={RecentReleases} options={navOptionHandler}/>
     <StackProfile.Screen name="MostRead" component={MostRead} options={navOptionHandler}/>
+    <StackProfile.Screen name="ChangePassword" component={ChangePassword} options={navOptionHandler}/>
+    
     </StackProfile.Navigator>
   )
 }
@@ -106,11 +117,11 @@ function TabNavigator(){
        if (route.name === 'Ana Sayfa') {
          iconName = focused
            ? require('../assest/images/home-blue.png')
-           : require('../assest/images/home-white.png')
-       } else if (route.name === 'Ara') {
+           : require('../assest/images/home2.png')
+       } else if (route.name === 'Grafikler') {
          iconName = focused 
-         ? require('../assest/images/loupe.png')
-         : require('../assest/images/search.png')
+         ? require('../assest/images/graphic-color.png')
+         : require('../assest/images/graphic.png')
        }else if (route.name==='Profil'){
          iconName=focused
          ?require('../assest/images/man.png')
@@ -130,7 +141,7 @@ function TabNavigator(){
    }}
  >
    <Tab.Screen name="Ana Sayfa" component={HomeStack} />
-   <Tab.Screen name="Ara" component={SettingsStack} />
+   <Tab.Screen name="Grafikler" component={GraphicsStack} />
    <Tab.Screen name="Profil" component={ProfileStack} />
 
  </Tab.Navigator>

@@ -14,10 +14,10 @@ import { getDatabase } from '../components/common/database';
 
 
 class BookItem extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
-            liked: false
+            liked: this.props.isFavBook
         };
         this.handleClick = this.handleClick.bind(this);
     }
@@ -31,7 +31,9 @@ class BookItem extends Component {
         selected ? this.props.deselectBook()
             : this.props.selectBook(book);
     }
-    sendFavoriteBook() {
+    async sendFavoriteBook() {
+        var favBooksIndex = this.props.favBooksIndex;
+        var favBooks = this.props.favBooks;
         this.setState({
             liked: !this.state.liked
         });
@@ -39,11 +41,18 @@ class BookItem extends Component {
         const bookIsbn = book.isbn
         const currentUser = firebase.auth().currentUser;
         const email = currentUser.email;
-        getDatabase().ref('Favorite_Books')
-            .push({ email, bookIsbn })
+        if (favBooks.includes(bookIsbn)) {
+            await getDatabase().ref('/Favorite_Books/'+ favBooksIndex)
+                .remove()
+        }
+        else {
+            await getDatabase().ref('Favorite_Books')
+                .push({ email, bookIsbn })
+        }
     }
     render() {
         const { book, selected } = this.props;
+        //console.log(this.props.isFavBook ? 'true':'false');
         const color = this.state.liked ? '#E53935' : '#9E9E9E'
         const store = createStore(reducers, {}, applyMiddleware(ReduxThunk));
         const authorsView = [];
