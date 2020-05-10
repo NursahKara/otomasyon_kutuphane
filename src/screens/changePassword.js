@@ -46,7 +46,7 @@ export default class ChangePassword extends Component {
                             onChangeText={(text) => { this.setState({ currentPassword: text }) }}  
                             underlineColorAndroid='transparent'/>
                     </View>
-               <View style={{height:60 ,width:'100%'}}>
+               <View style={{height:60 ,width:'100%' }}>
                <TextInput  style={styles.textInputStyle} 
                             value={this.state.currentPassword} 
                             placeholder='Yeni Şifre' 
