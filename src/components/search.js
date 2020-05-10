@@ -28,7 +28,7 @@ export default class SearchBox extends React.Component {
       });
   }
   search = text => {
-    console.log(text);
+    // console.log(text);
   };
   clear = () => {
     this.search.clear();

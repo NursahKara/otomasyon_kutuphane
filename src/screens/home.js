@@ -11,9 +11,12 @@ import reducers from '../reducers';
 import CustomHeader from './CustomHeader';
 import { Block, theme } from "galio-framework";
 import { Actions } from 'react-native-router-flux';
+  
+
 const { width, height } = Dimensions.get("screen");
 
 export default class HomeScreen extends Component{
+ 
     render(){
         return(
           <Block flex style={{backgroundColor:'#c0c0c0'}}>
@@ -45,7 +48,7 @@ export default class HomeScreen extends Component{
               </View>
               <Provider store={createStore(reducers)}>
                 <ScrollView>
-                <BookList/>
+                <BookList isFavoriteBook={true}/>
                 </ScrollView>
               </Provider>
             </SafeAreaView>

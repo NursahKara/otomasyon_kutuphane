@@ -60,7 +60,6 @@ export const fetchProfileInformations=()=>{
     return(dispatch)=>{
         getDatabase().ref('User_Informations')
         .on('value', (snapshot)=>{
-            console.log(snapshot.val())
             dispatch({
                 type:FETCH_PROFILE_INFORMATIONS,
                 payload:snapshot.val()

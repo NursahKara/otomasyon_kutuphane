@@ -1,20 +1,62 @@
 import React, { Component } from 'react';
-import { View, Text, FlatList, StyleSheet, ScrollView, TextInput } from 'react-native';
+import { View, Text, FlatList, StyleSheet, ScrollView, TextInput, ActivityIndicator } from 'react-native';
 import { connect } from 'react-redux';
+import { Card } from './common';
+import _ from 'lodash';
 import BookItem from './bookItem';
+import { getDatabase } from '../components/common/database';
+import firebase from 'firebase';
 
 class BookList extends Component {
-    renderItem({ item }) {
-        return (
-            <BookItem book={item} home={true} />
-        )
-    }
     constructor(props) {
         super(props);
         this.state = {
             data: this.props.books,
-        };
+            favBooks: [],
+            favBooksIndex: [],
+            favBooksRaw: [],
+            isLoad: false
+        }
+        this.fetchFavoriteBooks();
     }
+    async fetchFavoriteBooks() {
+        var favBooksData = [];
+        const arr = this.props.books;
+        var favBooks = [];
+        var favBooksIndex = [];
+        var favBooksRaw = [];
+        try {
+            const email = firebase.auth().currentUser.email;
+            var dbRef = getDatabase().ref('Favorite_Books/');
+            dbRef.orderByChild("email").equalTo(email);
+            await dbRef
+                .once("value", (snapshot) => {
+                    if (!snapshot.exists)
+                        return;
+                    console.log(snapshot);
+                    favBooksIndex = Object.keys(snapshot.val());
+                    //console.log(favBooksIndex);
+                    favBooksData = Object.values(snapshot.val());
+                    favBooksData.forEach((item) => {
+                        arr.forEach((book) => {
+                            if (book.isbn == item.bookIsbn) {
+                                favBooks.push(book.isbn);
+                            }
+                        });
+                    });
+                });
+            //console.log(favBooks);
+        }
+        catch (ex) {
+            console.log(ex);
+        }
+        this.setState({
+            favBooks: favBooks,
+            favBooksIndex: favBooksIndex,
+            favBooksRaw: favBooksRaw,
+            isLoad: true
+        });
+    };
     searchFilterFunction = text => {
         this.setState({
             value: text,
@@ -22,25 +64,25 @@ class BookList extends Component {
         if (text != '') {
             this.state.data = [];
         }
-        if(text == ''){
+        if (text == '') {
             this.state.data = this.props.books;
             return;
         }
-        //console.log(this.props.books);
         this.props.books.forEach((book) => {
-            //console.log(book.title);
             var title = book.title.toUpperCase();
             if (title.includes(text.toUpperCase())) {
                 this.state.data.push(book);
-                //console.log(book.title);
             }
         });
         this.state.data.forEach((book) => {
-            // console.log(book.title);
+            console.log(book.title);
         });
-        //console.log(this.state.data);
     };
     render() {
+        var favBooksIndex = this.state.favBooksIndex;
+        //var favBookIndex = this.state.favBooksRaw.map(w=> w.bookIsbn=='1933988746');
+        //console.log(favBookIndex);
+        var favBooks = this.state.favBooks;
         return (
             <View>
                 <View style={styles.container}>
@@ -52,11 +94,16 @@ class BookList extends Component {
                         value={this.state.value}
                     />
                 </View>
-                <FlatList
-                    data={this.state.data}
-                    renderItem={this.renderItem}
-                    keyExtractor={(item) => item.isbn}
-                />
+                {this.state.isLoad ?
+                    <FlatList
+                        data={this.state.data}
+                        renderItem={({ item }) =>
+                            <BookItem book={item} isFavBook={favBooks.includes(item.isbn)} favBooksIndex={
+                                favBooksIndex[favBooks.indexOf(item.isbn) ?? -1]
+                            } favBooks={favBooks} />
+                        }
+                        keyExtractor={(item) => item.isbn}
+                    /> : <ActivityIndicator size="large" color="#0000ff" />}
             </View>
         )
     }
@@ -85,7 +132,7 @@ const styles = StyleSheet.create({
     },
     container: {
         flexDirection: 'row'
-    }
+    },
 });
 const mapStateToProps = state => {  //tek state ise boyle , birden fazla state olunca (state)
     return {

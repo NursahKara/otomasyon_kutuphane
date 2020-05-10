@@ -11,7 +11,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { Input, MyButton } from '../components/common';
 import { connect } from 'react-redux';
 import CustomHeader from './CustomHeader';
-import { fetchProfileInformations, isLoggedIn } from '../actions';
+import { fetchProfileInformations } from '../actions';
 import { fetchCheckboxInformations, } from '../actions';
 import { Card } from '../components/common/card';
 import { Block, theme } from "galio-framework";
@@ -152,16 +152,24 @@ class ProfileScreen extends React.Component {
                         </TouchableOpacity>
                     </Swiper>
                 </View>
-                <View style={{ flex: 1, justifyContent: 'center', marginTop: '8%' }}>
+                <View style={{ flex: 1, justifyContent: 'center', marginTop: '3%' }}>
                     <FlatList data={profileInformationList}
                         renderItem={this.renderItem} />
-                    <View style={styles.buttonWrapper}>
-                        <TouchableOpacity onPress={() => this.props.navigation.navigate('Favorite')} style={{ justifyContent: 'center', alignItems: 'center' }} >
+                    <View style={{ flexDirection: 'row', flex: 1, marginLeft: 20, marginRight: 25 }}>
+                        <View style={{ alignItems: 'flex-start' }}>
+                            <TouchableOpacity onPress={() => this.props.navigation.navigate('ChangePassword')} style={{ flex: 4, justifyContent: 'center', alignItems: 'center' }} >
+                                <Icon name="key" size={30} color="#B87D95" />
+                                <Text>Şifreni Değiştir</Text>
+                            </TouchableOpacity>
+                        </View>
 
-                            <Icon name="star" size={35} color="#B87D95" />
-                            <Text>Favorilerim</Text>
-                        </TouchableOpacity>
-                        {/* <Text style={{justifyContent:'flex-end'}}>Not: Nickini Kullanarak Yarışmalara Katılabilirsin:)</Text> */}
+                        <View style={styles.buttonWrapper}>
+                            <TouchableOpacity onPress={() => this.props.navigation.navigate('Favorite')} style={{ justifyContent: 'center', alignItems: 'center' }} >
+                                <Icon name="star" size={30} color="#B87D95" />
+                                <Text>Favorilerim</Text>
+                            </TouchableOpacity>
+
+                        </View>
                     </View>
                 </View>
             </SafeAreaView>
@@ -249,14 +257,13 @@ const styles = StyleSheet.create({
         opacity: 0.7
     },
     buttonWrapper: {
-        marginTop: 5,
+
         marginBottom: 5,
         height: 49,
         justifyContent: 'center',
         fontSize: 18,
         marginLeft: 'auto',
         alignItems: 'flex-end',
-        marginRight: 20,
         borderRadius: 10000,
         backgroundColor: 'transparent',
         shadowColor: 'black',
@@ -279,5 +286,5 @@ const mapStateToProps = state => {
     }
 }
 export default connect(mapStateToProps, {
-    fetchProfileInformations,fetchCheckboxInformations
+    fetchProfileInformations, fetchCheckboxInformations
 })(ProfileScreen);
