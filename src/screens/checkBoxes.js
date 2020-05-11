@@ -146,27 +146,30 @@ class AppCheck extends Component {
     const distinctArray = [... new Set(allCategories.map(data => data))];
 
     return (
-      <ScrollView>
-        <View>
-          <FlatList
-            data={distinctArray}
-            renderItem={({ item }) =>
-              <View style={{ marginLeft: 20 }}>
-                <Checkbox size={30}
-                  checked={false}
-                  color="#E81E63"
-                  labelColor="#000000"
-                  label={item}
-                  value={item}
-                  checkedObjArr={CheckedArrObject} />
-              </View>
-            } />
-          <TouchableHighlight style={styles.showSelectedButton} onPress={this.renderSelectedElements, this.sendInformationCheckbox.bind(this)}>
-            <Text style={styles.buttonText}>Kaydet</Text>
-          </TouchableHighlight>
-          <Text style={{ fontSize: 22, color: "#000", marginTop: 25 }}> {this.state.pickedElements} </Text>
-        </View>
-      </ScrollView>
+      <View>
+        <ScrollView>
+          <View>
+            <FlatList
+              data={distinctArray}
+              renderItem={({ item }) =>
+                <View style={{ marginLeft: 20 }}>
+                  <Checkbox size={30}
+                    checked={false}
+                    color="#731873"
+                    labelColor="#000000"
+                    label={item}
+                    value={item}
+                    checkedObjArr={CheckedArrObject} />
+                </View>
+              } />
+            <TouchableHighlight style={styles.showSelectedButton} onPress={this.renderSelectedElements, this.sendInformationCheckbox.bind(this)}>
+              <Text style={styles.buttonText}>Kaydet</Text>
+            </TouchableHighlight>
+            <Text style={{ fontSize: 22, color: "#000", marginTop: 25 }}> {this.state.pickedElements} </Text>
+          </View>
+        </ScrollView>
+      </View>
+
     )
   }
 }
@@ -205,7 +208,7 @@ const styles = StyleSheet.create(
       padding: 15,
       marginTop: 25,
       alignSelf: 'stretch',
-      backgroundColor: '#5D52FF',
+      backgroundColor: '#731873',
       marginLeft: 55,
       marginRight: 55,
       borderRadius: 5

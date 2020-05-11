@@ -1,15 +1,17 @@
 import * as React from 'react';
 import _ from 'lodash';
 import firebase from 'firebase';
-import { View, Text, SafeAreaView, FlatList, StyleSheet, Image, Button } from 'react-native';
+import { View, Text, SafeAreaView, FlatList, StyleSheet, Image, Button, ImageBackground, Dimensions } from 'react-native';
 import { connect } from 'react-redux';
 import CustomHeader from './CustomHeader';
 import { fetchCheckboxInformations, fetchFavoriteBooksInformations } from '../actions';
 import { ScrollView, TouchableOpacity, TouchableHighlight } from 'react-native-gesture-handler';
 import { Actions } from 'react-native-router-flux';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { Block, theme } from "galio-framework";
+const { width, height } = Dimensions.get("screen");
 
-class FavoriteScreen extends React.Component {
+class FavoriteBooks extends React.Component {
     componentDidMount() {
         this.props.fetchCheckboxInformations();
         this.props.fetchFavoriteBooksInformations();
@@ -69,30 +71,23 @@ class FavoriteScreen extends React.Component {
             );
         })
         return (
-            <SafeAreaView style={{ flex: 1 }}>
-                <CustomHeader title="Favorilerin" bg_white={true} navigation={this.props.navigation} />
-                <View style={{ height: 170 }}>
-                    <View style={{ margin: 20, borderBottomWidth: 0.3 }}>
-                        <Text style={styles.textDesign}>Favori Kategorilerin</Text>
-                    </View>
-                    <View style={{ flex: 1, justifyContent: 'center', marginLeft: 20,marginRight:20 }}>
-                        <ScrollView horizontal={true}>
-                            {categoriesView}
-                        </ScrollView>
-
-                    </View>
-                </View>
-                <ScrollView>
-                <View style={{ height: 'auto' }}>
-                    <View style={{ margin: 10, borderBottomWidth: 0.3 }}>
-                        <Text style={styles.textDesign}>Favori Kitapların</Text>
-                    </View>
-                    
-                        {favBooksView}
-                  
-                </View>
-                </ScrollView>
-            </SafeAreaView>
+            <Block flex style={{ backgroundColor: '#c0c0c0' }}>
+                <ImageBackground
+                    source={require('../../assest/themes/baloncuklu.jpg')}
+                    style={styles.ImageContainer}
+                >
+                    <SafeAreaView style={{ flex: 1 }}>
+                        <CustomHeader title="Favorileri Kitapların" bg_white={true} navigation={this.props.navigation} />
+                        <View style={{ flex: 1 }}>
+                            <ScrollView >
+                                <View style={{ flex: 1, justifyContent: 'center', marginLeft: 10, marginRight: 10, marginBottom: 20, marginTop: 10 }}>
+                                    {favBooksView}
+                                </View>
+                            </ScrollView>
+                        </View>
+                    </SafeAreaView>
+                </ImageBackground>
+            </Block>
         );
     }
 }
@@ -117,6 +112,7 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.11,
         shadowRadius: 15,
         elevation: 1,
+        opacity: 0.9,
         backgroundColor: '#F0F0F0'
     },
     container: {
@@ -127,7 +123,7 @@ const styles = StyleSheet.create({
         borderColor: 'gray',
         flexDirection: 'row',
         flex: 1,
-        paddingLeft: 10,
+        paddingLeft: 0,
         alignItems: 'center'
     },
     titleStyle: {
@@ -161,10 +157,6 @@ const styles = StyleSheet.create({
 })
 const mapStateToProps = state => {
     const currentUser = firebase.auth().currentUser;
-
-    // const checkboxListReducer=_.map(state.checkboxListReducer,(val,uid)=>{
-    //     return {...val,uid}
-    // })
     const checkboxListReducer = _.filter(state.checkboxListReducer, val => val.email === currentUser.email)
     const favBooksListReducer = _.filter(state.favBooksListReducer, val => val.email === currentUser.email)
     return {
@@ -173,4 +165,4 @@ const mapStateToProps = state => {
 }
 export default connect(mapStateToProps, {
     fetchCheckboxInformations, fetchFavoriteBooksInformations
-})(FavoriteScreen);
+})(FavoriteBooks);

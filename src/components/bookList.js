@@ -27,16 +27,13 @@ class BookList extends Component {
         var favBooksRaw = [];
         try {
             const email = firebase.auth().currentUser.email;
-            var dbRef = getDatabase().ref('Favorite_Books/');
-            dbRef.orderByChild("email").equalTo(email);
+            var dbRef = getDatabase().ref('Favorite_Books').orderByChild("email").equalTo(email);
             await dbRef
                 .once("value", (snapshot) => {
                     if (!snapshot.exists)
                         return;
-                    console.log(snapshot);
-                    favBooksIndex = Object.keys(snapshot.val());
-                    //console.log(favBooksIndex);
-                    favBooksData = Object.values(snapshot.val());
+                    favBooksIndex = Object.keys(snapshot.val() ?? 1) ?? [];
+                    favBooksData = Object.values(snapshot.val() ?? 1) ?? [];
                     favBooksData.forEach((item) => {
                         arr.forEach((book) => {
                             if (book.isbn == item.bookIsbn) {
@@ -79,10 +76,10 @@ class BookList extends Component {
         });
     };
     render() {
-        var favBooksIndex = this.state.favBooksIndex;
+        var favBooksIndex = this.state.favBooksIndex ?? -1;
         //var favBookIndex = this.state.favBooksRaw.map(w=> w.bookIsbn=='1933988746');
         //console.log(favBookIndex);
-        var favBooks = this.state.favBooks;
+        var favBooks = this.state.favBooks ?? [];
         return (
             <View>
                 <View style={styles.container}>
@@ -103,7 +100,7 @@ class BookList extends Component {
                             } favBooks={favBooks} />
                         }
                         keyExtractor={(item) => item.isbn}
-                    /> : <ActivityIndicator size="large" color="#0000ff" />}
+                    /> : <ActivityIndicator size="small" color="#731873" style={{ marginTop: 20 }} />}
             </View>
         )
     }

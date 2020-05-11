@@ -38,9 +38,9 @@ export default class HomeScreen extends Component{
                   <TouchableOpacity style={styles.textStyle}  onPress={()=>this.props.navigation.navigate('RecentReleases')}>   
                     <Text>Son Çıkanlar</Text>
                   </TouchableOpacity>
-                  <TouchableOpacity style={styles.textStyle}  onPress={()=>this.props.navigation.navigate('MostRead')}>
+                  {/* <TouchableOpacity style={styles.textStyle}  onPress={()=>this.props.navigation.navigate('MostRead')}>
                     <Text>En Çok Okunanlar</Text>
-                  </TouchableOpacity>
+                  </TouchableOpacity> */}
                   <TouchableOpacity style={styles.textStyle}  onPress={()=>this.props.navigation.navigate('TopRated')}>
                     <Text>En Çok Beğenilenler</Text>
                   </TouchableOpacity>
@@ -63,6 +63,7 @@ const styles=StyleSheet.create({
         flex:1,
     },
     textStyle:{
+      paddingLeft:13,
       padding:20,
       alignItems:'center',
       backgroundColor: 'transparent',

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, Button, SafeAreaView, StyleSheet, ScrollView, FlatList, TouchableOpacity,Dimensions,ImageBackground } from 'react-native';
+import { View, Text, Button, SafeAreaView, StyleSheet, ScrollView, FlatList, TouchableOpacity, Dimensions, ImageBackground } from 'react-native';
 import CustomHeader from './CustomHeader';
 import * as actions from '../actions';
 import { Provider, connect } from 'react-redux';
@@ -22,36 +22,36 @@ class Categories extends Component {
 
         return (
             <Block flex style={{ backgroundColor: '#c0c0c0' }}>
-                    <ImageBackground
-                        source={require('../../assest/themes/baloncuklu.jpg')}
-                        style={styles.ImageContainer}
-                    >
-            <ScrollView>
-                <CustomHeader title="Kategoriler" bg_white={true} navigation={this.props.navigation} />
-                <View >
-                    <FlatList
-                        data={distinctArray}
-                        renderItem={({ item }) =>
-                            <TouchableOpacity style={styles.container} onPress={() => {
-                                Actions.categoryToBook({books: books, selectedCategory: item});
-                            }
-                            }>
-                                <View style={{ alignItems: 'flex-start', flex: 5 }}>
-                                    <Text style={styles.titleStyle}>{item}</Text>
-                                </View>
-                                <View style={{ alignItems: 'flex-end', flex: 1 }}>
-                                    <Icon
-                                        name='chevron-right'
-                                        color='black'
-                                        size={15}
-                                    />
-                                </View>
-                            </TouchableOpacity>
-                        } />
-                </View>
-            </ScrollView>
-            </ImageBackground>
-                </Block>
+                <ImageBackground
+                    source={require('../../assest/themes/baloncuklu.jpg')}
+                    style={styles.ImageContainer}
+                >
+                    <ScrollView>
+                        <CustomHeader title="Kategoriler" bg_white={true} navigation={this.props.navigation} />
+                        <View >
+                            <FlatList
+                                data={distinctArray}
+                                renderItem={({ item }) =>
+                                    <TouchableOpacity style={styles.container} onPress={() => {
+                                        Actions.categoryToBook({ books: books, selectedCategory: item });
+                                    }
+                                    }>
+                                        <View style={{ alignItems: 'flex-start', flex: 5 }}>
+                                            <Text style={styles.titleStyle}>{item}</Text>
+                                        </View>
+                                        <View style={{ alignItems: 'flex-end', flex: 1 }}>
+                                            <Icon
+                                                name='chevron-right'
+                                                color='black'
+                                                size={15}
+                                            />
+                                        </View>
+                                    </TouchableOpacity>
+                                } />
+                        </View>
+                    </ScrollView>
+                </ImageBackground>
+            </Block>
         )
     }
 }
