@@ -114,7 +114,7 @@ class LoginForm extends Component {
                                 title='Giriş'
                                 onPress={this.onButtonClicked.bind(this)}
                                 color='#731873' />
-                            <Text style={styles.orText}>OR</Text>
+                            <Text style={styles.orText}>Ya Da</Text>
                             <MyButton
                                 title='Kayıt Ol'
                                 onPress={() => this.props.navigation.navigate('Register')}

@@ -126,26 +126,31 @@ class ProfileScreen extends React.Component {
                         autoplayDelay={2}
                         showsButtons={false}>
                         <TouchableOpacity style={styles.slide1} onPress={() => this.props.navigation.navigate('Suggestions')}>
-                            {/* <ImageBackground
-                        source={require('../../assest/themes/baloncuklu.jpg')}
-                        style={styles.ImageContainer}
-                    > */}
                             <View>
                                 <Text style={styles.text}>Senin İçin Önerdiklerimiz</Text>
                             </View>
-                            {/* </ImageBackground> */}
                         </TouchableOpacity>
                         <TouchableOpacity style={styles.slide2} onPress={() => this.props.navigation.navigate('RecentReleases')}>
                             <View>
                                 <Text style={styles.text}>En Son Eklenen Kitaplar</Text>
                             </View>
                         </TouchableOpacity>
-                        <TouchableOpacity style={styles.slide3} onPress={() => this.props.navigation.navigate('MostRead')}>
+                        {/* <TouchableOpacity style={styles.slide3} onPress={() => this.props.navigation.navigate('MostRead')}>
                             <View>
                                 <Text style={styles.text}>En Çok Okunan Kitaplar</Text>
                             </View>
+                        </TouchableOpacity> */}
+                        <TouchableOpacity style={styles.slide3} onPress={() => this.props.navigation.navigate('FavoriteTypes')}>
+                            <View>
+                                <Text style={styles.text}>Favori Türlerine Göz At</Text>
+                            </View>
                         </TouchableOpacity>
-                        <TouchableOpacity style={styles.slide4} onPress={() => this.props.navigation.navigate('Graphics')}>
+                        <TouchableOpacity style={styles.slide4} onPress={() => this.props.navigation.navigate('FavoriteBooks')}>
+                            <View>
+                                <Text style={styles.text}>Favori Kitaplarına Göz At</Text>
+                            </View>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles.slide5} onPress={() => this.props.navigation.navigate('Graphics')}>
                             <View >
                                 <Text style={styles.text}>Grafiklere Göz At</Text>
                             </View>
@@ -193,15 +198,21 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#AAB9E8'
+        backgroundColor: '#C8C7FF'
     },
     slide3: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#C8C7FF'
+        backgroundColor: '#AAB9E8'
     },
     slide4: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#BAD6FD'
+    },
+    slide5: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',

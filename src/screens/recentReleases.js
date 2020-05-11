@@ -1,19 +1,23 @@
 import  React,{Component} from 'react';
-import { View, Text, Button ,SafeAreaView,TouchableOpacity,ScrollView,StyleSheet} from 'react-native';
+import { View, Text, Button ,SafeAreaView,TouchableOpacity,ScrollView,StyleSheet,ImageBackground,Dimensions} from 'react-native';
 import CustomHeader from './CustomHeader';
 import BookList from '../components/bookList';
 import {Provider} from 'react-redux';
 import {createStore} from 'redux';
 import reducers from '../reducers';
+import { Block, theme } from "galio-framework";
+const { width, height } = Dimensions.get("screen");
+
 export default class RecentReleases extends Component{
     render(){
         return(
+            <Block flex style={{backgroundColor:'#c0c0c0'}}>
+            <ImageBackground
+                source={require('../../assest/themes/baloncuklu.jpg')}
+                style={styles.ImageContainer}
+                >
             <SafeAreaView style={{ flex: 1}}>
             <CustomHeader title="En Son Eklenenler" isHome={false} bg_white={true} navigation={this.props.navigation}/>
-          {/* <View style={styles.textContainer}>
-          <Text style={styles.textStyle}>En Son Eklenenler!</Text>
-          </View>
-           */}
             <Provider store={createStore(reducers)}>
                 <ScrollView>
                 <BookList/>
@@ -21,6 +25,8 @@ export default class RecentReleases extends Component{
               </Provider> 
           
           </SafeAreaView>
+          </ImageBackground>
+          </Block>
         );
     }
 }
@@ -35,8 +41,12 @@ const styles=StyleSheet.create({
         alignItems:'center',
         justifyContent:'center',
         marginBottom:20
-    }
-   
+    },
+    ImageContainer: {
+        flex:1,
+         padding: 0,
+         zIndex: 1,
+       },
  
 })
   

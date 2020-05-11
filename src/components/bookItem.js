@@ -11,7 +11,7 @@ import reducers from '../reducers';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import firebase from 'firebase';
 import { getDatabase } from '../components/common/database';
-
+import _ from 'lodash';
 
 class BookItem extends Component {
     constructor(props) {
@@ -31,6 +31,22 @@ class BookItem extends Component {
         selected ? this.props.deselectBook()
             : this.props.selectBook(book);
     }
+    async fetchIndex(isbn) {
+        var values = [];
+        var keys = [];
+        const email = firebase.auth().currentUser.email;
+        var dbRef = getDatabase().ref('Favorite_Books').orderByChild("email").equalTo(email)
+        await dbRef.once("value", (snapshot) => {
+            keys = Object.keys(snapshot.val());
+            values = Object.values(snapshot.val());
+        });
+        var isbns = [];
+        values.forEach((item)=>{
+            isbns.push(item.bookIsbn);
+        })
+        var index = keys[isbns.indexOf(isbn)];
+        return index;
+    }
     async sendFavoriteBook() {
         var favBooksIndex = this.props.favBooksIndex;
         var favBooks = this.props.favBooks;
@@ -42,12 +58,16 @@ class BookItem extends Component {
         const currentUser = firebase.auth().currentUser;
         const email = currentUser.email;
         if (favBooks.includes(bookIsbn)) {
-            await getDatabase().ref('/Favorite_Books/'+ favBooksIndex)
+            var index = await this.fetchIndex(bookIsbn);
+            //console.log(index);
+            await getDatabase().ref('/Favorite_Books/' + index)
                 .remove()
+            this.props.favBooks.pop(bookIsbn);
         }
         else {
             await getDatabase().ref('Favorite_Books')
                 .push({ email, bookIsbn })
+            this.props.favBooks.push(bookIsbn);
         }
     }
     render() {

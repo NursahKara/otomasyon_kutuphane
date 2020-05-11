@@ -50,18 +50,19 @@ import { Dropdown } from 'react-native-material-dropdown';
         </Text>
         ) : null;
         return(
+       
             <ScrollView style={{ flex: 1}}>
             <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
             <TextInput 
                     style={styles.textInputStyle} 
-                    placeholder='Name' 
+                    placeholder='Ad' 
                     placeholderTextColor='black' 
                     underlineColorAndroid='transparent'
                     onChangeText={this.onChangeName.bind(this)}
                     />
             <TextInput 
                     style={styles.textInputStyle} 
-                    placeholder='Surname' 
+                    placeholder='Soyad' 
                     placeholderTextColor='black' 
                     underlineColorAndroid='transparent'
                     onChangeText={this.changeSurname.bind(this)}
@@ -74,7 +75,7 @@ import { Dropdown } from 'react-native-material-dropdown';
                     onChangeText={this.changeNick.bind(this)}
                     />
             <Dropdown
-                label='Gender'
+                label='Cinsiyet'
                 data={data}
                 onChangeText={this.changeGender.bind(this)}
                 dropdownOffset={{ 'top': 3 }}
@@ -102,7 +103,7 @@ import { Dropdown } from 'react-native-material-dropdown';
             <MyButton spinner={loading}
                       title='Kaydet'
                       onPress={this.sendInformationProfile.bind(this)}
-                      color='#E87B79'
+                      color='#731873'
                       />
             </View>
           </ScrollView>
