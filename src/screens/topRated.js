@@ -34,10 +34,12 @@ class TopRated extends React.Component {
     render() {
         const { favBooksListReducer } = this.props;
         var favBooks = [];
+        var favBooksIsbns = [];
         this.props.favBooksListReducer.forEach((item) => {
             this.props.books.forEach((book) => {
-                if (book.isbn == item.bookIsbn) {
+                if (book.isbn == item.bookIsbn && !favBooksIsbns.includes(book.isbn)) {
                     favBooks.push(book);
+                    favBooksIsbns.push(book.isbn);
                 }
             });
         });

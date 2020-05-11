@@ -72,7 +72,7 @@ class BookList extends Component {
             }
         });
         this.state.data.forEach((book) => {
-            console.log(book.title);
+            //console.log(book.title);
         });
     };
     render() {
