@@ -72,7 +72,7 @@ class FavoriteScreen extends React.Component {
             <SafeAreaView style={{ flex: 1 }}>
                 <CustomHeader title="Favorilerin" bg_white={true} navigation={this.props.navigation} />
                 <View style={{ height: 170 }}>
-                    <View style={{ margin: 20, borderBottomWidth: 0.3 }}>
+                    <View style={{ margin: 10, borderBottomWidth: 0.3 }}>
                         <Text style={styles.textDesign}>Favori Kategorilerin</Text>
                     </View>
                     <View style={{ flex: 1, justifyContent: 'center', marginLeft: 20,marginRight:20 }}>

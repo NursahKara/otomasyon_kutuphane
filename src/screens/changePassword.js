@@ -82,13 +82,14 @@ const styles = StyleSheet.create({
         alignSelf: 'stretch',
         color: 'black',
         padding: 13,
-        backgroundColor: '#d8d8d8',
+        backgroundColor: 'white',
         borderTopColor: '#ededed',
         marginRight: 20,
         marginLeft: 20,
         marginTop: 5,
         borderRadius: 5,
         fontSize: 16,
+        opacity:1
 
     },
     textStyle: {
@@ -110,7 +111,7 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.2,
         zIndex: 2,
         borderRadius: 10,
-        opacity: 1,
+        opacity: 0.7,
         margin: 15,
         marginTop:'20%'
     },

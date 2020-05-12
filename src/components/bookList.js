@@ -26,7 +26,7 @@ class BookList extends Component {
         var favBooksIndex = [];
         var favBooksRaw = [];
         try {
-            const email = firebase.auth().currentUser.email;
+            const email = firebase.auth().currentUser.email ?? "";
             var dbRef = getDatabase().ref('Favorite_Books').orderByChild("email").equalTo(email);
             await dbRef
                 .once("value", (snapshot) => {

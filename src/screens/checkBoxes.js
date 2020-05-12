@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { View, Text, Button, SafeAreaView, StyleSheet, ScrollView, FlatList, TouchableOpacity, TouchableHighlight } from 'react-native';
+import { View, Text, Button, SafeAreaView, StyleSheet, 
+      ScrollView, FlatList, TouchableOpacity, TouchableHighlight,
+      Dimensions } from 'react-native';
 import CustomHeader from './CustomHeader';
 import * as actions from '../actions';
 import { Provider, connect } from 'react-redux';
@@ -8,11 +10,12 @@ import {
   Alert,
   Image,
   Platform,
-
 } from 'react-native';
+import { Block, theme } from "galio-framework";
 import PropTypes from 'prop-types';
 import { changeCheckbox, sendInformationCheckbox } from '../actions';
 import { Actions } from 'react-native-router-flux';
+const { width, height } = Dimensions.get("screen");
 
 class SelectedCheckboxes {
   constructor() {
@@ -146,9 +149,9 @@ class AppCheck extends Component {
     const distinctArray = [... new Set(allCategories.map(data => data))];
 
     return (
-      <View>
+      <View style={{ backgroundColor: '#7A617A', flex: 1 }}>
         <ScrollView>
-          <View>
+        <View style={styles.container}>
             <FlatList
               data={distinctArray}
               renderItem={({ item }) =>
@@ -243,7 +246,32 @@ const styles = StyleSheet.create(
       fontSize: 18,
       paddingLeft: 15,
       marginRight: 15
-    }
+    },
+    container: {
+      justifyContent: 'center',
+      backgroundColor: theme.COLORS.WHITE,
+      shadowColor: "black",
+      shadowOffset: { width: 0, height: 0 },
+      shadowRadius: 8,
+      shadowOpacity: 0.2,
+      zIndex: 2,
+      borderRadius: 10,
+      opacity: 0.93,
+      margin: 15,
+    },
+    textInputStyle: {
+      alignSelf: 'stretch',
+      color: 'black',
+      padding: 13,
+      backgroundColor: 'white',
+      borderTopColor: '#ededed',
+      marginRight: 20,
+      marginLeft: 20,
+      borderRadius: 5,
+      fontSize: 16,
+      opacity: 1
+  
+    },
   });
 
 const mapStateToProps = state => {
@@ -252,7 +280,6 @@ const mapStateToProps = state => {
     checkbox, sendInformationCheckbox, books: state.books
   }
 }
-
 
 export default connect(mapStateToProps, {
   changeCheckbox, sendInformationCheckbox

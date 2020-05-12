@@ -50,16 +50,16 @@ function CustomDrawerContent(props) {
           </TouchableOpacity>
         </View>
         <View style={{ marginBottom: 10, flex: 1 }}>
-          <TouchableOpacity style={{ marginTop: 20, flexDirection: 'row' }} onPress={() => props.navigation.navigate('Graphics')}>
+          <TouchableOpacity style={{ marginTop: 20, flexDirection: 'row' }} onPress={() => props.navigation.navigate('Opinions')}>
             <View style={{ flex: 1 }}>
-              <Icon name="rocket" size={25} />
+              <Icon name="comment" size={25} />
             </View>
             <View style={{ flex: 5 }}>
-              <Text style={{ fontSize: 16, marginLeft: 15 }}>Grafikler</Text>
+              <Text style={{ fontSize: 16, marginLeft: 15 }}>Bize Yazın</Text>
             </View>
           </TouchableOpacity>
         </View>
-        <View style={{ marginBottom: 10, flex: 1 }}>
+        {/* <View style={{ marginBottom: 10, flex: 1 }}>
           <TouchableOpacity style={{ marginTop: 20, flexDirection: 'row' }} onPress={() => props.navigation.navigate('Profile')}>
             <View style={{ flex: 1 }}>
               <Icon name="user" size={25} />
@@ -68,7 +68,7 @@ function CustomDrawerContent(props) {
               <Text style={{ fontSize: 16, marginLeft: 15 }}>Profil</Text>
             </View>
           </TouchableOpacity>
-        </View>
+        </View> */}
         <View style={{ marginBottom: 10, flex: 1 }}>
           <TouchableOpacity style={{ marginTop: 20, flexDirection: 'row' }} onPress={() => props.navigation.navigate('LogOut')}>
             <View style={{ flex: 1 }}>
@@ -147,7 +147,7 @@ function TabNavigator() {
             iconName = focused
               ? require('../assest/images/home-blue.png')
               : require('../assest/images/home2.png')
-          } else if (route.name === 'Grafikler') {
+          } else if (route.name === 'İstatistikler') {
             iconName = focused
               ? require('../assest/images/graphic-color.png')
               : require('../assest/images/graphic.png')
@@ -170,7 +170,7 @@ function TabNavigator() {
       }}
     >
       <Tab.Screen name="Ana Sayfa" component={HomeStack} />
-      <Tab.Screen name="Grafikler" component={GraphicsStack} />
+      <Tab.Screen name="İstatistikler" component={GraphicsStack} />
       <Tab.Screen name="Profil" component={ProfileStack} />
 
     </Tab.Navigator>

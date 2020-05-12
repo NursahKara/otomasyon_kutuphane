@@ -22,6 +22,7 @@ import { connect } from 'react-redux';
 import FavoriteScreen from './screens/favorite';
 import BooksInCategory from './screens/booksInCategory';
 import BookFromCategory from './screens/bookFromCategory'
+import Graphics from './screens/graphics';
 import Categories from './screens/categories';
 const RouterComp = () => {
     return (
@@ -62,20 +63,25 @@ const RouterComp = () => {
                     <Scene key='sign'
                         component={SignUpScreen}
                         title='Kullanıcı Bilgileri'
-
                     />
                 </Scene>
-                <Scene key='checkbox'>
+                <Scene key='checkbox' >
                     <Scene key='checkboxes'
                         component={AppCheck}
                         title='İlgilendiklerinizi Seçin'
-
                     />
                 </Scene>
                 <Scene key='profile' >
                     <Scene key='favorites'
                         component={FavoriteScreen}
                         title='Favoriler'
+                        hideNavBar={true}
+                    />
+                </Scene>
+                <Scene key='Graphics' >
+                    <Scene key='Graphic'
+                        component={Graphics}
+                        title='İstatistikler'
                         hideNavBar={true}
                     />
                 </Scene>
