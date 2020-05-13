@@ -131,6 +131,7 @@ android {
         applicationId "com.b_otomasyon_kutuphane"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
+        multiDexEnabled true
         versionCode 1
         versionName "1.0"
     }
@@ -180,6 +181,7 @@ android {
 }
 
 dependencies {
+    implementation project(':react-native-smtp')
     implementation project(':react-native-splash-screen')
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "com.facebook.react:react-native:+"  // From node_modules
