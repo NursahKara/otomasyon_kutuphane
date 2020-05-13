@@ -150,11 +150,11 @@ class ProfileScreen extends React.Component {
                                 <Text style={styles.text}>Favori Kitaplarına Göz At</Text>
                             </View>
                         </TouchableOpacity>
-                        <TouchableOpacity style={styles.slide5} onPress={() => this.props.navigation.navigate('Graphics')}>
+                        {/* <TouchableOpacity style={styles.slide5} onPress={() => this.props.navigation.navigate('Graphics')}>
                             <View >
                                 <Text style={styles.text}>Grafiklere Göz At</Text>
                             </View>
-                        </TouchableOpacity>
+                        </TouchableOpacity> */}
                     </Swiper>
                 </View>
                 <View style={{ flex: 1, justifyContent: 'center', marginTop: '3%' }}>

@@ -1,10 +1,12 @@
 import React from 'react'
-import { BarChart, Grid, YAxis,XAxis } from 'react-native-svg-charts'
+import { BarChart, Grid, YAxis, XAxis } from 'react-native-svg-charts'
 import { View, ActivityIndicator } from 'react-native'
 import CustomHeader from './CustomHeader';
 import { getDatabase } from '../components/common/database';
 import { connect } from 'react-redux';
 import * as scale from 'd3-scale'
+import { Text } from 'native-base';
+import { TextInput } from 'react-native-paper';
 //https://github.com/JesperLekland/react-native-svg-charts-examples
 
 class Graphics extends React.PureComponent {
@@ -13,7 +15,7 @@ class Graphics extends React.PureComponent {
         this.state = {
             isLoad: false,
             totalFavoriteCount: 0,
-            favBooks: [],
+            favBooks: [],    //kitap cinsinden
             favBooksLikeCount: []
         }
         this.fetchData();
@@ -24,7 +26,7 @@ class Graphics extends React.PureComponent {
         var isbns = [];
         var topIsbns = [];
         var favBooksLikeCount = [];
-        await dbRef.once("value", (snapshot) => {
+        await dbRef.once("value", (snapshot) => {  //once bir kere çekiyor. realtime değil.   await asenkron fonk. olduğu için beklemesini sağlıyor
             if (!snapshot.exists()) {
                 return;
             }
@@ -36,7 +38,7 @@ class Graphics extends React.PureComponent {
             });
             return;
         }
-        const grp = values.map(w => w.bookIsbn).sort().reduce((r, c, i, a) => {
+        const grp = values.map(w => w.bookIsbn).sort().reduce((r, c, i, a) => {  //kitapları isbn numaralarına göre grupluyor.
             r[c] = [...r[c] || [], c]
             r[c] = (a[i + 1] != c && r[c].length == 1) ? r[c][0] : r[c]
             return r
@@ -46,7 +48,7 @@ class Graphics extends React.PureComponent {
                 isbns.push(item);
             }
         });
-        isbns = isbns.sort((x, y) => x.length - y.length).reverse();
+        isbns = isbns.sort((x, y) => x.length - y.length).reverse();  //isbnleri sıralıyor
         //console.log(isbns.length);
         if (isbns.length < 5) {
             isbns.forEach(item => {
@@ -84,7 +86,20 @@ class Graphics extends React.PureComponent {
                     label: favBooks[i].title
                 });
             }
-            console.log(data);
+            for (var j = 0; j < favBooks.length; j++) {
+                const lab = data[j].label
+            }
+        }
+        const labelData = [];
+        var favBooks = this.state.favBooks;
+        for(var i=0;i<favBooks.length;i++)  {
+            labelData.push(
+                <View style={{marginLeft:20}}>
+                    <Text>
+                   {[i+1]}- {data[i].label}
+                    </Text>
+                </View>
+            )
         }
         return (
             // <View>
@@ -116,40 +131,41 @@ class Graphics extends React.PureComponent {
             //     </View>
             // </View>
             <View>
-                 <CustomHeader title="İstatistikler" isHome={true} bg_white={true} navigation={this.props.navigation} />
-                 <View style={{ flexDirection: 'row', height: 200, paddingVertical: 16 }}>
-                <YAxis
-                    data={data}
-                    yAccessor={({ index }) => index}
-                    scale={scale.ScaleBand}
-                    contentInset={{ top: 10, bottom: 10 }}
-                    spacing={0.1}
-                />
-                <BarChart
-                    style={{ flex: 1, marginLeft: 0,marginRight:20}}
-                    data={data}
-                    horizontal={false}
-                    yAccessor={({ item }) => item.value}
-                    svg={{ fill: 'rgba(134, 65, 244, 0.8)' }}
-                    contentInset={{ top: 10, bottom: 10 }}
-                    spacing={0.1}
-                    gridMin={0}
-                >
-                    <Grid direction={Grid.Direction.HORIZONTAL}/>
-                </BarChart>
-                <XAxis
-                    style={{ marginTop: 10 }}
-                    data={ data }
-                    scale={scale.scaleBand}
-                    formatLabel={ (value, index) => index }
-                    labelStyle={ { color: 'black' } }
-                />
+                <CustomHeader title="İstatistikler" isHome={true} bg_white={true} navigation={this.props.navigation} />
+               <View style={{alignItems:'center',justifyContent:'center',margin:10}}>
+               <Text>
+                        En Beğenilen Kitaplar
+                    </Text>
+               </View>
+                <View style={{ flexDirection: 'row', height: 200, paddingVertical: 16 }}>
+                   
+                    <YAxis
+                        data={data}
+                        yAccessor={({ index }) => index}
+                        scale={scale.ScaleBand}
+                        contentInset={{ top: 10, bottom: 10 }}
+                        spacing={0.1}
+                    />
+                    <BarChart
+                        style={{ flex: 1, marginLeft: 0, marginRight: 20 }}
+                        data={data}
+                        horizontal={false}
+                        yAccessor={({ item }) => item.value}
+                        svg={{ fill: 'rgba(134, 65, 244, 0.8)' }}
+                        contentInset={{ top: 10, bottom: 10 }}
+                        spacing={0.1}
+                        gridMin={0}
+                    >
+                        <Grid direction={Grid.Direction.HORIZONTAL} />
+                    </BarChart>
+               
+                </View>
+                <View>
+                    {labelData}
+                </View>
             </View>
-            </View>
-         
         )
     }
-
 }
 const mapStateToProps = (state) => {
     return {

@@ -36,6 +36,7 @@ target 'b_otomasyon_kutuphane' do
 
   pod 'react-native-splash-screen', :path => '../node_modules/react-native-splash-screen'
 
+
   target 'b_otomasyon_kutuphaneTests' do
     inherit! :search_paths
     # Pods for testing

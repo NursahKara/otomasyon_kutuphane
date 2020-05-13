@@ -8,7 +8,6 @@ import {
 import CustomHeader from './CustomHeader';
 import { Input, MyButton, Spinner } from '../components/common';
 import { Block, theme } from "galio-framework";
-
 const { width, height } = Dimensions.get("screen");
 
 export default class OpinionsScreen extends Component {
