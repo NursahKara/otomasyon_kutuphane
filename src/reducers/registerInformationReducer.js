@@ -19,11 +19,11 @@ export default (state = INITIAL_STATE, action) => {
         case REGISTER:
             return {...state,loading:true,error:''}
         case REGISTER_FAILED:
-            return {...state,loading:false,error:'Register failed'}
+            return {...state,loading:false,error:'Lütfen Bilgileri Tekrar Girin'}
         case SEND_INFORMATION_REGISTER:
             return {...state, ...INITIAL_STATE}
         case USER_HAS_ACCOUNT:
-            return {...state,loading:true,error:'User has an account!'}
+            return {...state,loading:true,error:'Kullanıcı Zaten Kayıtlı!'}
         default:
             return state;
             

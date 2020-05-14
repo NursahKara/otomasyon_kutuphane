@@ -1,12 +1,14 @@
 import React from 'react'
 import { BarChart, Grid, YAxis, XAxis } from 'react-native-svg-charts'
-import { View, ActivityIndicator } from 'react-native'
+import { View, ActivityIndicator ,Dimensions} from 'react-native'
 import CustomHeader from './CustomHeader';
 import { getDatabase } from '../components/common/database';
 import { connect } from 'react-redux';
 import * as scale from 'd3-scale'
 import { Text } from 'native-base';
 import { TextInput } from 'react-native-paper';
+const { width, height } = Dimensions.get("screen");
+
 //https://github.com/JesperLekland/react-native-svg-charts-examples
 
 class Graphics extends React.PureComponent {
@@ -102,34 +104,6 @@ class Graphics extends React.PureComponent {
             )
         }
         return (
-            // <View>
-            //     <CustomHeader title="İstatistikler" isHome={true} bg_white={true} navigation={this.props.navigation} />
-            //     <View style={{ height: 200, padding: 20, flexDirection: 'row' }}>
-            //         {this.state.isLoad ?
-            //             <View style={{ flexDirection: 'row', height: 200, paddingVertical: 16 }}>
-            //                 <YAxis
-            //                     data={data}
-            //                     yAccessor={({ index }) => index}
-            //                     scale={scale.ScaleBand}
-            //                     contentInset={{ top: 10, bottom: 10 }}
-            //                     spacing={0.2}
-            //                     formatLabel={(_, index) => data[index].label}
-            //                 />
-            //                 <BarChart
-            //                     style={{ flex: 1, marginLeft: 8 }}
-            //                     data={data}
-            //                     horizontal={true}
-            //                     yAccessor={({ item }) => item.value}
-            //                     svg={{ fill: 'rgba(134, 65, 244, 0.8)' }}
-            //                     contentInset={{ top: 10, bottom: 10 }}
-            //                     spacing={0.2}
-            //                     gridMin={0}
-            //                 >
-            //                     <Grid direction={Grid.Direction.VERTICAL} />
-            //                 </BarChart>
-            //            </View> : <ActivityIndicator size="small" color="#731873" style={{ marginTop:height/3,marginLeft:width/2.3,alignItems:'center',justifyContent:'center' }} />}
-            //     </View>
-            // </View>
             <View>
                 <CustomHeader title="İstatistikler" isHome={true} bg_white={true} navigation={this.props.navigation} />
                <View style={{alignItems:'center',justifyContent:'center',margin:10}}>
@@ -137,6 +111,7 @@ class Graphics extends React.PureComponent {
                         En Beğenilen Kitaplar
                     </Text>
                </View>
+               {this.state.isLoad ?
                 <View style={{ flexDirection: 'row', height: 200, paddingVertical: 16 }}>
                    
                     <YAxis
@@ -159,7 +134,7 @@ class Graphics extends React.PureComponent {
                         <Grid direction={Grid.Direction.HORIZONTAL} />
                     </BarChart>
                
-                </View>
+                </View> : <ActivityIndicator size="small" color="#731873" style={{ marginTop:height/3,marginRight:width/20,alignItems:'center',justifyContent:'center' }} />}
                 <View>
                     {labelData}
                 </View>

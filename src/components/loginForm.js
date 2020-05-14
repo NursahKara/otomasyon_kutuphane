@@ -7,7 +7,7 @@ import {
     ScrollView,
     Image,
     ImageBackground,
-    Platform, TextInput, TouchableWithoutFeedbackBase
+    Platform, TextInput, TouchableWithoutFeedbackBase, Switch
 } from 'react-native';
 import { Input, MyButton, Spinner } from './common';
 import firebase from 'firebase';
@@ -19,13 +19,15 @@ import { getDatabase } from './common/database';
 import ProfileScreen from '../screens/profile';
 import { Block, theme } from "galio-framework";
 import Icon from 'react-native-vector-icons/FontAwesome';
+import ToggleSwitch from 'toggle-switch-react-native'
 getDatabase().ref('login')
 const { width, height } = Dimensions.get("screen");
 class LoginForm extends Component {
     constructor() {
         super();
         this.state = {
-            clicked: false
+            clicked: false,
+            toggle: false,
         };
         this.handleClick = this.handleClick.bind(this);
     }
@@ -103,18 +105,32 @@ class LoginForm extends Component {
                                                 name={name}
                                                 color='#000'
                                                 size={19}
-
                                             />
                                         </TouchableOpacity>
                                     </View>
                                 </View>
                                 {errorMsg}
                             </View>
+                            <View style={{flexDirection:'row',alignItems:'center',justifyContent:'flex-end',marginRight:10}}>
+                                <View style={{alignItems:'flex-start'}}>
+                                    <Text>Beni Hatırla</Text>
+                                </View>
+                                <View style={{alignItems:'flex-end'}}>
+                                    <Switch
+                                        trackColor={{ false: 'gray', true: '#d73a4b' }}
+                                        thumbColor="white"
+                                        ios_backgroundColor="gray"
+                                        onValueChange={(value) => this.setState({ toggle: value })}
+                                        value={this.state.toggle}
+                                    />
+                                </View>
+
+                            </View>
                             <MyButton spinner={loading}
                                 title='Giriş'
                                 onPress={this.onButtonClicked.bind(this)}
                                 color='#731873' />
-                            <Text style={styles.orText}>Ya Da</Text>
+                            {/* <Text style={styles.orText}>Ya Da</Text> */}
                             <MyButton
                                 title='Kayıt Ol'
                                 onPress={() => this.props.navigation.navigate('Register')}
@@ -144,8 +160,6 @@ const styles = StyleSheet.create({
         shadowRadius: 8,
         shadowOpacity: 0.2,
         zIndex: 2,
-        // borderTopLeftRadius: 10,
-        // borderTopRightRadius: 10,
         borderRadius: 10,
         opacity: 0.5,
         margin: 12
