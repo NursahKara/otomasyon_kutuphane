@@ -11,7 +11,7 @@ export const LOGGED_IN='logged_in';
 export const NOT_LOGGED_IN='not_logged_in';
 export const GO_TO_DEFINITON='go_to_definition';
 
-export const isLoggedIn=()=>{
+export const isLoggedIn=(...rememberMe)=>{
 return dispatch =>{
     firebase.auth().onAuthStateChanged(user=>{
         if(user){
@@ -19,7 +19,9 @@ return dispatch =>{
                 type:LOGGED_IN,
                 payload:user
             })
-           Actions.main()
+            if(JSON.stringify(rememberMe)=='[true]'){
+                Actions.main()
+            }
         }
         else{
             dispatch({

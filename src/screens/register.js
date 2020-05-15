@@ -72,6 +72,7 @@ class Register extends Component {
                                     onChangeText={this.onEmailRegister.bind(this)}
                                     value={this.props.email}
                                 />
+                                 <View style={styles.border}></View>
                                 <View style={styles.passwordContainer}>
                                     <TextInput
                                         style={styles.textInputStyle}
@@ -93,6 +94,7 @@ class Register extends Component {
                                         </TouchableOpacity>
                                     </View>
                                 </View>
+                                <View style={styles.border}></View>
                                 {errorMsg}
                             </View>
                             <MyButton spinner={loading}
@@ -133,6 +135,10 @@ const styles = StyleSheet.create({
         color: 'white',
         fontSize: 20
     },
+    border:{
+        borderBottomWidth: 1,
+        borderColor: '#E5E5E8',
+    },
     signUpContainer: {
         opacity: 1,
         flexDirection: 'row',
@@ -160,8 +166,8 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         height: 50,
         width: 'auto',
-        borderColor: '#E5E5E8',
-        borderBottomWidth: 1,
+        // borderColor: '#E5E5E8',
+        // borderBottomWidth: 1,
         alignItems: 'center',
         flexGrow: 2,
         fontSize: 17,

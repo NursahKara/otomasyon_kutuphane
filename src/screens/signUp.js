@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, SafeAreaView, TextInput, ScrollView, Dimensions, Keyboard } from 'react-native';
+import { View, Text, StyleSheet, SafeAreaView, TextInput, ScrollView, Dimensions, Keyboard,Button } from 'react-native';
 import { NavigationContainer, CommonActions } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { Input, MyButton } from '../components/common';
@@ -11,13 +11,44 @@ import { Actions } from 'react-native-router-flux';
 import DatePicker from 'react-native-date-picker';
 import CalendarPicker from 'react-native-calendar-picker';
 import { Dropdown } from 'react-native-material-dropdown';
+import DateTimePickerModal from "react-native-modal-datetime-picker";
+import DateTimePicker from "react-native-modal-datetime-picker";
+import moment from 'moment'
 const { width, height } = Dimensions.get("screen");
 
 class SignUpScreen extends React.Component {
-  state = {
-    date: new Date(),
-  }
-  onChange = date => this.setState({ date })
+  constructor() {
+    super();
+    this.state = {
+      isDateTimePickerVisible: false,
+      chosenDate:'',
+      
+    };
+}
+showDateTimePicker = () => {
+  this.setState({ isDateTimePickerVisible: true });
+};
+hideDateTimePicker = (date) => {
+  this.setState({ 
+    isDateTimePickerVisible: false,
+    // chosenDate: moment(date).format('Do MMMM YYYY')
+  });
+ 
+};
+changeBirthday(birthday) {
+  this.props.changeBirthday(birthday);
+}
+handleDatePicked = date => {
+  console.log("A date has been picked: ", date);
+  this.hideDateTimePicker();
+  this.setState({ 
+    chosenDate: moment(date).format('DD/MM/YYYY')
+  });
+  console.log('cc'+this.state.chosenDate)
+  console.log(moment(date).format('DD/MM/YYYY'))
+
+};
+
   onChangeName(name) {
     this.props.changeName(name);
   }
@@ -27,9 +58,7 @@ class SignUpScreen extends React.Component {
   changeNick(nick) {
     this.props.changeNick(nick);
   }
-  changeBirthday(birthday) {
-    this.props.changeBirthday(birthday);
-  }
+  
   changeGender(gender) {
     this.props.changeGender(gender);
   }
@@ -38,7 +67,12 @@ class SignUpScreen extends React.Component {
     this.props.sendInformationProfile(name, surname, nick, gender, birthday);
     Actions.checkbox();
   }
+  onBirthdayDateChange(){
+
+    this.changeBirthday.bind(this)
+  }
   render() {
+ 
     let data = [{
       value: 'Kadın',
     }, {
@@ -105,6 +139,20 @@ class SignUpScreen extends React.Component {
             {/* <View>
           <Text onChangeText={this.changeBirthday.bind(this)}>SELECTED DATE:{ startDate }</Text>
         </View> */}
+            <View>
+            <Button title="Doğum Tarihi" onPress={this.showDateTimePicker} />
+            <DateTimePicker
+              isVisible={this.state.isDateTimePickerVisible}
+              onConfirm={this.handleDatePicked}
+              onCancel={this.hideDateTimePicker}
+              mode={'date'}
+             
+              //onDateChange={this.changeBirthday.bind(this)}
+              
+            />
+            <TextInput onChangeText={this.changeBirthday.bind(this)} value={this.state.chosenDate} />
+              {/* {this.state.chosenDate}</TextInput> */}
+    </View>
             <View style={{ marginTop: '10%' }}>
               <MyButton spinner={loading}
                 title='Kaydet'

@@ -5,9 +5,10 @@ import {
     TouchableOpacity,
     Dimensions,
     ScrollView,
-    Image,
     ImageBackground,
-    Platform, TextInput, TouchableWithoutFeedbackBase, Switch
+    TextInput,
+    Switch,
+    AsyncStorage
 } from 'react-native';
 import { Input, MyButton, Spinner } from './common';
 import firebase from 'firebase';
@@ -27,7 +28,7 @@ class LoginForm extends Component {
         super();
         this.state = {
             clicked: false,
-            toggle: false,
+            isLoaded: false
         };
         this.handleClick = this.handleClick.bind(this);
     }
@@ -36,14 +37,40 @@ class LoginForm extends Component {
             clicked: !this.state.clicked
         });
     }
-    componentDidMount() {
-        if (this.props.fullLoading) {
-            this.props.isLoggedIn();
+    async setSettings() {
+        try {
+            var obj = {};
+            var settings = await AsyncStorage.getItem('settings');
+            settings = JSON.parse(settings);
+            Object.assign(obj, settings);
+            this.setState(obj);
+            this.setState({
+                isLoaded: true
+            })
+        } catch (e) {
+            console.log(e);
+        }
+    }
+    switchChanged(field, value) {
+        var obj = {};
+        obj[field] = value;
+        AsyncStorage.getItem('settings').then(function (strResult) {
+            var result = JSON.parse(strResult) || {};
+            Object.assign(result, obj);
+            AsyncStorage.setItem('settings', JSON.stringify(result));
+        });
+        this.setState(obj);
+    }
+    async componentDidMount() {
+        await this.setSettings();
+        if (this.state.isLoaded) {
+            this.props.isLoggedIn(this.state.toggle);
         }
     }
     onButtonClicked() {
         const { email, password } = this.props;
         this.props.loginUser(email, password);
+        this.props.isLoggedIn(this.state.toggle);
     }
 
     onEmailChange(text) {
@@ -66,14 +93,12 @@ class LoginForm extends Component {
                 {error}
             </Text>
         ) : null;
-
         return (
             <Block flex>
                 <ImageBackground
                     source={require('../../assest/themes/bg.png')}
                     style={styles.ImageContainer}
                 >
-
                     <ScrollView
                         showsVerticalScrollIndicator={false}
                         style={{ width, marginTop: '30%' }}
@@ -89,6 +114,7 @@ class LoginForm extends Component {
                                     underlineColorAndroid='transparent'
                                     onChangeText={this.onEmailChange.bind(this)}
                                     value={this.props.email} />
+                                <View style={styles.border}></View>
                                 <View style={styles.passwordContainer}>
                                     <TextInput
                                         style={styles.textInputStyle}
@@ -99,6 +125,7 @@ class LoginForm extends Component {
                                         onChangeText={this.onPasswordChange.bind(this)}
                                         value={this.props.password}
                                     />
+
                                     <View style={{ alignItems: 'flex-end', justifyContent: 'center', marginRight: 10 }}>
                                         <TouchableOpacity onPress={this.handleClick}>
                                             <Icon
@@ -109,18 +136,19 @@ class LoginForm extends Component {
                                         </TouchableOpacity>
                                     </View>
                                 </View>
+                                <View style={styles.border}></View>
                                 {errorMsg}
                             </View>
-                            <View style={{flexDirection:'row',alignItems:'center',justifyContent:'flex-end',marginRight:10}}>
-                                <View style={{alignItems:'flex-start'}}>
+                            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-end', marginRight: 10 }}>
+                                <View style={{ alignItems: 'flex-start' }}>
                                     <Text>Beni Hatırla</Text>
                                 </View>
-                                <View style={{alignItems:'flex-end'}}>
+                                <View style={{ alignItems: 'flex-end' }}>
                                     <Switch
-                                        trackColor={{ false: 'gray', true: '#d73a4b' }}
+                                        trackColor={{ false: 'gray', true: '#731873' }}
                                         thumbColor="white"
                                         ios_backgroundColor="gray"
-                                        onValueChange={(value) => this.setState({ toggle: value })}
+                                        onValueChange={(value) => this.switchChanged('toggle', value)}
                                         value={this.state.toggle}
                                     />
                                 </View>
@@ -140,6 +168,7 @@ class LoginForm extends Component {
                     </ScrollView>
                 </ImageBackground>
             </Block>
+
         )
     }
 }
@@ -193,6 +222,10 @@ const styles = StyleSheet.create({
         width: '40%',
         fontSize: 16
     },
+    border: {
+        borderBottomWidth: 1,
+        borderColor: '#E5E5E8',
+    },
     textInputStyle: {
         alignSelf: 'stretch',
         color: 'black',
@@ -202,8 +235,8 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         height: 50,
         width: 'auto',
-        borderColor: '#E5E5E8',
-        borderBottomWidth: 1,
+        // borderColor: '#E5E5E8',
+        // borderBottomWidth: 1,
         alignItems: 'center',
         flexGrow: 2,
         fontSize: 17,
