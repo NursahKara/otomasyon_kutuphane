@@ -49,7 +49,7 @@ class ProfileScreen extends React.Component {
                     </View>
                     {/* <Text style={styles.textStyle}>Ad: {item.name}</Text>
                         <Text style={styles.textStyle}>Soyad: {item.surname}</Text> */}
-                    <View style={{ flexDirection: 'row', flex: 1, marginLeft: 20, borderBottomWidth: 0.2, marginRight: 20 }}>
+                    {/* <View style={{ flexDirection: 'row', flex: 1, marginLeft: 20, borderBottomWidth: 0.2, marginRight: 20 }}>
                         <View style={{ alignItems: 'flex-start', justifyContent: 'center', flex: 1 }}>
                             <Icon
                                 name='slack'
@@ -60,7 +60,7 @@ class ProfileScreen extends React.Component {
                         <View style={{ alignItems: 'flex-end', marginRight: 10, justifyContent: 'center', flex: 5 }}>
                             <Text style={styles.textStyle}>{item.nick} </Text>
                         </View>
-                    </View>
+                    </View> */}
                     <View style={{ flexDirection: 'row', flex: 1, marginLeft: 20, borderBottomWidth: 0.2, marginRight: 20 }}>
                         <View style={{ alignItems: 'flex-start', justifyContent: 'center', flex: 1 }}>
                             <Icon

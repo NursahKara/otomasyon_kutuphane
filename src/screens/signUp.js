@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, SafeAreaView, TextInput, ScrollView, Dimensions, Keyboard,Button } from 'react-native';
+import { View, Text, StyleSheet, SafeAreaView, TextInput, ScrollView, Dimensions, Keyboard, Button, TouchableOpacity } from 'react-native';
 import { NavigationContainer, CommonActions } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { Input, MyButton } from '../components/common';
@@ -21,33 +21,32 @@ class SignUpScreen extends React.Component {
     super();
     this.state = {
       isDateTimePickerVisible: false,
-      chosenDate:'',
-      
-    };
-}
-showDateTimePicker = () => {
-  this.setState({ isDateTimePickerVisible: true });
-};
-hideDateTimePicker = (date) => {
-  this.setState({ 
-    isDateTimePickerVisible: false,
-    // chosenDate: moment(date).format('Do MMMM YYYY')
-  });
- 
-};
-changeBirthday(birthday) {
-  this.props.changeBirthday(birthday);
-}
-handleDatePicked = date => {
-  console.log("A date has been picked: ", date);
-  this.hideDateTimePicker();
-  this.setState({ 
-    chosenDate: moment(date).format('DD/MM/YYYY')
-  });
-  console.log('cc'+this.state.chosenDate)
-  console.log(moment(date).format('DD/MM/YYYY'))
+      chosenDate: '',
 
-};
+    };
+  }
+  showDateTimePicker = () => {
+    this.setState({ isDateTimePickerVisible: true });
+  };
+  hideDateTimePicker = (date) => {
+    this.setState({
+      isDateTimePickerVisible: false,
+      // chosenDate: moment(date).format('Do MMMM YYYY')
+    });
+
+  };
+  changeBirthday(birthday) {
+    this.props.changeBirthday(birthday);
+  }
+  handleDatePicked = date => {
+    console.log("A date has been picked: ", date);
+    this.hideDateTimePicker();
+    this.setState({
+      chosenDate: moment(date).format('DD/MM/YYYY')
+    });
+    console.log('cc' + this.state.chosenDate)
+    console.log(moment(date).format('DD/MM/YYYY'))
+  };
 
   onChangeName(name) {
     this.props.changeName(name);
@@ -58,21 +57,17 @@ handleDatePicked = date => {
   changeNick(nick) {
     this.props.changeNick(nick);
   }
-  
+
   changeGender(gender) {
     this.props.changeGender(gender);
   }
   sendInformationProfile() {
     const { name, surname, nick, gender, birthday } = this.props;
-    this.props.sendInformationProfile(name, surname, nick, gender, birthday);
+    this.props.sendInformationProfile(name, surname, nick, gender, this.state.chosenDate);
     Actions.checkbox();
   }
-  onBirthdayDateChange(){
-
-    this.changeBirthday.bind(this)
-  }
   render() {
- 
+
     let data = [{
       value: 'Kadın',
     }, {
@@ -94,26 +89,19 @@ handleDatePicked = date => {
             <TextInput
               style={styles.textInputStyle}
               placeholder='Ad'
-              placeholderTextColor='black'
+             // placeholderTextColor='black'
               underlineColorAndroid='transparent'
               onChangeText={this.onChangeName.bind(this)}
             />
             <TextInput
               style={styles.textInputStyle}
               placeholder='Soyad'
-              placeholderTextColor='black'
+              //placeholderTextColor='black'
               underlineColorAndroid='transparent'
               onChangeText={this.changeSurname.bind(this)}
               returnKeyType='done'
               onSubmitEditing={Keyboard.dismiss}
             />
-            {/* <TextInput 
-                    style={styles.textInputStyle} 
-                    placeholder='Nick' 
-                    placeholderTextColor='black' 
-                    underlineColorAndroid='transparent'
-                    onChangeText={this.changeNick.bind(this)}
-                    /> */}
             <Dropdown
               label='Cinsiyet'
               data={data}
@@ -122,37 +110,27 @@ handleDatePicked = date => {
               pickerStyle={{ borderBottomColor: 'transparent', borderWidth: 0 }}
               containerStyle={styles.textInputStyle}
             />
-            {/* <TextInput 
-                    style={styles.textInputStyle} 
-                    placeholder='Birthday' 
-                    placeholderTextColor='black' 
-                    underlineColorAndroid='transparent'
-                    onChangeText={this.changeBirthday.bind(this)}
-                    /> */}
-            {/* 
-            <DatePicker
-              onChange={this.onChange}
-              value={this.state.date}
-              dateFormat="MMMM d, yyyy h:mm aa"
-            /> */}
-
-            {/* <View>
-          <Text onChangeText={this.changeBirthday.bind(this)}>SELECTED DATE:{ startDate }</Text>
-        </View> */}
-            <View>
-            <Button title="Doğum Tarihi" onPress={this.showDateTimePicker} />
-            <DateTimePicker
-              isVisible={this.state.isDateTimePickerVisible}
-              onConfirm={this.handleDatePicked}
-              onCancel={this.hideDateTimePicker}
-              mode={'date'}
-             
-              //onDateChange={this.changeBirthday.bind(this)}
-              
-            />
-            <TextInput onChangeText={this.changeBirthday.bind(this)} value={this.state.chosenDate} />
-              {/* {this.state.chosenDate}</TextInput> */}
-    </View>
+         
+              <TouchableOpacity onPress={this.showDateTimePicker} >
+                <TextInput style={styles.textInputStyle}
+                           placeholder='Doğum Günü' 
+                           editable={false}    
+                           //placeholderTextColor='black'
+                           onChangeText={this.changeBirthday.bind(this)}>
+                             {this.state.chosenDate}
+                </TextInput>
+              </TouchableOpacity>
+              <DateTimePicker
+                isVisible={this.state.isDateTimePickerVisible}
+                onConfirm={this.handleDatePicked}
+                onCancel={this.hideDateTimePicker}
+                mode={'date'}
+              />
+              {/* <TextInput
+                value={this.state.chosenDate}
+                onChangeText={this.changeBirthday.bind(this)}
+              /> */}
+           
             <View style={{ marginTop: '10%' }}>
               <MyButton spinner={loading}
                 title='Kaydet'
@@ -160,7 +138,6 @@ handleDatePicked = date => {
                 color='#731873'
               />
             </View>
-
           </View>
         </ScrollView>
       </View>
@@ -168,7 +145,6 @@ handleDatePicked = date => {
     );
   }
 }
-
 const styles = StyleSheet.create({
   textInputStyle: {
     alignSelf: 'stretch',
@@ -192,7 +168,6 @@ const styles = StyleSheet.create({
     marginTop: 35,
     marginLeft: 13
   },
-
   dropdown: {
     width: '80%',
   },
@@ -210,6 +185,12 @@ const styles = StyleSheet.create({
     margin: 15,
     marginTop: height / 8
   },
+  button: {
+    width: 250,
+    height: 50,
+    backgroundColor: 'white',
+    borderWidth: 2
+  }
 });
 
 const mapStateToProps = state => {
@@ -221,6 +202,3 @@ const mapStateToProps = state => {
 export default connect(mapStateToProps, {
   changeName, changeSurname, changeNick, changeGender, changeBirthday, sendInformationProfile
 })(SignUpScreen);
-
-  //birthday, gender eklenecek.
-  //profilde kitap önerisi çıkarabilmek için kitap türleri arasında seçim yapma sayfasına yönlendirilebilir.

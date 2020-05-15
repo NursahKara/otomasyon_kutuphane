@@ -59,7 +59,7 @@ const RouterComp = () => {
                         title='BooksInCategory'
                         hideNavBar={true} />
                 </Scene>
-                <Scene key='signUp' initial >
+                <Scene key='signUp' >
                     <Scene key='sign'
                         component={SignUpScreen}
                         title='Kullanıcı Bilgileri'
