@@ -27,7 +27,7 @@ export default (state=INITIAL_STATE,action)=>{
         case LOGIN:
             return {...state,loading:true,error:''}
         case LOGIN_USER_FAILED:
-            return {...state,loading:false,error:'Giriş Yapılamadı'}
+            return {...state,loading:false,error:'Email ya da şifre hatalı!'}
         case LOGGED_IN:
             return {...state,fullLoading:false,user:action.payload};
         case NOT_LOGGED_IN:

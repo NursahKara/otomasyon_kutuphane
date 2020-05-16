@@ -161,14 +161,14 @@ class ProfileScreen extends React.Component {
                     <FlatList data={profileInformationList}
                         renderItem={this.renderItem} />
                     <View style={{ flexDirection: 'row', flex: 1, marginLeft: 20, marginRight: 25 }}>
-                        <View style={{ alignItems: 'flex-start' }}>
-                            <TouchableOpacity onPress={() => this.props.navigation.navigate('ChangePassword')} style={{ flex: 4, justifyContent: 'center', alignItems: 'center' }} >
+                        <View style={{ flex: 4,alignItems: 'flex-start' }}>
+                            <TouchableOpacity onPress={() => this.props.navigation.navigate('ChangePassword')} style={{  justifyContent: 'center', alignItems: 'center' }} >
                                 <Icon name="key" size={30} color="#B87D95" />
                                 <Text>Şifreni Değiştir</Text>
                             </TouchableOpacity>
                         </View>
 
-                        <View style={styles.buttonWrapper}>
+                        <View style={{ flex: 2,alignItems: 'flex-end' }}>
                             <TouchableOpacity onPress={() => this.props.navigation.navigate('Favorite')} style={{ justifyContent: 'center', alignItems: 'center' }} >
                                 <Icon name="star" size={30} color="#B87D95" />
                                 <Text>Favorilerim</Text>
@@ -269,7 +269,7 @@ const styles = StyleSheet.create({
     },
     buttonWrapper: {
 
-        marginBottom: 5,
+        marginBottom: 0,
         height: 49,
         justifyContent: 'center',
         fontSize: 18,

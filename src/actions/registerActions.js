@@ -36,7 +36,7 @@ export const sendInformationRegister = (email, password) => {
             .catch((e) => {
                 // setTimeout(function(){
                 console.log(e);
-                Alert.alert(e.message);
+                Alert.alert("Bu hesap zaten var. Lütfen giriş yapın.")
 
                 //   }, 2000);
             }
