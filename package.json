@@ -23,7 +23,7 @@
     "d3-scale": "^3.2.1",
     "firebase": "^7.12.0",
     "galio-framework": "^0.6.3",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.21",
     "moment": "^2.24.0",
     "native-base": "^2.13.12",
     "react": "16.9.0",
